@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 0 0% 100%;
+    --foreground: 215 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 50% 10%;
+
+    /* Primary — deep institutional navy */
+    --primary: 215 53% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — near-white surface */
+    --secondary: 220 14% 97%;
+    --secondary-foreground: 215 50% 10%;
+
+    /* Muted — quiet greys */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 40%;
+
+    /* Accent — paper grey */
+    --accent: 220 14% 95%;
+    --accent-foreground: 215 53% 10%;
+
+    /* Gold — restrained institutional accent (use sparingly) */
+    --gold: 36 35% 48%;
+    --gold-foreground: 0 0% 100%;
+
+    /* Semantic */
+    --destructive: 0 55% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 35% 32%;
+    --success-foreground: 0 0% 100%;
+    --warning: 36 60% 40%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 215 53% 25%;
+  }
+
+  .dark {
+    --background: 215 30% 7%;
+    --foreground: 220 14% 92%;
+
+    --card: 215 30% 9%;
+    --card-foreground: 220 14% 92%;
+
+    --popover: 215 30% 9%;
+    --popover-foreground: 220 14% 92%;
+
+    --primary: 220 14% 95%;
+    --primary-foreground: 215 53% 10%;
+
+    --secondary: 215 25% 13%;
+    --secondary-foreground: 220 14% 92%;
+
+    --muted: 215 25% 14%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 215 25% 16%;
+    --accent-foreground: 220 14% 92%;
+
+    --gold: 36 38% 60%;
+    --gold-foreground: 215 53% 10%;
+
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 30% 55%;
+    --success-foreground: 215 53% 10%;
+    --warning: 36 55% 60%;
+    --warning-foreground: 215 53% 10%;
+
+    --border: 215 25% 18%;
+    --input: 215 25% 18%;
+    --ring: 220 14% 70%;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Tabular figures for all numerical content (tables, badges, metrics) */
+  .tnum,
+  table td,
+  table th,
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Headings — serif display */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+    font-feature-settings: "ss01";
+  }
+
+  /* Selection — discreet navy */
+  ::selection {
+    background: hsl(var(--primary) / 0.12);
+    color: hsl(var(--foreground));
+  }
+
+  /* Focus ring — visible but disciplined */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  /* Hairline divider — institutional rules, not decorative borders */
+  .hairline {
+    @apply border-t border-border;
+  }
+
+  /* "Eyebrow" label — small caps, gold or muted */
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.14em] font-medium text-muted-foreground;
+  }
+
+  .eyebrow-gold {
+    @apply text-[11px] uppercase tracking-[0.14em] font-medium text-gold;
+  }
+
+  /* Section ruling — used at top of major sections */
+  .section-rule {
+    @apply h-px bg-border;
+  }
+
+  /* Reading column for prose content */
+  .reading-column {
+    @apply max-w-prose mx-auto;
+  }
+
+  /* Soft surface for cards */
+  .surface {
+    @apply bg-card border border-border;
+  }
+}
+
+@layer utilities {
+  /* Subtle paper-like grain for hero areas (very low opacity) */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+}
+
+/* Prose customization for module/pitch reading pages */
+.prose-pmc {
+  @apply text-foreground;
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--primary));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-bullets: hsl(var(--border));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--gold));
+  --tw-prose-code: hsl(var(--foreground));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--secondary));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+}
+
+.prose-pmc h2 {
+  @apply mt-14 mb-5 text-2xl font-semibold tracking-tight;
+  scroll-margin-top: 5rem;
+}
+
+.prose-pmc h3 {
+  @apply mt-10 mb-3 text-xl font-semibold tracking-tight;
+  scroll-margin-top: 5rem;
+}
+
+.prose-pmc h4 {
+  @apply mt-8 mb-2 text-lg font-semibold tracking-tight;
+  scroll-margin-top: 5rem;
+}
+
+.prose-pmc p {
+  @apply leading-[1.75] my-5;
+}
+
+.prose-pmc a {
+  @apply underline decoration-gold/60 decoration-1 underline-offset-[3px] hover:decoration-gold;
+}
+
+.prose-pmc strong {
+  @apply font-semibold;
+}
+
+.prose-pmc ul,
+.prose-pmc ol {
+  @apply my-5 pl-6;
+}
+
+.prose-pmc ul li,
+.prose-pmc ol li {
+  @apply my-2 leading-[1.7];
+}
+
+.prose-pmc ul {
+  @apply list-disc;
+}
+
+.prose-pmc ol {
+  @apply list-decimal;
+}
+
+.prose-pmc blockquote {
+  @apply border-l-2 border-gold pl-5 my-6 italic font-serif text-[1.05em] text-foreground/85;
+}
+
+.prose-pmc hr {
+  @apply my-10 border-border;
+}
+
+.prose-pmc code:not(pre code) {
+  @apply font-mono text-[0.9em] bg-muted px-1.5 py-0.5 rounded-sm border border-border;
+}
+
+.prose-pmc pre {
+  @apply bg-secondary text-foreground border border-border p-4 my-6 overflow-x-auto text-sm leading-relaxed rounded-sm;
+}
+
+.prose-pmc pre code {
+  @apply bg-transparent border-0 p-0;
+}
+
+/* KaTeX overrides — make math feel native */
+.prose-pmc .katex-display {
+  @apply my-7 px-4 py-3 bg-secondary border-l-2 border-gold/70 rounded-r-sm overflow-x-auto;
+}
+
+.prose-pmc .katex {
+  font-size: 1.05em;
+}
+
+/* Reading progress indicator */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: hsl(var(--gold));
+  transform-origin: 0 50%;
+  z-index: 50;
+  transition: transform 0.05s linear;
+}
