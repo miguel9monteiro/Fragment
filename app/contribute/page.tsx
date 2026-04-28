@@ -13,8 +13,8 @@ export default function ContributePage() {
   return (
     <>
       <section className="container pt-12 pb-10 border-b border-border">
-        <p className="eyebrow-gold mb-3">For members</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+        <p className="eyebrow-accent mb-3">For members</p>
+        <h1 className="font-bold text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
           Contribute to the library
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
@@ -44,8 +44,8 @@ export default function ContributePage() {
 
       {/* Process */}
       <section className="container py-16">
-        <p className="eyebrow-gold mb-3">Workflow</p>
-        <h2 className="font-serif text-3xl font-semibold tracking-tight mb-10">
+        <p className="eyebrow-accent mb-3">Workflow</p>
+        <h2 className="text-3xl font-semibold tracking-tight mb-10">
           Three steps from idea to published
         </h2>
         <ol className="grid gap-px bg-border border border-border md:grid-cols-3">
@@ -69,8 +69,8 @@ export default function ContributePage() {
 
       {/* What you can add */}
       <section id="how-to" className="container py-16 border-t border-border">
-        <p className="eyebrow-gold mb-3">What you can add</p>
-        <h2 className="font-serif text-3xl font-semibold tracking-tight mb-10">
+        <p className="eyebrow-accent mb-3">What you can add</p>
+        <h2 className="text-3xl font-semibold tracking-tight mb-10">
           Three content types
         </h2>
 
@@ -101,20 +101,20 @@ export default function ContributePage() {
 
       {/* Components reference */}
       <section className="container py-16 border-t border-border">
-        <p className="eyebrow-gold mb-3">MDX components</p>
-        <h2 className="font-serif text-3xl font-semibold tracking-tight mb-3">
+        <p className="eyebrow-accent mb-3">MDX components</p>
+        <h2 className="text-3xl font-semibold tracking-tight mb-3">
           Building blocks
         </h2>
         <p className="text-muted-foreground max-w-2xl leading-relaxed mb-10">
           Every module and pitch page can use these components inside MDX. Full
-          usage examples live in <code className="font-mono text-xs">CONTRIBUTING.md</code>.
+          usage examples live in <code className="tnum text-xs">CONTRIBUTING.md</code>.
         </p>
 
         <div className="grid gap-px bg-border border border-border md:grid-cols-2 lg:grid-cols-3">
           {COMPONENTS.map((c) => (
             <div key={c.name} className="bg-card p-5">
-              <p className="font-mono text-xs text-gold mb-2">{c.name}</p>
-              <p className="font-serif text-base font-semibold mb-1">
+              <p className="tnum text-xs text-steel mb-2">{c.name}</p>
+              <p className="text-base font-semibold mb-1">
                 {c.title}
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -129,10 +129,10 @@ export default function ContributePage() {
       <section className="container py-16 border-t border-border">
         <div className="grid gap-12 md:grid-cols-2 items-start">
           <div>
-            <p className="eyebrow-gold mb-3 inline-flex items-center gap-2">
+            <p className="eyebrow-accent mb-3 inline-flex items-center gap-2">
               <ShieldCheck className="h-3.5 w-3.5" /> Review
             </p>
-            <h2 className="font-serif text-3xl font-semibold tracking-tight mb-5">
+            <h2 className="text-3xl font-semibold tracking-tight mb-5">
               Two senior approvals to merge
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -149,25 +149,25 @@ export default function ContributePage() {
             </p>
             <ul className="space-y-3 text-sm leading-relaxed">
               <li className="flex gap-3">
-                <span className="font-mono text-[10px] text-gold tnum mt-1.5">
+                <span className="tnum text-[10px] text-steel tnum mt-1.5">
                   01
                 </span>
                 Numbers tie out — every figure has a source or a calculation.
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-[10px] text-gold tnum mt-1.5">
+                <span className="tnum text-[10px] text-steel tnum mt-1.5">
                   02
                 </span>
                 Concepts are introduced before they're used.
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-[10px] text-gold tnum mt-1.5">
+                <span className="tnum text-[10px] text-steel tnum mt-1.5">
                   03
                 </span>
                 Self-checks test understanding, not memorization.
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-[10px] text-gold tnum mt-1.5">
+                <span className="tnum text-[10px] text-steel tnum mt-1.5">
                   04
                 </span>
                 Tone is professional and confident — never breezy.
@@ -180,12 +180,12 @@ export default function ContributePage() {
       {/* CTA */}
       <section className="container py-20 border-t border-border">
         <div className="max-w-2xl">
-          <p className="eyebrow-gold mb-3">Ready?</p>
-          <h2 className="font-serif text-3xl font-semibold tracking-tight mb-4">
+          <p className="eyebrow-accent mb-3">Ready?</p>
+          <h2 className="text-3xl font-semibold tracking-tight mb-4">
             Read{" "}
             <Link
               href="https://github.com/miguel9monteiro/Fragment/blob/main/CONTRIBUTING.md"
-              className="underline decoration-gold/60 underline-offset-4 hover:decoration-gold"
+              className="underline decoration-steel/60 underline-offset-4 hover:decoration-steel"
             >
               CONTRIBUTING.md
             </Link>{" "}
@@ -212,8 +212,8 @@ function Step({
 }) {
   return (
     <div className="bg-card p-7 flex flex-col gap-3">
-      <p className="font-mono text-xs text-gold tnum">{number}</p>
-      <p className="font-serif text-xl font-semibold tracking-tight">
+      <p className="tnum text-xs text-steel tnum">{number}</p>
+      <p className="text-xl font-semibold tracking-tight">
         {title}
       </p>
       <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
@@ -237,14 +237,14 @@ function ContentType({
   return (
     <div className="bg-card p-7 flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <Icon className="h-4 w-4 text-gold" />
-        <span className="eyebrow-gold">{label}</span>
+        <Icon className="h-4 w-4 text-steel" />
+        <span className="eyebrow-accent">{label}</span>
       </div>
-      <p className="font-serif text-xl font-semibold tracking-tight">
+      <p className="text-xl font-semibold tracking-tight">
         {title}
       </p>
       <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
-      <p className="font-mono text-[11px] text-foreground/70 mt-auto pt-3 border-t border-border/70 break-all">
+      <p className="tnum text-[11px] text-foreground/70 mt-auto pt-3 border-t border-border/70 break-all">
         {location}
       </p>
     </div>

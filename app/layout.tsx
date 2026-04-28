@@ -1,28 +1,16 @@
 import "@/styles/globals.css";
 import "katex/dist/katex.min.css";
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Source_Sans_3 } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const serif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  axes: ["opsz"],
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -53,10 +41,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          inter.variable,
-          serif.variable,
-          mono.variable,
-          "min-h-screen flex flex-col antialiased",
+          sourceSans.variable,
+          "min-h-screen flex flex-col antialiased font-sans",
         )}
       >
         <Header />

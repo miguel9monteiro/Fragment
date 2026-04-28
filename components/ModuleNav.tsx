@@ -24,7 +24,7 @@ export function ModuleNav({
           <span className="eyebrow inline-flex items-center gap-1.5">
             <ArrowLeft className="h-3 w-3" /> Previous
           </span>
-          <span className="font-serif text-base font-semibold tracking-tight">
+          <span className="text-base font-semibold tracking-tight">
             {prev.frontmatter.title}
           </span>
           <span className="text-xs text-muted-foreground">
@@ -42,7 +42,7 @@ export function ModuleNav({
           <span className="eyebrow inline-flex items-center gap-1.5 self-end">
             Next <ArrowRight className="h-3 w-3" />
           </span>
-          <span className="font-serif text-base font-semibold tracking-tight">
+          <span className="text-base font-semibold tracking-tight">
             {next.frontmatter.title}
           </span>
           <span className="text-xs text-muted-foreground">

@@ -64,10 +64,10 @@ export default async function PitchPage({
               <p className="eyebrow text-primary-foreground/65 mb-3">
                 {fm.sector}
               </p>
-              <p className="font-serif text-[80px] sm:text-[100px] leading-[0.9] tracking-tight font-semibold">
+              <p className="font-bold text-[80px] sm:text-[100px] leading-[0.9] tracking-tight font-semibold">
                 {fm.ticker}
               </p>
-              <p className="font-serif text-xl mt-3 text-primary-foreground/85">
+              <p className="font-bold text-xl mt-3 text-primary-foreground/85">
                 {fm.title}
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -85,11 +85,11 @@ export default async function PitchPage({
             </div>
 
             <div className="lg:pl-12 lg:border-l lg:border-primary-foreground/15">
-              <p className="eyebrow text-gold mb-4">Key takeaways</p>
+              <p className="eyebrow text-steel mb-4">Key takeaways</p>
               <ol className="space-y-4">
                 {fm.keyTakeaways.map((t, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="mt-1 font-mono text-gold text-xs tnum shrink-0">
+                    <span className="mt-1 tnum text-steel text-xs tnum shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="text-[15px] leading-relaxed text-primary-foreground/90">

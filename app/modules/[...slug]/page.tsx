@@ -77,8 +77,8 @@ export default async function ModulePage({
           </Link>
         </nav>
 
-        <p className="eyebrow-gold mb-4">{CATEGORY_LABELS[mod.category]}</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05] max-w-4xl">
+        <p className="eyebrow-accent mb-4">{CATEGORY_LABELS[mod.category]}</p>
+        <h1 className="font-bold text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05] max-w-4xl">
           {fm.title}
         </h1>
         <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-3xl">
@@ -222,9 +222,9 @@ async function PrereqList({ slugs }: { slugs: string[] }) {
           <li key={p.slug}>
             <Link
               href={`/modules/${p.category}/${p.slug}`}
-              className="group inline-flex items-center gap-2 text-sm hover:text-gold transition-colors"
+              className="group inline-flex items-center gap-2 text-sm hover:text-steel transition-colors"
             >
-              <span className="font-serif font-medium">
+              <span className="font-bold font-medium">
                 {p.frontmatter.title}
               </span>
               <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />

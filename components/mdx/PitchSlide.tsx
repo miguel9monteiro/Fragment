@@ -57,7 +57,7 @@ export function PitchSlide({
           >
             <span
               className={cn(
-                "flex h-6 w-6 items-center justify-center rounded-full bg-gold text-gold-foreground text-[11px] font-semibold shadow-md ring-2 ring-background transition-transform",
+                "flex h-6 w-6 items-center justify-center rounded-full bg-steel text-steel-foreground text-[11px] font-semibold shadow-md ring-2 ring-background transition-transform",
                 active === i ? "scale-110" : "group-hover:scale-110",
               )}
             >
@@ -71,7 +71,7 @@ export function PitchSlide({
             className="absolute z-10 left-4 right-4 bottom-4 sm:left-auto sm:right-4 sm:max-w-sm bg-background/97 backdrop-blur border border-border rounded-sm p-4 text-sm shadow-lg animate-fade-in"
             role="status"
           >
-            <p className="eyebrow-gold mb-1.5">
+            <p className="eyebrow-accent mb-1.5">
               Note {active + 1} · {annotations[active].label}
             </p>
             <p className="text-foreground/90 leading-relaxed">

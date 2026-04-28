@@ -83,8 +83,8 @@ export function ModulesIndex({ modules }: { modules: ModuleEntry[] }) {
     <>
       {/* Page heading */}
       <section className="container pt-12 pb-10 border-b border-border">
-        <p className="eyebrow-gold mb-3">Library</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+        <p className="eyebrow-accent mb-3">Library</p>
+        <h1 className="font-bold text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
           Modules
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
@@ -193,7 +193,7 @@ export function ModulesIndex({ modules }: { modules: ModuleEntry[] }) {
       <section className="container py-12">
         {filtered.length === 0 ? (
           <div className="border border-dashed border-border py-20 text-center rounded-sm">
-            <p className="font-serif text-xl font-semibold mb-2">
+            <p className="text-xl font-semibold mb-2">
               No matches yet.
             </p>
             <p className="text-sm text-muted-foreground">
@@ -218,8 +218,8 @@ export function ModulesIndex({ modules }: { modules: ModuleEntry[] }) {
               <div key={cat}>
                 <div className="flex items-end justify-between mb-6 pb-3 border-b border-border">
                   <div>
-                    <p className="eyebrow-gold mb-1">Category</p>
-                    <h2 className="font-serif text-2xl font-semibold tracking-tight">
+                    <p className="eyebrow-accent mb-1">Category</p>
+                    <h2 className="text-2xl font-semibold tracking-tight">
                       {CATEGORY_LABELS[cat]}
                     </h2>
                   </div>
@@ -280,12 +280,12 @@ function ListView({ modules }: { modules: ModuleEntry[] }) {
             className="group flex items-center gap-6 px-5 py-4 hover:bg-secondary/50 transition-colors"
           >
             <span className="hidden md:block w-32 shrink-0">
-              <span className="eyebrow-gold">
+              <span className="eyebrow-accent">
                 {CATEGORY_LABELS[m.category]}
               </span>
             </span>
             <span className="flex-1 min-w-0">
-              <p className="font-serif text-base font-semibold tracking-tight truncate">
+              <p className="text-base font-semibold tracking-tight truncate">
                 {m.frontmatter.title}
               </p>
               <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">

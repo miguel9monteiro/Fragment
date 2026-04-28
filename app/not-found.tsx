@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 export default function NotFound() {
   return (
     <section className="container py-32 max-w-2xl">
-      <p className="eyebrow-gold mb-4">404</p>
-      <h1 className="font-serif text-5xl font-semibold tracking-tight leading-tight">
+      <p className="eyebrow-accent mb-4">404</p>
+      <h1 className="text-5xl font-semibold tracking-tight leading-tight">
         Page not found.
       </h1>
       <p className="mt-5 text-lg text-muted-foreground leading-relaxed">

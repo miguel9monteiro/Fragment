@@ -6,81 +6,83 @@
   :root {
     /* Surfaces */
     --background: 0 0% 100%;
-    --foreground: 215 50% 10%;
+    --foreground: 217 45% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 50% 10%;
+    --card-foreground: 217 45% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 50% 10%;
+    --popover-foreground: 217 45% 16%;
 
-    /* Primary — deep institutional navy */
-    --primary: 215 53% 10%;
+    /* Primary — PMC deck navy (~#1A2C4D) */
+    --primary: 217 49% 20%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary — near-white surface */
     --secondary: 220 14% 97%;
-    --secondary-foreground: 215 50% 10%;
+    --secondary-foreground: 217 49% 20%;
 
     /* Muted — quiet greys */
     --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 40%;
+    --muted-foreground: 220 10% 42%;
 
     /* Accent — paper grey */
     --accent: 220 14% 95%;
-    --accent-foreground: 215 53% 10%;
+    --accent-foreground: 217 49% 20%;
 
-    /* Gold — restrained institutional accent (use sparingly) */
-    --gold: 36 35% 48%;
-    --gold-foreground: 0 0% 100%;
+    /* Steel blue — replaces the previous gold accent.
+       Picked from the deck's lighter institutional blue (~#5A7FA3). */
+    --steel: 213 28% 50%;
+    --steel-foreground: 0 0% 100%;
 
-    /* Semantic */
-    --destructive: 0 55% 42%;
+    /* Semantic — matches deck conventions:
+       BUY green ~#33B055, negative red ~#D14545, warning amber ~#C97B27. */
+    --destructive: 0 60% 52%;
     --destructive-foreground: 0 0% 100%;
-    --success: 145 35% 32%;
+    --success: 137 58% 42%;
     --success-foreground: 0 0% 100%;
-    --warning: 36 60% 40%;
+    --warning: 30 65% 45%;
     --warning-foreground: 0 0% 100%;
 
     --border: 220 14% 90%;
     --input: 220 14% 90%;
-    --ring: 215 53% 25%;
+    --ring: 217 49% 30%;
   }
 
   .dark {
-    --background: 215 30% 7%;
+    --background: 217 35% 9%;
     --foreground: 220 14% 92%;
 
-    --card: 215 30% 9%;
+    --card: 217 35% 11%;
     --card-foreground: 220 14% 92%;
 
-    --popover: 215 30% 9%;
+    --popover: 217 35% 11%;
     --popover-foreground: 220 14% 92%;
 
     --primary: 220 14% 95%;
-    --primary-foreground: 215 53% 10%;
+    --primary-foreground: 217 49% 20%;
 
-    --secondary: 215 25% 13%;
+    --secondary: 217 28% 15%;
     --secondary-foreground: 220 14% 92%;
 
-    --muted: 215 25% 14%;
+    --muted: 217 28% 16%;
     --muted-foreground: 220 10% 65%;
 
-    --accent: 215 25% 16%;
+    --accent: 217 28% 18%;
     --accent-foreground: 220 14% 92%;
 
-    --gold: 36 38% 60%;
-    --gold-foreground: 215 53% 10%;
+    --steel: 213 30% 65%;
+    --steel-foreground: 217 49% 20%;
 
-    --destructive: 0 50% 50%;
+    --destructive: 0 55% 56%;
     --destructive-foreground: 0 0% 100%;
-    --success: 145 30% 55%;
-    --success-foreground: 215 53% 10%;
-    --warning: 36 55% 60%;
-    --warning-foreground: 215 53% 10%;
+    --success: 137 50% 55%;
+    --success-foreground: 217 49% 20%;
+    --warning: 30 60% 60%;
+    --warning-foreground: 217 49% 20%;
 
-    --border: 215 25% 18%;
-    --input: 215 25% 18%;
+    --border: 217 28% 20%;
+    --input: 217 28% 20%;
     --ring: 220 14% 70%;
   }
 }
@@ -100,69 +102,67 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-feature-settings: "ss01", "cv11";
   }
 
-  /* Tabular figures for all numerical content (tables, badges, metrics) */
+  /* Tabular figures for numeric content. Source Sans 3 supports `tnum`. */
   .tnum,
   table td,
-  table th,
-  .font-mono {
+  table th {
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum" 1;
   }
 
-  /* Headings — serif display */
+  /* Headings — same family, weight does the work */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight;
-    font-feature-settings: "ss01";
+    @apply font-sans tracking-tight font-bold;
   }
 
-  /* Selection — discreet navy */
+  /* Selection */
   ::selection {
     background: hsl(var(--primary) / 0.12);
     color: hsl(var(--foreground));
   }
 
-  /* Focus ring — visible but disciplined */
+  /* Focus ring */
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
 @layer components {
-  /* Hairline divider — institutional rules, not decorative borders */
   .hairline {
     @apply border-t border-border;
   }
 
-  /* "Eyebrow" label — small caps, gold or muted */
+  /* "Eyebrow" small-caps label — institutional. */
   .eyebrow {
-    @apply text-[11px] uppercase tracking-[0.14em] font-medium text-muted-foreground;
+    @apply text-[11px] uppercase tracking-[0.14em] font-semibold text-muted-foreground;
   }
 
+  .eyebrow-accent {
+    @apply text-[11px] uppercase tracking-[0.14em] font-semibold text-steel;
+  }
+
+  /* Backwards-compat — old class name retained until call sites migrate. */
   .eyebrow-gold {
-    @apply text-[11px] uppercase tracking-[0.14em] font-medium text-gold;
+    @apply eyebrow-accent;
   }
 
-  /* Section ruling — used at top of major sections */
   .section-rule {
     @apply h-px bg-border;
   }
 
-  /* Reading column for prose content */
   .reading-column {
     @apply max-w-prose mx-auto;
   }
 
-  /* Soft surface for cards */
   .surface {
     @apply bg-card border border-border;
   }
 }
 
 @layer utilities {
-  /* Subtle paper-like grain for hero areas (very low opacity) */
+  /* Subtle paper-like grain for hero areas */
   .grain::before {
     content: "";
     position: absolute;
@@ -174,7 +174,7 @@
   }
 }
 
-/* Prose customization for module/pitch reading pages */
+/* Prose styling for module and pitch reading pages */
 .prose-pmc {
   @apply text-foreground;
   --tw-prose-body: hsl(var(--foreground));
@@ -185,7 +185,7 @@
   --tw-prose-bullets: hsl(var(--border));
   --tw-prose-hr: hsl(var(--border));
   --tw-prose-quotes: hsl(var(--foreground));
-  --tw-prose-quote-borders: hsl(var(--gold));
+  --tw-prose-quote-borders: hsl(var(--steel));
   --tw-prose-code: hsl(var(--foreground));
   --tw-prose-pre-code: hsl(var(--foreground));
   --tw-prose-pre-bg: hsl(var(--secondary));
@@ -194,12 +194,12 @@
 }
 
 .prose-pmc h2 {
-  @apply mt-14 mb-5 text-2xl font-semibold tracking-tight;
+  @apply mt-14 mb-5 text-2xl font-bold tracking-tight;
   scroll-margin-top: 5rem;
 }
 
 .prose-pmc h3 {
-  @apply mt-10 mb-3 text-xl font-semibold tracking-tight;
+  @apply mt-10 mb-3 text-xl font-bold tracking-tight;
   scroll-margin-top: 5rem;
 }
 
@@ -213,7 +213,7 @@
 }
 
 .prose-pmc a {
-  @apply underline decoration-gold/60 decoration-1 underline-offset-[3px] hover:decoration-gold;
+  @apply underline decoration-steel/60 decoration-1 underline-offset-[3px] hover:decoration-steel;
 }
 
 .prose-pmc strong {
@@ -239,7 +239,7 @@
 }
 
 .prose-pmc blockquote {
-  @apply border-l-2 border-gold pl-5 my-6 italic font-serif text-[1.05em] text-foreground/85;
+  @apply border-l-2 border-steel pl-5 my-6 italic text-[1.05em] text-foreground/85;
 }
 
 .prose-pmc hr {
@@ -247,7 +247,9 @@
 }
 
 .prose-pmc code:not(pre code) {
-  @apply font-mono text-[0.9em] bg-muted px-1.5 py-0.5 rounded-sm border border-border;
+  @apply text-[0.9em] bg-muted px-1.5 py-0.5 rounded-sm border border-border;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 .prose-pmc pre {
@@ -258,9 +260,9 @@
   @apply bg-transparent border-0 p-0;
 }
 
-/* KaTeX overrides — make math feel native */
+/* KaTeX — preserve math fonts; they are math notation, not display fonts. */
 .prose-pmc .katex-display {
-  @apply my-7 px-4 py-3 bg-secondary border-l-2 border-gold/70 rounded-r-sm overflow-x-auto;
+  @apply my-7 px-4 py-3 bg-secondary border-l-2 border-steel/70 rounded-r-sm overflow-x-auto;
 }
 
 .prose-pmc .katex {
@@ -273,7 +275,7 @@
   top: 0;
   left: 0;
   height: 2px;
-  background: hsl(var(--gold));
+  background: hsl(var(--steel));
   transform-origin: 0 50%;
   z-index: 50;
   transition: transform 0.05s linear;

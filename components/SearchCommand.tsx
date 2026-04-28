@@ -38,7 +38,7 @@ export function SearchCommand({ items }: { items: SearchableItem[] }) {
         >
           <SearchIcon className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Search the library</span>
-          <span className="hidden md:inline ml-3 font-mono text-[10px] tracking-wider">
+          <span className="hidden md:inline ml-3 tnum text-[10px] tracking-wider">
             ⌘K
           </span>
         </button>
@@ -54,22 +54,22 @@ export function SearchCommand({ items }: { items: SearchableItem[] }) {
             onChange={(e) => setQ(e.target.value)}
             className="flex-1 bg-transparent outline-none text-sm placeholder:text-muted-foreground"
           />
-          <kbd className="hidden sm:inline font-mono text-[10px] text-muted-foreground tracking-wider">
+          <kbd className="hidden sm:inline tnum text-[10px] text-muted-foreground tracking-wider">
             ESC
           </kbd>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
           {q.length === 0 && (
             <div className="p-6 text-center text-sm text-muted-foreground">
-              Try <span className="font-mono">WACC</span>,{" "}
-              <span className="font-mono">DCF</span>, or{" "}
-              <span className="font-mono">Q&amp;A</span>.
+              Try <span className="tnum">WACC</span>,{" "}
+              <span className="tnum">DCF</span>, or{" "}
+              <span className="tnum">Q&amp;A</span>.
             </div>
           )}
           {q.length > 0 && results.length === 0 && (
             <div className="p-6 text-center text-sm text-muted-foreground">
               No matches for{" "}
-              <span className="font-mono text-foreground">{q}</span>.
+              <span className="tnum text-foreground">{q}</span>.
             </div>
           )}
           {results.length > 0 && (

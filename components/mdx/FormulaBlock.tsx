@@ -32,7 +32,7 @@ export function FormulaBlock({
   return (
     <figure className={cn("my-8 not-prose", className)}>
       <div
-        className="border-l-2 border-gold/70 bg-secondary/60 px-6 py-5 overflow-x-auto rounded-r-sm"
+        className="border-l-2 border-steel/70 bg-secondary/60 px-6 py-5 overflow-x-auto rounded-r-sm"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {caption && (

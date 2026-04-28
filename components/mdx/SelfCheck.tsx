@@ -24,8 +24,8 @@ export function SelfCheck({
       className="my-7 border border-border rounded-sm overflow-hidden"
     >
       <CollapsibleTrigger className="w-full flex items-start gap-3 p-5 text-left hover:bg-secondary/50 transition-colors group">
-        <span className="eyebrow-gold mt-1 shrink-0">Self-check</span>
-        <span className="flex-1 font-serif text-[1.05em] leading-snug text-foreground">
+        <span className="eyebrow-accent mt-1 shrink-0">Self-check</span>
+        <span className="flex-1 font-bold text-[1.05em] leading-snug text-foreground">
           {question}
         </span>
         <ChevronRight

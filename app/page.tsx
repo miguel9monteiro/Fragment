@@ -44,13 +44,13 @@ export default async function HomePage() {
         <div className="absolute inset-0 grain pointer-events-none" aria-hidden />
         <div className="container relative py-20 lg:py-28">
           <div className="max-w-3xl">
-            <p className="eyebrow-gold mb-6 inline-flex items-center gap-2">
-              <span className="h-px w-6 bg-gold" />
+            <p className="eyebrow-accent mb-6 inline-flex items-center gap-2">
+              <span className="h-px w-6 bg-steel" />
               Portfolio Management Club · Nova SBE
             </p>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-[1.05] tracking-tight text-balance">
+            <h1 className="font-bold text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-[1.05] tracking-tight text-balance">
               The reference library for{" "}
-              <span className="italic text-gold">PMC equity research</span>.
+              <span className="italic text-steel">PMC equity research</span>.
             </h1>
             <p className="mt-7 text-lg text-muted-foreground leading-relaxed max-w-2xl">
               Structured modules, an annotated archive of past pitches, and a
@@ -126,10 +126,10 @@ export default async function HomePage() {
                     {latestPitch.frontmatter.semester} ·{" "}
                     {latestPitch.frontmatter.team}
                   </p>
-                  <p className="font-serif text-[42px] sm:text-[56px] leading-[0.95] tracking-tight font-semibold mt-4">
+                  <p className="font-bold text-[42px] sm:text-[56px] leading-[0.95] tracking-tight font-semibold mt-4">
                     {latestPitch.frontmatter.ticker}
                   </p>
-                  <p className="font-serif text-xl mt-3 text-primary-foreground/85">
+                  <p className="font-bold text-xl mt-3 text-primary-foreground/85">
                     {latestPitch.frontmatter.title}
                   </p>
                 </div>
@@ -145,20 +145,20 @@ export default async function HomePage() {
               </div>
 
               <div className="p-8 md:p-10 flex flex-col gap-6">
-                <p className="eyebrow-gold">Key takeaways</p>
+                <p className="eyebrow-accent">Key takeaways</p>
                 <ol className="space-y-4 text-[15px] leading-relaxed">
                   {latestPitch.frontmatter.keyTakeaways
                     .slice(0, 3)
                     .map((t, i) => (
                       <li key={i} className="flex items-start gap-4">
-                        <span className="mt-1 font-mono text-gold text-xs tnum">
+                        <span className="mt-1 tnum text-steel text-xs tnum">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span className="text-foreground/90">{t}</span>
                       </li>
                     ))}
                 </ol>
-                <div className="mt-auto inline-flex items-center gap-2 text-sm font-medium group-hover:text-gold transition-colors">
+                <div className="mt-auto inline-flex items-center gap-2 text-sm font-medium group-hover:text-steel transition-colors">
                   Read the teaching walkthrough{" "}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </div>
@@ -183,7 +183,7 @@ export default async function HomePage() {
               href={`/modules?category=${c}`}
               className="group bg-card p-6 hover:bg-secondary/60 transition-colors flex flex-col justify-between min-h-[140px]"
             >
-              <p className="font-serif text-lg font-semibold tracking-tight leading-snug">
+              <p className="text-lg font-semibold tracking-tight leading-snug">
                 {CATEGORY_LABELS[c]}
               </p>
               <div className="flex items-center justify-between mt-6">
@@ -205,7 +205,7 @@ function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div>
       <dt className="eyebrow text-muted-foreground/70">{label}</dt>
-      <dd className="mt-1 font-serif text-3xl font-semibold tracking-tight tnum">
+      <dd className="mt-1 text-3xl font-semibold tracking-tight tnum">
         {value}
       </dd>
     </div>
@@ -228,11 +228,11 @@ function SectionHeading({
   return (
     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
       <div className="max-w-2xl">
-        <p className="eyebrow-gold inline-flex items-center gap-2 mb-3">
+        <p className="eyebrow-accent inline-flex items-center gap-2 mb-3">
           {Icon && <Icon className="h-3.5 w-3.5" />}
           {eyebrow}
         </p>
-        <h2 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
+        <h2 className="font-bold text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
           {title}
         </h2>
         <p className="mt-3 text-muted-foreground leading-relaxed">
@@ -242,7 +242,7 @@ function SectionHeading({
       {link && (
         <Link
           href={link.href}
-          className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-gold transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-steel transition-colors"
         >
           {link.label}
           <ArrowRight className="h-3.5 w-3.5" />

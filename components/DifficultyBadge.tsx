@@ -13,9 +13,9 @@ const config: Record<
   },
   intermediate: {
     label: "Intermediate",
-    dot: "bg-gold",
-    ring: "border-gold/30",
-    text: "text-gold",
+    dot: "bg-steel",
+    ring: "border-steel/30",
+    text: "text-steel",
   },
   advanced: {
     label: "Advanced",

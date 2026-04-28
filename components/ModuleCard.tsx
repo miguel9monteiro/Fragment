@@ -22,11 +22,11 @@ export function ModuleCard({
       )}
     >
       <div className="flex items-center justify-between gap-4 mb-4">
-        <span className="eyebrow-gold">{CATEGORY_LABELS[category]}</span>
+        <span className="eyebrow-accent">{CATEGORY_LABELS[category]}</span>
         <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
       </div>
 
-      <h3 className="font-serif text-lg font-semibold tracking-tight leading-snug mb-3">
+      <h3 className="text-lg font-semibold tracking-tight leading-snug mb-3">
         {frontmatter.title}
       </h3>
 

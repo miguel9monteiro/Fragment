@@ -25,7 +25,7 @@ export function DeepDive({
     >
       <CollapsibleTrigger className="w-full flex items-center gap-3 px-5 py-3 text-left hover:bg-secondary/50 transition-colors">
         <span className="eyebrow shrink-0">Deep dive</span>
-        <span className="flex-1 font-serif text-base font-semibold tracking-tight">
+        <span className="flex-1 text-base font-semibold tracking-tight">
           {title}
         </span>
         <Plus

@@ -22,7 +22,7 @@ export async function KeyTerm({
     return (
       <Link
         href={href}
-        className="font-medium underline decoration-dotted decoration-gold/60 underline-offset-[3px]"
+        className="font-medium underline decoration-dotted decoration-steel/60 underline-offset-[3px]"
       >
         {children}
       </Link>
@@ -35,7 +35,7 @@ export async function KeyTerm({
         <TooltipTrigger asChild>
           <Link
             href={href}
-            className="font-medium underline decoration-dotted decoration-gold/70 underline-offset-[3px] hover:decoration-gold"
+            className="font-medium underline decoration-dotted decoration-steel/70 underline-offset-[3px] hover:decoration-steel"
           >
             {children}
           </Link>

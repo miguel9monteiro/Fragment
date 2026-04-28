@@ -58,9 +58,9 @@ const config: Config = {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          foreground: "hsl(var(--gold-foreground))",
+        steel: {
+          DEFAULT: "hsl(var(--steel))",
+          foreground: "hsl(var(--steel-foreground))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -77,12 +77,10 @@ const config: Config = {
         sm: "2px",
       },
       fontFamily: {
+        // Single typeface across the system, per design direction.
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-      },
-      fontFeatureSettings: {
-        tnum: '"tnum", "cv11"',
+        serif: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         prose: "68ch",

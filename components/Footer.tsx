@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-border bg-secondary/40">
       <div className="container py-12 grid gap-10 md:grid-cols-3">
         <div>
-          <p className="font-serif text-base font-semibold tracking-tight">
+          <p className="text-base font-semibold tracking-tight">
             Portfolio Management Club
           </p>
           <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-sm">

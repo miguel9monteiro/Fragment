@@ -21,8 +21,8 @@ const config: Record<
   insight: {
     label: "Insight",
     Icon: Lightbulb,
-    accent: "border-l-gold bg-gold/[0.04]",
-    text: "text-gold",
+    accent: "border-l-steel bg-steel/[0.04]",
+    text: "text-steel",
   },
   warning: {
     label: "Watch out",

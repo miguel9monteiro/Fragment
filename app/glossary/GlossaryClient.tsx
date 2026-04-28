@@ -36,8 +36,8 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
   return (
     <>
       <section className="container pt-12 pb-10 border-b border-border">
-        <p className="eyebrow-gold mb-3">Library</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+        <p className="eyebrow-accent mb-3">Library</p>
+        <h1 className="font-bold text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
           Glossary
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
@@ -80,7 +80,7 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
                 href={`#letter-${l}`}
                 aria-disabled={!presentLetters.has(l)}
                 className={cn(
-                  "h-7 w-7 grid place-items-center text-[11px] font-mono tnum rounded-sm transition-colors",
+                  "h-7 w-7 grid place-items-center text-[11px] tnum rounded-sm transition-colors",
                   presentLetters.has(l)
                     ? "text-foreground hover:bg-secondary"
                     : "text-muted-foreground/40 pointer-events-none",
@@ -97,7 +97,7 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
       <section className="container py-14">
         {grouped.size === 0 ? (
           <div className="border border-dashed border-border py-20 text-center rounded-sm">
-            <p className="font-serif text-xl font-semibold mb-2">
+            <p className="text-xl font-semibold mb-2">
               No matches.
             </p>
             <p className="text-sm text-muted-foreground">
@@ -108,8 +108,8 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
           <div className="space-y-14">
             {[...grouped.entries()].map(([letter, items]) => (
               <div key={letter} id={`letter-${letter}`}>
-                <h2 className="font-serif text-3xl font-semibold tracking-tight mb-5 pb-2 border-b border-border">
-                  <span className="text-gold">{letter}</span>
+                <h2 className="text-3xl font-semibold tracking-tight mb-5 pb-2 border-b border-border">
+                  <span className="text-steel">{letter}</span>
                 </h2>
                 <dl className="grid gap-px bg-border border border-border md:grid-cols-2">
                   {items.map((t) => (
@@ -119,7 +119,7 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
                       className="bg-card p-5 scroll-mt-32"
                     >
                       <dt className="flex items-baseline gap-2 mb-2">
-                        <span className="font-serif text-lg font-semibold tracking-tight">
+                        <span className="text-lg font-semibold tracking-tight">
                           {t.term}
                         </span>
                         {t.fullName && (
@@ -138,7 +138,7 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
                               <li key={slug}>
                                 <Link
                                   href={`/modules?q=${encodeURIComponent(slug)}`}
-                                  className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-gold hover:underline"
+                                  className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-steel hover:underline"
                                 >
                                   <ArrowUpRight className="h-3 w-3" />
                                   {slug.replace(/-/g, " ")}

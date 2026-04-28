@@ -25,8 +25,8 @@ export default async function PitchesPage() {
   return (
     <>
       <section className="container pt-12 pb-10 border-b border-border">
-        <p className="eyebrow-gold mb-3">Archive</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+        <p className="eyebrow-accent mb-3">Archive</p>
+        <h1 className="font-bold text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
           Pitch archive
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
@@ -39,12 +39,12 @@ export default async function PitchesPage() {
       <section className="container py-14">
         {pitches.length === 0 ? (
           <div className="border border-dashed border-border py-20 text-center rounded-sm">
-            <p className="font-serif text-xl font-semibold mb-2">
+            <p className="text-xl font-semibold mb-2">
               No pitches in the archive yet.
             </p>
             <p className="text-sm text-muted-foreground">
               Add an MDX file under{" "}
-              <code className="font-mono text-xs">
+              <code className="tnum text-xs">
                 /content/pitches/&lt;semester&gt;/&lt;ticker&gt;/index.mdx
               </code>
               .
@@ -56,8 +56,8 @@ export default async function PitchesPage() {
               <div key={semester}>
                 <div className="flex items-end justify-between mb-6 pb-3 border-b border-border">
                   <div>
-                    <p className="eyebrow-gold mb-1">Semester</p>
-                    <h2 className="font-serif text-2xl font-semibold tracking-tight">
+                    <p className="eyebrow-accent mb-1">Semester</p>
+                    <h2 className="text-2xl font-semibold tracking-tight">
                       {semester}
                     </h2>
                   </div>
@@ -96,12 +96,12 @@ function PitchCard({
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flex items-baseline gap-2">
-            <span className="font-serif text-3xl font-semibold tracking-tight tnum">
+            <span className="text-3xl font-semibold tracking-tight tnum">
               {fm.ticker}
             </span>
             <RecommendationBadge recommendation={fm.recommendation} />
           </div>
-          <p className="font-serif text-base text-foreground/85 mt-1">
+          <p className="font-bold text-base text-foreground/85 mt-1">
             {fm.title}
           </p>
         </div>
@@ -119,7 +119,7 @@ function PitchCard({
       <ol className="space-y-2 mt-1 text-sm leading-relaxed text-foreground/85">
         {fm.keyTakeaways.slice(0, 3).map((t, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="font-mono text-[10px] text-gold tnum mt-1.5">
+            <span className="tnum text-[10px] text-steel tnum mt-1.5">
               {String(i + 1).padStart(2, "0")}
             </span>
             <span>{t}</span>

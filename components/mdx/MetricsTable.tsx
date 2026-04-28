@@ -43,14 +43,14 @@ export function MetricsTable({
               ))}
             </tr>
           </thead>
-          <tbody className="font-mono tnum">
+          <tbody className="tnum">
             {rows.map((row, r) => (
               <tr
                 key={r}
                 className={cn(
                   "border-b border-border/70 last:border-b-0",
                   highlightRow === r &&
-                    "bg-gold/[0.06] [&_td]:font-semibold",
+                    "bg-steel/[0.06] [&_td]:font-semibold",
                 )}
               >
                 {row.map((cell, c) => (
