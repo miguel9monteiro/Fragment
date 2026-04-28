@@ -134,7 +134,7 @@ export default async function PitchPage({
             </p>
           </aside>
 
-          <article className="prose-pmc max-w-prose">
+          <article className="prose-pmc max-w-prose mx-auto w-full">
             <MDXRemote
               source={pitch.source}
               components={mdxComponents}

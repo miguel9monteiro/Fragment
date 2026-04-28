@@ -181,7 +181,7 @@ export function LibraryItemPage({
           </aside>
 
           {/* Main content */}
-          <article className="prose-pmc max-w-prose">
+          <article className="prose-pmc max-w-prose mx-auto w-full">
             <MDXRemote
               source={item.source}
               components={mdxComponents}
