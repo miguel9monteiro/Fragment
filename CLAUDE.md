@@ -6,7 +6,103 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Fragment** — a static learning platform for the Portfolio Management Club at Nova School of Business & Economics (Nova SBE). Hosts the four kinds of material the club publishes: stock pitches, learning sessions, macro outlooks, quant presentations. Plus a glossary.
 
-Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel.
+Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel. Public site for the club itself: <https://pmcnovasbe.com>.
+
+## About the Portfolio Management Club
+
+This section is grounding context for any content you write or layout you design. Information current as of Spring 2026; rosters change each semester, so verify before naming individuals.
+
+### Identity
+
+- **Full name**: Portfolio Management Club, abbreviated **PMC**.
+- **Affiliation**: Nova School of Business & Economics (Nova SBE), Carcavelos, Portugal. Address: R. da Holanda 1, 2775-405 Carcavelos.
+- **Founded**: 2016. Roughly a decade of operating history.
+- **Public identity (verbatim)**: *"Nova SBE's Asset Management Club with specialised divisions in investments, macroeconomic analysis and quantitative research."*
+- **Mission (verbatim)**: *"To fast-track PMC members to the job market by providing a transversal, hands-on portfolio management experience."*
+- **The four pillars the club operates by**:
+  1. **Member experience** — "to learn a ton, and have as much fun"
+  2. **Operational excellence** — "deliver high quality work, every time"
+  3. **Over-performance** — "beat the market"
+  4. **Brand value** — talent, knowledge, professionalism
+- **Channels**: pmcnovasbe.com (public site), LinkedIn (Portfolio Management Club), Instagram (@pmcnovasbe), GitHub (Nova-SBE-Portfolio-Management-Club).
+
+### Organisational structure
+
+PMC has roughly 80+ active members across two divisions plus a Presidency.
+
+**Asset Management** — where the investment work happens:
+
+- **Portfolio Managers** (currently 3) — own portfolio-level decisions; senior investment role.
+- **Investment Teams 1–4**, each with a Team Head plus 5–6 analysts. Most stock pitches come from a specific Investment Team and are bylined "Investment Team N" plus the analyst names. The Spring 2026 ITRI pitch in `/content/pitches` is from Investment Team 1.
+- **Macro Department** — Head plus ~8 analysts. Produces macro overviews and macro-driven pitches (sovereigns, FX, rates).
+- **Quant Department** — Head plus ~4 analysts. Produces factor models, backtesting, and tools (e.g. the Credit Scoring Model referenced in the Bonds session).
+
+**Operations** — the support spine:
+
+- **External Affairs** — partnerships, sponsorships, alumni relations.
+- **Marketing & Events** — including the Financial Markets Compass conference.
+- **IT & Human Resources** — including the team that maintains *this* platform.
+
+**Presidency** sits above both: a **President**, a **VP of Asset Management**, and a **VP of Operations**. Rotates annually. Treat any individual names as Spring-2026-current; verify before referencing in evergreen content.
+
+### The portfolio
+
+PMC manages a **virtual portfolio** — not real money, but treated with full institutional discipline. The "real-portfolio identity" the club aspires to is the same as the virtual one. Specs:
+
+- **Inception**: 1 October 2020.
+- **Initial value**: USD 1,000,000.
+- **Denomination**: dollar.
+- **Asset classes**: equities, fixed income, commodities, FX. **No crypto, no derivatives.**
+- **Style**: value investing, fundamentals-based, long-only, momentum-aware, multi-strategy, long-term-driven, global scope.
+- **Benchmark**: 60% SPY / 40% IEI (S&P 500 ETF + iShares 3–7 Year Treasury Bond ETF).
+- **Operational constraints**: no OTC instruments accepted (T-bills excepted); technical analysis is viewed with skepticism — claims should be backtested.
+
+When writing about the portfolio, treat the virtual nature factually but not as a caveat. Members operate with institutional discipline.
+
+### What the club produces
+
+Five recurring artefacts plus one annual event:
+
+1. **Stock pitches** — equity research reports produced by Investment Teams. Each pitch carries: ticker, semester (e.g. "Spring 2026"), team byline, named analysts, recommendation (BUY/HOLD/SELL), sector, key takeaways. The platform's `/pitches` route is purpose-built for this format.
+2. **Learning sessions** — internal teaching, ~30–60 minutes each, on topics from technical (DCF, LBO, credit scoring) to soft (slide-making, presentation craft). Often authored by the Presidency, Portfolio Managers, or department heads. Platform's `/sessions` route.
+3. **Macro overviews** — periodic readings of the macro environment by the Macro Department. Platform's `/macro` route.
+4. **Quant presentations** — the Quant Department's research output. Platform's `/quant` route.
+5. **Semester newsletters** — curated digest of important economic events for the period. The 2025 Annual Newsletter is a recent example. Not yet a content category on this platform.
+
+**Financial Markets Compass** is the club's annual flagship conference, hosted at the Grand Auditorium Jerónimo Martins on Nova SBE's Carcavelos campus. Industry panel format covering financial literacy, AI in investing, private equity, and global markets. 13:00–19:30 with networking dinner. Sponsored by BPI, Euronext, CFA Society Portugal among others.
+
+### Naming and bylining conventions
+
+- **Stock pitch**: byline is "Investment Team N" plus named analysts. Title is the ticker plus company name (e.g. "Itron, Inc. (ITRI)"). Filename slug uses ticker plus a hyphenated company name.
+- **Learning session**: bylined by the author(s) — often Presidency or department heads.
+- **Macro outlook**: bylined "Macro Department" or named analysts within it.
+- **Quant presentation**: bylined "Quant Department" or named analysts.
+- **Semester format**: Fall and Spring. The site uses both long-form ("Spring 2026", "Fall 2025") and short-form ("S1 2025" = first semester / spring, "S2 2025" = second / fall). Long-form is preferred in the platform's frontmatter.
+
+### Partner / source ecosystem
+
+The credibility ecosystem the club routinely cites and partners with:
+
+- **Nova SBE** — parent business school, consistently top-ranked in Portugal.
+- **Bloomberg** — terminal access; Bloomberg data shows up extensively in pitches (LQA Liquidity Score, etc.).
+- **CFA Society Portugal** — professional society partnership; CFA-related events.
+- **BNP Paribas**, **BPI Asset Management** — finance industry sponsors.
+- **Euronext** — sponsor of the Financial Markets Compass.
+
+When a pitch references a data source, it is most often Bloomberg, Refinitiv, PitchBook, or 10-K filings. These are the conventional citations.
+
+### Voice the platform must match
+
+PMC is the top finance student society at Nova SBE, the leading business school in Portugal. Members wear suits to pitches. The writing should match:
+
+- Confident, professional, never breezy.
+- Numbers to one decimal place by default; basis points where rate-relevant; specify currency on every figure.
+- Companies named in full on first use, ticker thereafter.
+- Sources cited inline or in footnotes — pitches without citations get rejected at review.
+- Sentences short. Paragraphs short. White space is structure.
+- Quote primary sources (10-Ks, regulatory filings, central-bank statements) over commentary.
+
+The pitch deck is the artefact a senior reviewer judges the work by. The platform's content should match the production value of the deck the article came from. This is the standard set out in detail in *Quality bar for long-form content* below.
 
 ## Scope is binding (Tier 1)
 
