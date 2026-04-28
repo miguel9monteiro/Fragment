@@ -8,6 +8,7 @@ import {
   LineChart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HeroBackdrop } from "@/components/HeroBackdrop";
 import { LibraryItemCard } from "@/components/LibraryItemCard";
 import { RecommendationBadge } from "@/components/RecommendationBadge";
 import {
@@ -84,6 +85,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
+        <HeroBackdrop />
         <div className="absolute inset-0 grain pointer-events-none" aria-hidden />
         <div className="container relative py-20 lg:py-28">
           <div className="max-w-3xl">
