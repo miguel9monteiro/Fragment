@@ -35,6 +35,7 @@ export function Footer() {
             heading="Library"
             links={[
               { href: "/pitches", label: "Stock pitches" },
+              { href: "/votings", label: "Voting record" },
               { href: "/sessions", label: "Learning sessions" },
               { href: "/macro", label: "Macro outlooks" },
               { href: "/quant", label: "Quant presentations" },

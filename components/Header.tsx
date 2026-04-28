@@ -12,6 +12,7 @@ import { LIBRARY_META } from "@/lib/types";
 
 const navItems = [
   { href: "/pitches", label: "Pitches" },
+  { href: "/votings", label: "Votings" },
   { href: "/sessions", label: "Sessions" },
   { href: "/macro", label: "Macro" },
   { href: "/quant", label: "Quant" },

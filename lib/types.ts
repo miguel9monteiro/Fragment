@@ -160,6 +160,83 @@ export type PitchEntry = {
 /*  Glossary                                                                   */
 /* -------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------- */
+/*  Polls — the voting record on club pitches and rebalances                  */
+/* -------------------------------------------------------------------------- */
+
+export const POLL_ASSET_CLASSES = [
+  "equity",
+  "bond",
+  "commodity",
+  "fx",
+] as const;
+export type PollAssetClass = (typeof POLL_ASSET_CLASSES)[number];
+
+export const ASSET_CLASS_LABELS: Record<PollAssetClass, string> = {
+  equity: "Equity",
+  bond: "Bond",
+  commodity: "Commodity",
+  fx: "FX",
+};
+
+/**
+ * The kind of decision being voted on.
+ *  - entry: new position
+ *  - exit: existing position, vote on whether to sell
+ *  - rebalance: existing position, vote on resizing
+ */
+export const MOTION_TYPES = ["entry", "exit", "rebalance"] as const;
+export type MotionType = (typeof MOTION_TYPES)[number];
+
+/**
+ * Which forum voted: the main floor (full membership) or the smaller
+ * Extended Board.
+ */
+export const POLL_FORUMS = ["main", "extended-board"] as const;
+export type PollForum = (typeof POLL_FORUMS)[number];
+
+/**
+ * The semantic role of an option, used to colour the vote bar
+ * consistently across different motion shapes.
+ *  - buy: take the position / approve buying
+ *  - sell: exit / approve selling
+ *  - hold: don't change anything (covers "Don't Buy", "Hold")
+ *  - increase: bump the position size
+ *  - abstain: "No opinion"
+ */
+export const OPTION_KINDS = ["buy", "sell", "hold", "increase", "abstain"] as const;
+export type OptionKind = (typeof OPTION_KINDS)[number];
+
+export const pollOptionSchema = z.object({
+  label: z.string().min(1),
+  count: z.number().int().nonnegative(),
+  kind: z.enum(OPTION_KINDS),
+});
+
+export const pollSchema = z.object({
+  /** Url-safe identifier, e.g. "2026-04-15-itrn". */
+  slug: z.string().min(1),
+  date: z.string(),
+  semester: z.string().min(1),
+  /** The asset being voted on, e.g. "ITRN", "JPY", "Altria Group Bond". */
+  subject: z.string().min(1),
+  assetClass: z.enum(POLL_ASSET_CLASSES),
+  motionType: z.enum(MOTION_TYPES),
+  forum: z.enum(POLL_FORUMS),
+  /** Optional one-line description of the proposal. */
+  motion: z.string().optional(),
+  /** Optional link to the corresponding pitch teaching page. */
+  pitchSlug: z.string().optional(),
+  options: z.array(pollOptionSchema).min(2),
+});
+
+export type PollOption = z.infer<typeof pollOptionSchema>;
+export type Poll = z.infer<typeof pollSchema>;
+
+/* -------------------------------------------------------------------------- */
+/*  Glossary                                                                   */
+/* -------------------------------------------------------------------------- */
+
 export const glossaryTermSchema = z.object({
   term: z.string().min(1),
   fullName: z.string().optional(),

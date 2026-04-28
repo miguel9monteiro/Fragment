@@ -1,0 +1,416 @@
+[
+  {
+    "slug": "2026-04-15-itrn",
+    "date": "2026-04-15",
+    "semester": "Spring 2026",
+    "subject": "ITRN",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 18, "kind": "buy" },
+      { "label": "Don't buy", "count": 11, "kind": "hold" },
+      { "label": "No opinion", "count": 7, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2026-04-08-cvsg",
+    "date": "2026-04-08",
+    "semester": "Spring 2026",
+    "subject": "CVSG",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 29, "kind": "buy" },
+      { "label": "Don't buy", "count": 5, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2026-04-08-jpy",
+    "date": "2026-04-08",
+    "semester": "Spring 2026",
+    "subject": "JPY",
+    "assetClass": "fx",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 32, "kind": "buy" },
+      { "label": "Don't buy", "count": 0, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2026-03-18-evtc",
+    "date": "2026-03-18",
+    "semester": "Spring 2026",
+    "subject": "EVTC",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 31, "kind": "buy" },
+      { "label": "Don't buy", "count": 5, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2026-03-18-mgni",
+    "date": "2026-03-18",
+    "semester": "Spring 2026",
+    "subject": "MGNI",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 23, "kind": "buy" },
+      { "label": "Don't buy", "count": 11, "kind": "hold" },
+      { "label": "No opinion", "count": 3, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2026-03-04-txn",
+    "date": "2026-03-04",
+    "semester": "Spring 2026",
+    "subject": "TXN",
+    "assetClass": "equity",
+    "motionType": "exit",
+    "forum": "main",
+    "motion": "Sell, hold, or increase to 4%",
+    "options": [
+      { "label": "Sell", "count": 22, "kind": "sell" },
+      { "label": "Hold", "count": 13, "kind": "hold" },
+      { "label": "Increase to 4%", "count": 1, "kind": "increase" }
+    ]
+  },
+
+  {
+    "slug": "2025-11-26-silver",
+    "date": "2025-11-26",
+    "semester": "Fall 2025",
+    "subject": "Silver",
+    "assetClass": "commodity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 33, "kind": "buy" },
+      { "label": "Don't buy", "count": 1, "kind": "hold" },
+      { "label": "No opinion", "count": 0, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-11-26-altria-bond",
+    "date": "2025-11-26",
+    "semester": "Fall 2025",
+    "subject": "Altria Group Bond",
+    "assetClass": "bond",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 27, "kind": "buy" },
+      { "label": "Don't buy", "count": 7, "kind": "hold" },
+      { "label": "No opinion", "count": 3, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-11-19-uruguayan-3y-bond",
+    "date": "2025-11-19",
+    "semester": "Fall 2025",
+    "subject": "3y Uruguayan Bond",
+    "assetClass": "bond",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 31, "kind": "buy" },
+      { "label": "Don't buy", "count": 2, "kind": "hold" },
+      { "label": "No opinion", "count": 3, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-11-19-nextera-bond",
+    "date": "2025-11-19",
+    "semester": "Fall 2025",
+    "subject": "NextEra Energy Bond",
+    "assetClass": "bond",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 33, "kind": "buy" },
+      { "label": "Don't buy", "count": 7, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-11-12-nomd",
+    "date": "2025-11-12",
+    "semester": "Fall 2025",
+    "subject": "NOMD",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 20, "kind": "buy" },
+      { "label": "Don't buy", "count": 15, "kind": "hold" },
+      { "label": "No opinion", "count": 3, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-11-05-gddy-eb",
+    "date": "2025-11-05",
+    "semester": "Fall 2025",
+    "subject": "GDDY",
+    "assetClass": "equity",
+    "motionType": "exit",
+    "forum": "extended-board",
+    "motion": "Buy, sell, or hold (Extended Board review)",
+    "options": [
+      { "label": "Buy", "count": 3, "kind": "buy" },
+      { "label": "Sell", "count": 7, "kind": "sell" },
+      { "label": "Hold", "count": 4, "kind": "hold" }
+    ]
+  },
+  {
+    "slug": "2025-10-29-scatc",
+    "date": "2025-10-29",
+    "semester": "Fall 2025",
+    "subject": "SCATC",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 33, "kind": "buy" },
+      { "label": "Don't buy", "count": 2, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-10-23-leu-eb",
+    "date": "2025-10-23",
+    "semester": "Fall 2025",
+    "subject": "LEU",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "extended-board",
+    "motion": "Buy or don't buy (Extended Board review after main-floor tie)",
+    "options": [
+      { "label": "Buy", "count": 4, "kind": "buy" },
+      { "label": "Don't buy", "count": 10, "kind": "hold" }
+    ]
+  },
+  {
+    "slug": "2025-10-22-leu",
+    "date": "2025-10-22",
+    "semester": "Fall 2025",
+    "subject": "LEU",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 18, "kind": "buy" },
+      { "label": "Don't buy", "count": 18, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-10-08-prdo",
+    "date": "2025-10-08",
+    "semester": "Fall 2025",
+    "subject": "PRDO",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 25, "kind": "buy" },
+      { "label": "Don't buy", "count": 11, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-10-08-amp-im",
+    "date": "2025-10-08",
+    "semester": "Fall 2025",
+    "subject": "AMP IM",
+    "assetClass": "equity",
+    "motionType": "exit",
+    "forum": "main",
+    "motion": "Sell, hold, or increase to 4%",
+    "options": [
+      { "label": "Sell", "count": 29, "kind": "sell" },
+      { "label": "Hold", "count": 4, "kind": "hold" },
+      { "label": "Increase to 4%", "count": 5, "kind": "increase" }
+    ]
+  },
+
+  {
+    "slug": "2025-05-07-dht",
+    "date": "2025-05-07",
+    "semester": "Spring 2025",
+    "subject": "DHT",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 12, "kind": "buy" },
+      { "label": "Don't buy", "count": 11, "kind": "hold" },
+      { "label": "No opinion", "count": 3, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-05-05-ovh",
+    "date": "2025-05-05",
+    "semester": "Spring 2025",
+    "subject": "OVH.PA",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 16, "kind": "buy" },
+      { "label": "Don't buy", "count": 17, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-05-05-igb-bond",
+    "date": "2025-05-05",
+    "semester": "Spring 2025",
+    "subject": "IGB 7.54 05/23/2036",
+    "assetClass": "bond",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 20, "kind": "buy" },
+      { "label": "Don't buy", "count": 6, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-04-24-tm",
+    "date": "2025-04-24",
+    "semester": "Spring 2025",
+    "subject": "TM",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 16, "kind": "buy" },
+      { "label": "Don't buy", "count": 12, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-04-24-nvo",
+    "date": "2025-04-24",
+    "semester": "Spring 2025",
+    "subject": "NVO",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 24, "kind": "buy" },
+      { "label": "Don't buy", "count": 6, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-04-10-icegb-bond",
+    "date": "2025-04-10",
+    "semester": "Spring 2025",
+    "subject": "ICEGB 7 09/17/2035",
+    "assetClass": "bond",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 26, "kind": "buy" },
+      { "label": "Don't buy", "count": 1, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-04-10-cap",
+    "date": "2025-04-10",
+    "semester": "Spring 2025",
+    "subject": "CAP.PA",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 12, "kind": "buy" },
+      { "label": "Don't buy", "count": 18, "kind": "hold" },
+      { "label": "No opinion", "count": 2, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-04-04-unh",
+    "date": "2025-04-04",
+    "semester": "Spring 2025",
+    "subject": "UNH",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 19, "kind": "buy" },
+      { "label": "Don't buy", "count": 7, "kind": "hold" },
+      { "label": "No opinion", "count": 1, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-03-12-acls",
+    "date": "2025-03-12",
+    "semester": "Spring 2025",
+    "subject": "ACLS",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "motion": "Buy, hold, or no opinion",
+    "options": [
+      { "label": "Buy", "count": 19, "kind": "buy" },
+      { "label": "Hold", "count": 6, "kind": "hold" },
+      { "label": "No opinion", "count": 0, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-03-12-ingr",
+    "date": "2025-03-12",
+    "semester": "Spring 2025",
+    "subject": "INGR",
+    "assetClass": "equity",
+    "motionType": "exit",
+    "forum": "main",
+    "motion": "Sell, hold, or no opinion",
+    "options": [
+      { "label": "Sell", "count": 10, "kind": "sell" },
+      { "label": "Hold", "count": 17, "kind": "hold" },
+      { "label": "No opinion", "count": 0, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-03-07-eeft",
+    "date": "2025-03-07",
+    "semester": "Spring 2025",
+    "subject": "EEFT",
+    "assetClass": "equity",
+    "motionType": "entry",
+    "forum": "main",
+    "options": [
+      { "label": "Buy", "count": 25, "kind": "buy" },
+      { "label": "Don't buy", "count": 3, "kind": "hold" },
+      { "label": "No opinion", "count": 0, "kind": "abstain" }
+    ]
+  },
+  {
+    "slug": "2025-02-26-imkta",
+    "date": "2025-02-26",
+    "semester": "Spring 2025",
+    "subject": "IMKTA",
+    "assetClass": "equity",
+    "motionType": "rebalance",
+    "forum": "main",
+    "motion": "Increase to higher weight, or sell",
+    "options": [
+      { "label": "Yes, increase", "count": 15, "kind": "increase" },
+      { "label": "No, sell", "count": 16, "kind": "sell" },
+      { "label": "No opinion", "count": 0, "kind": "abstain" }
+    ]
+  }
+]

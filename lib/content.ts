@@ -13,11 +13,14 @@ import {
   pitchFrontmatterSchema,
   GlossaryTerm,
   glossaryTermSchema,
+  Poll,
+  pollSchema,
 } from "./types";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 const PITCHES_ROOT = path.join(CONTENT_ROOT, "pitches");
 const GLOSSARY_PATH = path.join(CONTENT_ROOT, "glossary", "terms.json");
+const POLLS_PATH = path.join(CONTENT_ROOT, "polls", "polls.json");
 
 async function readDirSafe(dir: string): Promise<string[]> {
   try {
@@ -204,6 +207,36 @@ export async function getPitch(slug: string): Promise<PitchEntry | null> {
   const all = await getAllPitches();
   return all.find((p) => p.slug === slug) ?? null;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Glossary                                                                   */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*  Polls — voting record                                                     */
+/* -------------------------------------------------------------------------- */
+
+export const getAllPolls = cache(async (): Promise<Poll[]> => {
+  const raw = await fs.readFile(POLLS_PATH, "utf8").catch(() => "[]");
+  const parsed = JSON.parse(raw);
+  if (!Array.isArray(parsed)) {
+    throw new Error("Polls file must be a JSON array.");
+  }
+  const polls = parsed.map((entry, i) => {
+    const r = pollSchema.safeParse(entry);
+    if (!r.success) {
+      throw new Error(
+        `Invalid poll entry at index ${i}:\n${r.error.toString()}`,
+      );
+    }
+    return r.data;
+  });
+  // Newest first; this is the order most filters / lists want.
+  polls.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
+  return polls;
+});
 
 /* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
