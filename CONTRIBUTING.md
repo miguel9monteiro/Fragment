@@ -243,43 +243,50 @@ A slide image with positioned hotspots. Used inside pitch teaching pages.
 />
 ```
 
-### `<MetricsTable>`
+### `<MetricsTable>` — temporarily use markdown tables instead
 
-A finance-styled table — right-aligned numbers, tabular figures, optional
-row highlighting.
-
-```mdx
-<MetricsTable
-  caption="WACC build for a mid-cap industrial."
-  headers={["Input", "Value", "Source"]}
-  highlightRow={2}              // optional, 0-based
-  align={["left", "right", "left"]}  // optional per-column
-  rows={[
-    ["Risk-free rate", "4.20%", "10-year US Treasury"],
-    ["Equity risk premium", "5.50%", "Damodaran implied"],
-    ["Beta (re-levered)", "1.15", "Peer median, 5y weekly"]
-  ]}
-/>
-```
-
-### `<ProsCons>`
-
-Side-by-side catalysts/risks layout.
+There is a known issue with `next-mdx-remote@6` where array props (the
+`rows` prop here) are silently dropped during MDX compilation. **Until
+that is fixed, use a standard GFM markdown table.** They pick up the
+platform's prose styling and render with tabular numerics. Use
+`|---:|` for right-aligned columns.
 
 ```mdx
-<ProsCons
-  prosLabel="Catalysts"
-  consLabel="Risks"
-  pros={[
-    "Switching-cost moat in regulated infrastructure",
-    "Non-discretionary capex cycle"
-  ]}
-  cons={[
-    "Software margin sensitive to allocation policy",
-    "Customer concentration in top three utilities"
-  ]}
-/>
+| Input | Value | Source |
+|---|---:|---|
+| Risk-free rate | 4.20% | 10-year US Treasury |
+| Equity risk premium | 5.50% | Damodaran implied |
+| Beta (re-levered) | 1.15 | Peer median, 5y weekly |
+
+<p className="text-xs text-muted-foreground italic mt-[-1rem] mb-8">WACC build for a mid-cap industrial.</p>
 ```
+
+The italic paragraph pattern after the table mimics the caption style
+the `<MetricsTable>` component would have applied.
+
+### `<ProsCons>` — temporarily use side-by-side `<Callout>`s instead
+
+Same MDX array-prop issue as `<MetricsTable>`. Use two Callouts in a
+two-column grid:
+
+```mdx
+<div className="not-prose grid gap-4 md:grid-cols-2 my-8">
+
+<Callout type="insight" title="Catalysts">
+- Switching-cost moat in regulated infrastructure
+- Non-discretionary capex cycle
+</Callout>
+
+<Callout type="warning" title="Risks">
+- Software margin sensitive to allocation policy
+- Customer concentration in top three utilities
+</Callout>
+
+</div>
+```
+
+The `not-prose` class is important — it stops the prose styles from
+re-applying inside the grid wrapper.
 
 ---
 

@@ -72,6 +72,8 @@ export const articleFrontmatterSchema = z.object({
   tags: z.array(z.string()).default([]),
   summary: z.string().min(1),
   featured: z.boolean().optional().default(false),
+  /** Optional link to the original deck or document the piece is based on. */
+  sourcePdfUrl: z.string().optional(),
 });
 
 export type ArticleFrontmatter = z.infer<typeof articleFrontmatterSchema>;
@@ -93,6 +95,8 @@ export const macroFrontmatterSchema = z.object({
   tags: z.array(z.string()).default([]),
   summary: z.string().min(1),
   featured: z.boolean().optional().default(false),
+  /** Optional link to the original deck or document. */
+  sourcePdfUrl: z.string().optional(),
 });
 
 export type MacroFrontmatter = z.infer<typeof macroFrontmatterSchema>;

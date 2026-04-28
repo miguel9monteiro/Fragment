@@ -67,11 +67,19 @@ When adding a new content kind, the pattern is: schema in `lib/types.ts` → loa
 
 ### MDX rendering
 
-`next-mdx-remote/rsc` compiles MDX server-side. Plugins are configured in `lib/mdx.ts` (`remarkGfm`, `remarkMath`, `rehypeKatex`, `rehypeSlug`).
+`next-mdx-remote/rsc` v6 compiles MDX server-side. Plugins are configured in `lib/mdx.ts` (`remarkGfm`, `remarkMath`, `rehypeKatex`, `rehypeSlug`).
 
 Custom components are injected via `components/mdx/index.tsx`'s `mdxComponents` map, passed to `MDXRemote`'s `components` prop. Authors use them in MDX without imports:
 
 `<Callout>` (4 types), `<SelfCheck>`, `<DeepDive>`, `<KeyTerm>` (looks up the glossary at render time), `<FormulaBlock>` (KaTeX), `<PitchSlide>` (annotated hotspots — pitches only), `<MetricsTable>`, `<ProsCons>`.
+
+**Known limitation in `next-mdx-remote@6` (post-CVE fix):** array literals passed as JSX attribute values are silently dropped — they arrive at the component as `undefined`. This breaks any component that takes array props from MDX content: currently `MetricsTable.rows`, `ProsCons.pros/cons`, and `PitchSlide.annotations`. Workarounds when authoring:
+
+- For tables: use a GFM markdown table (`| col | col |` with `|---:|` for right-alignment) — they pick up the prose styles and look fine.
+- For pros/cons layouts: use two side-by-side `<Callout>`s inside a `<div className="not-prose grid gap-4 md:grid-cols-2 my-8">` wrapper.
+- The components themselves still work when invoked from React (e.g. on index pages) — only the MDX path is broken.
+
+A proper fix is to refactor these components to accept children rather than array props, but that's a follow-up. Don't try to "fix" the MDX expression syntax; the issue is in the v6 sanitization layer, not the source.
 
 The TOC is extracted by **regex** from raw MDX source (see `lib/mdx.ts::extractToc`) — not from the rendered HTML — because it runs on the server and the rendered tree isn't available at that point. It strips code fences before scanning.
 

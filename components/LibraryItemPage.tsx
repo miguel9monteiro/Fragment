@@ -7,6 +7,7 @@ import {
   Tag,
   Calendar,
   Globe,
+  FileDown,
 } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxOptions, extractToc } from "@/lib/mdx";
@@ -88,6 +89,18 @@ export function LibraryItemPage({
                 </span>
               )}
             </>
+          )}
+          {fm.sourcePdfUrl && (
+            <a
+              href={fm.sourcePdfUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors group"
+            >
+              <FileDown className="h-3 w-3" />
+              View original PDF
+              <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           )}
         </div>
       </section>

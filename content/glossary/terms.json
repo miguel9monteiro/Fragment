@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "term": "Carry",
+    "fullName": "Carried Interest",
+    "definition": "The share of profits a private equity GP earns above a hurdle rate, typically 20% of fund returns. The mechanism that aligns GP incentives with LP outcomes.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "Capital Call",
+    "fullName": "Capital Call",
+    "definition": "When a PE fund's GP draws down committed capital from LPs to fund an investment. LPs commit upfront but only fund as deals appear during the investment period.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "DCF",
+    "fullName": "Discounted Cash Flow",
+    "definition": "Valuation method that derives intrinsic value as the present value of projected free cash flows plus a terminal value, discounted at the firm's cost of capital.",
+    "category": "valuation",
+    "relatedItems": []
+  },
+  {
+    "term": "EBITDA",
+    "fullName": "Earnings Before Interest, Taxes, Depreciation and Amortization",
+    "definition": "EBIT plus non-cash D&A. A rough proxy for operating cash flow before working capital, and the most common base for private-market valuation multiples.",
+    "category": "accounting",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "Equity Bridge",
+    "fullName": "Equity Bridge",
+    "definition": "The set of items that reconcile enterprise value to equity value: net debt, minority interest, pension underfunding, preferred stock, and other claims senior to common equity.",
+    "category": "valuation",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "EV/EBITDA",
+    "fullName": "Enterprise Value to EBITDA",
+    "definition": "Trading multiple computed as enterprise value divided by EBITDA. The default valuation reference in most private equity transactions because it is independent of capital structure.",
+    "category": "valuation",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "GP",
+    "fullName": "General Partner",
+    "definition": "The private equity firm that manages a fund — sources deals, executes investments, drives operational change, and manages exits. Earns a management fee plus carry on profits above a hurdle.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "IRR",
+    "fullName": "Internal Rate of Return",
+    "definition": "The discount rate at which the net present value of an investment's cash flows equals zero. The headline annualised return measure for private equity deals; healthy buyout deals target 15–30%.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "LBO",
+    "fullName": "Leveraged Buyout",
+    "definition": "An acquisition financed largely with debt secured against the target company's own cash flows and assets. Equity contributes a minority of the purchase price and benefits as debt is repaid from operating cash flow.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "LP",
+    "fullName": "Limited Partner",
+    "definition": "An investor in a private equity fund. Commits capital that the GP draws down over time, has limited liability, and limited involvement in day-to-day investment decisions.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "MOIC",
+    "fullName": "Multiple on Invested Capital",
+    "definition": "Total cash returned to investors divided by total cash invested. A simple, time-insensitive measure of how many times the original capital was returned. A 2.0–2.5× MOIC over five years is a typical buyout target.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "Net Debt",
+    "fullName": "Net Debt",
+    "definition": "Total interest-bearing debt minus cash and cash equivalents. Subtracted from enterprise value to bridge to equity value in any standard transaction.",
+    "category": "accounting",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "NWC",
+    "fullName": "Net Working Capital",
+    "definition": "Current operating assets minus current operating liabilities. Changes in NWC are subtracted from operating cash flow because growing businesses tie up cash in receivables and inventory.",
+    "category": "accounting",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "Sources and Uses",
+    "fullName": "Sources and Uses Statement",
+    "definition": "The funding ledger of an LBO transaction. Uses (equity purchase price, refinanced debt, fees) must equal Sources (new debt tranches, sponsor equity, rollover equity, cash on balance sheet).",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "WACC",
+    "fullName": "Weighted Average Cost of Capital",
+    "definition": "The blended after-tax return debt and equity holders demand for financing the firm. The discount rate in an unlevered DCF.",
+    "category": "valuation",
+    "relatedItems": []
+  }
+]
