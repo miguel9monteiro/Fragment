@@ -6,6 +6,9 @@ import { FormulaBlock } from "./FormulaBlock";
 import { PitchSlide } from "./PitchSlide";
 import { MetricsTable } from "./MetricsTable";
 import { ProsCons } from "./ProsCons";
+import { Stat, Stats, BigStat } from "./Stat";
+import { Pillars, Pillar } from "./Pillars";
+import { PullQuote, Divider } from "./Lead";
 
 export const mdxComponents = {
   Callout,
@@ -17,4 +20,11 @@ export const mdxComponents = {
   PitchSlide,
   MetricsTable,
   ProsCons,
+  Stat,
+  Stats,
+  BigStat,
+  Pillars,
+  Pillar,
+  PullQuote,
+  Divider,
 };

@@ -194,13 +194,26 @@
 }
 
 .prose-pmc h2 {
-  @apply mt-14 mb-5 text-2xl font-bold tracking-tight;
+  @apply mt-16 mb-6 text-[2rem] font-bold tracking-tight leading-[1.15];
   scroll-margin-top: 5rem;
+  position: relative;
+}
+
+/* Steel accent bar above H2 — subtle "section start" marker */
+.prose-pmc h2::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  background: hsl(var(--steel));
+  margin-bottom: 1rem;
+  border-radius: 2px;
 }
 
 .prose-pmc h3 {
-  @apply mt-10 mb-3 text-xl font-bold tracking-tight;
+  @apply mt-12 mb-3 text-[1.4rem] font-bold tracking-tight leading-snug;
   scroll-margin-top: 5rem;
+  color: hsl(var(--primary));
 }
 
 .prose-pmc h4 {
@@ -209,7 +222,23 @@
 }
 
 .prose-pmc p {
-  @apply leading-[1.75] my-5;
+  @apply leading-[1.78] my-5 text-[1.0625rem];
+}
+
+/* Drop cap on the article's opening paragraph — magazine feel */
+.prose-pmc > p:first-of-type::first-letter {
+  float: left;
+  font-size: 4.25rem;
+  line-height: 0.85;
+  margin: 0.4rem 0.6rem -0.1rem 0;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  letter-spacing: -0.02em;
+}
+
+/* Slightly larger first paragraph for that lead-in feel */
+.prose-pmc > p:first-of-type {
+  @apply text-[1.125rem] leading-[1.75];
 }
 
 .prose-pmc a {
@@ -258,6 +287,76 @@
 
 .prose-pmc pre code {
   @apply bg-transparent border-0 p-0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tables — institutional research-note styling                       */
+/* ------------------------------------------------------------------ */
+
+.prose-pmc table {
+  @apply w-full text-sm my-10;
+  border-collapse: collapse;
+  border-top: 2px solid hsl(var(--primary));
+  border-bottom: 2px solid hsl(var(--primary));
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.prose-pmc thead {
+  background: hsl(var(--secondary));
+  border-bottom: 1px solid hsl(var(--primary) / 0.4);
+}
+
+.prose-pmc th {
+  @apply px-5 py-3 text-left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: hsl(var(--primary));
+  vertical-align: bottom;
+}
+
+.prose-pmc tbody tr {
+  border-bottom: 1px solid hsl(var(--border) / 0.7);
+  transition: background-color 0.15s ease;
+}
+
+.prose-pmc tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.prose-pmc tbody tr:hover {
+  background: hsl(var(--secondary) / 0.5);
+}
+
+.prose-pmc td {
+  @apply px-5 py-3.5;
+  vertical-align: top;
+  color: hsl(var(--foreground));
+}
+
+/* GFM markdown tables emit `align="right"` from `|---:|` syntax. */
+.prose-pmc th[align="right"],
+.prose-pmc td[align="right"] {
+  text-align: right;
+}
+
+.prose-pmc th[align="center"],
+.prose-pmc td[align="center"] {
+  text-align: center;
+}
+
+/* First column = label column, slightly emphasised */
+.prose-pmc tbody td:first-child {
+  font-weight: 500;
+  color: hsl(var(--primary));
+}
+
+/* Bold rows (from `**EBITDA**` markdown) keep a stronger feel */
+.prose-pmc tbody td strong {
+  font-weight: 700;
+  color: hsl(var(--primary));
 }
 
 /* KaTeX — preserve math fonts; they are math notation, not display fonts. */

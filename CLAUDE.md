@@ -71,7 +71,7 @@ When adding a new content kind, the pattern is: schema in `lib/types.ts` → loa
 
 Custom components are injected via `components/mdx/index.tsx`'s `mdxComponents` map, passed to `MDXRemote`'s `components` prop. Authors use them in MDX without imports:
 
-`<Callout>` (4 types), `<SelfCheck>`, `<DeepDive>`, `<KeyTerm>` (looks up the glossary at render time), `<FormulaBlock>` (KaTeX), `<PitchSlide>` (annotated hotspots — pitches only), `<MetricsTable>`, `<ProsCons>`.
+`<Callout>` (4 types), `<SelfCheck>`, `<DeepDive>`, `<KeyTerm>` (looks up the glossary at render time), `<FormulaBlock>` (KaTeX), `<PitchSlide>` (annotated hotspots — pitches only), `<MetricsTable>`, `<ProsCons>`, `<Pillars>` / `<Pillar>` (concept grid), `<Stats>` / `<Stat>` / `<BigStat>` (numerical callouts), `<PullQuote>`, `<Divider>` (visual section break).
 
 **Known limitation in `next-mdx-remote@6` (post-CVE fix):** array literals passed as JSX attribute values are silently dropped — they arrive at the component as `undefined`. This breaks any component that takes array props from MDX content: currently `MetricsTable.rows`, `ProsCons.pros/cons`, and `PitchSlide.annotations`. Workarounds when authoring:
 

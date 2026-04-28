@@ -264,6 +264,83 @@ platform's prose styling and render with tabular numerics. Use
 The italic paragraph pattern after the table mimics the caption style
 the `<MetricsTable>` component would have applied.
 
+### `<Pillars>` and `<Pillar>`
+
+A multi-column visual grid for "concept" moments — three or four cards
+side by side, each with an eyebrow label, a strong title, and short
+prose. Use it when introducing a set of related ideas (LPs/GPs/funds,
+deal life cycle stages, valuation drivers, etc.).
+
+```mdx
+<Pillars>
+  <Pillar eyebrow="Stage 1" title="Deal sourcing">
+    Define investment criteria — industry, size, geography — and run
+    proprietary networks to surface targets that fit.
+  </Pillar>
+  <Pillar eyebrow="Stage 2" title="Due diligence" emphasize>
+    Commercial, financial, legal, tax. Goal: find reasons not to do the
+    deal, not confirm reasons to do it.
+  </Pillar>
+  <Pillar eyebrow="Stage 3" title="Investment">
+    Structure the transaction, arrange debt, execute the SPA, close.
+  </Pillar>
+</Pillars>
+```
+
+`emphasize` adds a steel tint to one card to draw the eye.
+
+### `<Stats>` and `<Stat>`
+
+A horizontal row of large numerical callouts. Use it when 2–4 numbers
+deserve to land together — "the headline figures." `<Stat value>` is
+the big number, `<Stat label>` is the small uppercase label, `<Stat
+caption>` is optional supporting text.
+
+```mdx
+<Stats>
+  <Stat value="20–30%" label="Target IRR" caption="Healthy buyout deal range" />
+  <Stat value="2.0–2.5x" label="Target MOIC" caption="Over a 5-year hold" />
+  <Stat value="60–80%" label="Debt at entry" caption="Of total purchase price" />
+</Stats>
+```
+
+### `<BigStat>`
+
+When ONE number deserves the full visual stage — an emphatic moment
+inside the article. Renders centred on a soft secondary background,
+with the number sized very large.
+
+```mdx
+<BigStat
+  value="~75%"
+  label="Of VC-backed companies"
+  caption="never return cash to investors. Venture economics live or die on the small handful of outliers that 100x."
+/>
+```
+
+### `<PullQuote>`
+
+A magazine-style emphasised statement — short, punchy, one sentence.
+Use sparingly: at most one per major section, and only when the
+sentence genuinely deserves it.
+
+```mdx
+<PullQuote attribution="The whole pitch in one sentence">
+  Take a business someone else built, pay a defensible price, make it
+  measurably better in three to seven years, and sell it.
+</PullQuote>
+```
+
+### `<Divider>`
+
+A horizontal section break with a small steel diamond in the middle.
+Stronger visually than `<hr>`, lighter than starting a new H2. Useful
+between major content beats.
+
+```mdx
+<Divider />
+```
+
 ### `<ProsCons>` — temporarily use side-by-side `<Callout>`s instead
 
 Same MDX array-prop issue as `<MetricsTable>`. Use two Callouts in a
