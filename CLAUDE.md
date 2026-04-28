@@ -20,6 +20,48 @@ Hard constraints — push back if asked to violate any:
 
 If a request implies any of the above, surface the constraint before implementing.
 
+## Quality bar for long-form content
+
+**This is the most important section in this file when you are writing or revising an article (sessions, macro outlooks, quant presentations, pitch teaching pages).**
+
+The Portfolio Management Club is the top finance student society at Nova SBE — the leading business school in Portugal — and the audience expects work that reflects that. Members produce decks with strong visual identity: navy section dividers, light-blue stat callouts, Pillars-style concept grids, big numbers, deliberate rhythm. **Every article on this platform must transport the same visual identity into the reading layout.** A wall of plain prose with one or two bullet lists is below the bar, even if the writing is good. The standard is: a member should feel the article matches the production value of the deck it came from.
+
+### What this means concretely
+
+When you write or revise a long-form piece, you must use the visual MDX components throughout — not as decoration, but as the primary way of communicating structured information. Specifically:
+
+- **Sets of related concepts** (LPs / GPs / Fund; the four fund types; the five deal stages; the three pillars of a thesis) belong in `<Pillars>`, not in paragraph prose.
+- **Headline numbers** (target IRR, target MOIC, market shares, growth rates, key valuation multiples) belong in `<Stats>` rows or `<BigStat>` blocks. Identify the 3–6 numbers in the source material that most deserve to land visually and surface them.
+- **One or two emphatic statements per article** belong in `<PullQuote>`. Used sparingly — never more than 2 in a piece.
+- **Major content beats** should be separated by `<Divider>` to give the reader breathing room.
+- **Tables** are GFM markdown with `|---:|` for right-aligned numerics. They get full institutional styling automatically via `prose-pmc`. Use them whenever data is structured.
+- **Comprehension checks** belong in `<SelfCheck>`, not as inline parenthetical asides.
+- **Tangential depth** belongs in `<DeepDive>`, not in extra paragraphs.
+- **Defined terms** that exist in the glossary should be wrapped in `<KeyTerm slug="...">` on first material use.
+
+### Self-test before shipping
+
+Before considering a long-form article done, audit it against this checklist:
+
+1. **Drop cap fires on the opening paragraph?** (Automatic via CSS, but check the lead paragraph reads well with the large first letter.)
+2. **At least one `<Pillars>` block?** Most pieces have 2–3.
+3. **At least one `<Stats>` row or `<BigStat>` for headline numbers?**
+4. **At least one `<PullQuote>` at a moment that genuinely deserves the emphasis?**
+5. **`<Divider>` between major content beats** — not after every H2, but at the natural rhythm points.
+6. **Tables styled and right-aligned where numerics demand it?**
+7. **`<SelfCheck>` blocks at points where comprehension matters?**
+8. **`<KeyTerm>` links on the first material use of glossary-defined terms?**
+9. **Opening lead paragraph reads like a magazine intro, not a brief?**
+10. **No three consecutive paragraphs without a visual element breaking them up.**
+
+If the answer to four or more of these is "no," the piece is below the bar. Revise.
+
+### The failure mode to avoid
+
+The instinct, when adapting a deck or a transcript, is to flatten the source into paragraphs. Resist that. The deck had visual rhythm for a reason — the same rhythm needs to live in the article. **Plain prose with a few markdown headers is not acceptable output**, regardless of how good the writing is. The visual components exist to be used, and a session without them looks unfinished — like a draft someone forgot to format.
+
+Inspiration to match in vibe: Stripe's blog, Linear's changelog, the Substack longform aesthetic, McKinsey Quarterly's article layout. Bloomberg/Goldman research-note restraint for the typography; magazine-style visual breaks for the rhythm.
+
 ## Commands
 
 ```bash
