@@ -26,7 +26,7 @@ export default function ContributePage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild size="lg">
             <a
-              href="https://github.com/your-org/pmc-knowledge"
+              href="https://github.com/miguel9monteiro/Fragment"
               target="_blank"
               rel="noreferrer"
             >
@@ -184,7 +184,7 @@ export default function ContributePage() {
           <h2 className="font-serif text-3xl font-semibold tracking-tight mb-4">
             Read{" "}
             <Link
-              href="https://github.com/your-org/pmc-knowledge/blob/main/CONTRIBUTING.md"
+              href="https://github.com/miguel9monteiro/Fragment/blob/main/CONTRIBUTING.md"
               className="underline decoration-gold/60 underline-offset-4 hover:decoration-gold"
             >
               CONTRIBUTING.md

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -12,9 +13,24 @@ export function Footer() {
             A learning resource by and for members of the Portfolio Management
             Club at Nova School of Business &amp; Economics.
           </p>
+          <a
+            href="https://www.novasbe.unl.pt/"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-block opacity-80 hover:opacity-100 transition-opacity"
+            aria-label="Nova School of Business & Economics — visit website"
+          >
+            <Image
+              src="/logos/nova-sbe.png"
+              alt="Nova School of Business & Economics"
+              width={180}
+              height={94}
+              className="h-12 w-auto dark:invert"
+            />
+          </a>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 md:col-span-2 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-6 md:col-span-2">
           <FooterColumn
             heading="Library"
             links={[
@@ -28,18 +44,8 @@ export function Footer() {
             links={[
               { href: "/contribute", label: "How it works" },
               {
-                href: "https://github.com",
+                href: "https://github.com/miguel9monteiro/Fragment",
                 label: "Repository",
-                external: true,
-              },
-            ]}
-          />
-          <FooterColumn
-            heading="Institution"
-            links={[
-              {
-                href: "https://www.novasbe.unl.pt/",
-                label: "Nova SBE",
                 external: true,
               },
             ]}

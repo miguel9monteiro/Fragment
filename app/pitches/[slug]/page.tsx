@@ -39,7 +39,7 @@ export default async function PitchPage({
   if (!pitch) notFound();
 
   const fm = pitch.frontmatter;
-  const editPath = `https://github.com/your-org/pmc-knowledge/edit/main/content/pitches/${pitch.semesterSlug}/${pitch.slug}/index.mdx`;
+  const editPath = `https://github.com/miguel9monteiro/Fragment/edit/main/content/pitches/${pitch.semesterSlug}/${pitch.slug}/index.mdx`;
 
   return (
     <>

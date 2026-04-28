@@ -56,7 +56,7 @@ export default async function ModulePage({
   const toc = extractToc(mod.source);
   const { prev, next } = await getAdjacentModules(mod);
   const fm = mod.frontmatter;
-  const editPath = `https://github.com/your-org/pmc-knowledge/edit/main/content/modules/${mod.category}/${mod.slug}.mdx`;
+  const editPath = `https://github.com/miguel9monteiro/Fragment/edit/main/content/modules/${mod.category}/${mod.slug}.mdx`;
 
   return (
     <>
