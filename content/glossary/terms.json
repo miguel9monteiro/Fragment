@@ -1,5 +1,12 @@
 [
   {
+    "term": "Capital Call",
+    "fullName": "Capital Call",
+    "definition": "When a PE fund's GP draws down committed capital from LPs to fund an investment. LPs commit upfront but only fund as deals appear during the investment period.",
+    "category": "private-equity",
+    "relatedItems": ["private-equity"]
+  },
+  {
     "term": "Carry",
     "fullName": "Carried Interest",
     "definition": "The share of profits a private equity GP earns above a hurdle rate, typically 20% of fund returns. The mechanism that aligns GP incentives with LP outcomes.",
@@ -7,11 +14,25 @@
     "relatedItems": ["private-equity"]
   },
   {
-    "term": "Capital Call",
-    "fullName": "Capital Call",
-    "definition": "When a PE fund's GP draws down committed capital from LPs to fund an investment. LPs commit upfront but only fund as deals appear during the investment period.",
-    "category": "private-equity",
-    "relatedItems": ["private-equity"]
+    "term": "Convexity",
+    "fullName": "Convexity",
+    "definition": "The second derivative of price with respect to yield — the curvature of the price-yield relationship that duration alone misses. Standard bonds have positive convexity; callable corporates and inflation-linked issues can have low or even negative convexity.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "Coupon",
+    "fullName": "Coupon Rate",
+    "definition": "The percentage of a bond's face value paid as interest each year, fixed at issuance. Stated in the ticker — for example, MBONO 7.75 11/23/34 carries a 7.75% coupon and matures on 23 November 2034.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "Credit Rating",
+    "fullName": "Credit Rating",
+    "definition": "An independent assessment of an issuer's ability to repay its debt. The major scales (Fitch / S&P) run AAA at the top down through D for default; the cut-off between BBB and BB separates investment grade from high yield.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
   },
   {
     "term": "DCF",
@@ -21,9 +42,16 @@
     "relatedItems": []
   },
   {
+    "term": "Duration",
+    "fullName": "Duration",
+    "definition": "The weighted-average time it takes to receive a bond's cash flows. Modified duration translates that figure into a price-sensitivity rule of thumb: a bond with modified duration of 5 loses roughly 5% of its price for every 1% rise in yield.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
     "term": "EBITDA",
     "fullName": "Earnings Before Interest, Taxes, Depreciation and Amortization",
-    "definition": "EBIT plus non-cash D&A. A rough proxy for operating cash flow before working capital, and the most common base for private-market valuation multiples.",
+    "definition": "EBIT plus non-cash D&A. A rough proxy for operating cash flow before working capital, and the most common base for private-market valuation multiples and credit ratios.",
     "category": "accounting",
     "relatedItems": ["private-equity"]
   },
@@ -42,11 +70,39 @@
     "relatedItems": ["private-equity"]
   },
   {
+    "term": "Face Value",
+    "fullName": "Face Value (Par Value)",
+    "definition": "The principal amount the bond will repay at maturity, and the base on which coupon payments are calculated. Typically €1,000 or $1,000 per bond. A bond trading above face value is at a premium; below, at a discount.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "FDI",
+    "fullName": "Foreign Direct Investment",
+    "definition": "Cross-border investment by an entity in one country into a business interest in another. Strong FDI inflows typically appreciate the local currency by increasing demand for it.",
+    "category": "macro",
+    "relatedItems": ["bonds"]
+  },
+  {
     "term": "GP",
     "fullName": "General Partner",
     "definition": "The private equity firm that manages a fund — sources deals, executes investments, drives operational change, and manages exits. Earns a management fee plus carry on profits above a hurdle.",
     "category": "private-equity",
     "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "High Yield",
+    "fullName": "High Yield (Speculative Grade)",
+    "definition": "Bonds rated below BBB- (or Baa3 on Moody's). Pay higher coupons to compensate for elevated default risk. Sometimes called \"junk bonds.\" The opposite of investment grade.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "Investment Grade",
+    "fullName": "Investment Grade",
+    "definition": "Bonds rated BBB- (Baa3) or higher — judged to have adequate-to-strong capacity to repay. Many institutional mandates can only hold investment grade paper, which is a major reason BBB-rated issuers fight hard to avoid being downgraded.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
   },
   {
     "term": "IRR",
@@ -91,6 +147,20 @@
     "relatedItems": ["private-equity"]
   },
   {
+    "term": "OAS",
+    "fullName": "Option-Adjusted Spread",
+    "definition": "The yield spread of a bond over a benchmark curve, after stripping out the value of any embedded options (calls, puts, prepayment rights). The cleanest way to compare credit-driven yield premia across bonds with different optionality.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "Quantitative Easing",
+    "fullName": "Quantitative Easing (QE)",
+    "definition": "Central bank policy of buying long-dated government bonds (and sometimes corporate or mortgage paper) on the open market to push yields down and inject liquidity. Bullish for bond prices because it removes supply and signals dovish intent.",
+    "category": "macro",
+    "relatedItems": ["bonds"]
+  },
+  {
     "term": "Sources and Uses",
     "fullName": "Sources and Uses Statement",
     "definition": "The funding ledger of an LBO transaction. Uses (equity purchase price, refinanced debt, fees) must equal Sources (new debt tranches, sponsor equity, rollover equity, cash on balance sheet).",
@@ -103,5 +173,19 @@
     "definition": "The blended after-tax return debt and equity holders demand for financing the firm. The discount rate in an unlevered DCF.",
     "category": "valuation",
     "relatedItems": []
+  },
+  {
+    "term": "Yield Curve",
+    "fullName": "Yield Curve",
+    "definition": "The plot of yields against maturity for a single issuer's bonds. Normally upward-sloping; a flat curve signals uncertainty, an inverted curve has historically been one of the most reliable recession indicators.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
+  },
+  {
+    "term": "YTM",
+    "fullName": "Yield to Maturity",
+    "definition": "The total annualised return an investor earns by buying a bond at its current price and holding it to maturity, assuming all coupons are reinvested at the same rate. Captures coupon income plus the pull-to-par on price.",
+    "category": "fixed-income",
+    "relatedItems": ["bonds"]
   }
 ]

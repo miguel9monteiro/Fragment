@@ -1,0 +1,475 @@
+---
+title: "Bonds"
+slug: "bonds"
+author: "André Silva and Bernardo Ribeiro"
+team: "Portfolio Managers"
+date: "2025-10-27"
+difficulty: "intermediate"
+estimatedReadTime: 18
+tags:
+  - "bonds"
+  - "fixed-income"
+  - "duration"
+  - "convexity"
+  - "yield-curve"
+  - "credit"
+  - "currency"
+  - "fiscal-policy"
+summary: "An end-to-end primer on bonds — what they are, the two strategies for owning them, the price-yield relationship, duration and convexity, the yield curve, currency risk, default risk, fiscal-policy effects, and the PMC Credit Scoring Model."
+featured: true
+sourcePdfUrl: "/sessions/bonds.pdf"
+---
+
+Bonds get a reputation for being boring. They are not. Unlike equities, where the value is the residual claim on a business, a bond is a contract — coupons promised on stated dates, principal returned at maturity, terms written down. That contractual nature is what makes the asset class so powerful, and so consistently misunderstood. A bond's price doesn't move because someone is excited about earnings; it moves because rates moved, or inflation expectations shifted, or credit perception changed. The drivers are macro, structural, and observable.
+
+At PMC, we don't buy bonds to collect yield and wait. We buy bonds when the price is set up to appreciate — and that means understanding the machinery underneath.
+
+## Bond fundamentals
+
+Four ideas anchor everything that follows: the coupon, the yield to maturity, the price-versus-par relationship, and the universe of issuers you can buy from. None of the four is complicated, but each one gets used wrong by people who skip the basics.
+
+<Pillars>
+  <Pillar eyebrow="The cash flow" title="Coupon">
+    The percentage of face value the bond pays as interest, fixed at
+    issuance and largely set by interest rates at the time. The coupon
+    stays fixed for the entire life of the bond and is usually
+    embedded in the ticker — for example, <strong>MBONO 7.75 11/23/34</strong> is a Mexican
+    sovereign bond paying a 7.75% coupon and maturing 23 November 2034.
+  </Pillar>
+  <Pillar eyebrow="The total return" title="YTM" emphasize>
+    Yield to maturity. The total expected annualised return if you
+    hold the bond to maturity. Sensitive to interest rates, remaining
+    maturity, and credit risk. Bakes in coupon income, the eventual
+    repayment of principal, and the discount rate the market is
+    applying.
+  </Pillar>
+  <Pillar eyebrow="The price signal" title="Premium vs discount">
+    If the coupon rate exceeds the YTM, the bond trades at a premium
+    (price above par) — its coupons look generous against current
+    market rates. If the coupon is below the YTM, the bond trades at
+    a discount (price below par). Both are mechanical consequences of
+    the yield, not statements about quality.
+  </Pillar>
+  <Pillar eyebrow="The universe" title="Types of issuer">
+    Almost any entity that wants to borrow can issue a bond — sovereign
+    governments, municipalities, corporates, supranationals like the
+    EIB or the World Bank. Within that universe you can filter further:
+    emerging markets, high yield, inflation-linked, callable, perpetual.
+  </Pillar>
+</Pillars>
+
+The relationship between coupon, YTM, and price is the first thing to internalise. <KeyTerm slug="Coupon">Coupons</KeyTerm> are fixed; <KeyTerm slug="YTM">YTM</KeyTerm> floats with the market; price is whatever number reconciles the two. That mechanic is the whole game.
+
+<PullQuote attribution="The frame to keep">
+  Bonds are not lower-risk by nature. They are lower-volatility because their cash flows are contractual — and their prices move because of macro forces, not earnings surprises.
+</PullQuote>
+
+<Divider />
+
+## The two strategies of bond investing
+
+There are exactly two ways to make money owning a bond, and they call for different filters when picking what to buy.
+
+<Pillars>
+  <Pillar eyebrow="Strategy 1" title="Hold until maturity">
+    The traditional approach. Buy the bond, collect coupons, get the
+    principal back at maturity. The two factors that matter are
+    <strong>yield</strong> (am I being paid enough?) and
+    <strong>default risk</strong> (will the issuer actually pay me back?).
+    The ideal time to deploy this strategy is in
+    <strong>high-yield environments</strong> — you are locking in attractive
+    coupon income for the life of the bond.
+  </Pillar>
+  <Pillar eyebrow="Strategy 2 — PMC's approach" title="Price appreciation" emphasize>
+    Buy the bond expecting its <em>price</em> to rise before you sell.
+    This is a much wider playbook. The factors that matter expand to
+    include yield, default risk, monetary and fiscal policy, interest
+    rates, politics, and the bond's duration and convexity. The ideal
+    moment to deploy is at <strong>peak interest rates, just before a
+    cutting cycle</strong> — that is when the price upside is largest.
+  </Pillar>
+</Pillars>
+
+The second strategy is what PMC pursues. It demands more work — you are running a macro view as much as a credit view — but it offers something the buy-and-hold strategy cannot: capital gains alongside coupon income.
+
+<SelfCheck question="Why is 'peak interest rates, before a cutting cycle' the ideal entry point for the price-appreciation strategy?">
+Because bond prices and yields move inversely. When the central bank starts cutting rates, market yields fall across the curve, and bond prices rise mechanically. If you have already bought the bond at the peak, you participate in the entire downward move in yields with capital appreciation. The longer the bond's <KeyTerm slug="Duration">duration</KeyTerm>, the more violently it appreciates as rates fall — which is why duration becomes the headline variable for this strategy.
+</SelfCheck>
+
+## The price-yield relationship
+
+Everything in fixed income flows from one fact: **bond prices and bond yields move in opposite directions**.
+
+The mechanic is unarguable. A bond's price is the present value of its future cash flows — coupons across the life of the bond, plus the face value at maturity. The discount rate applied to those cash flows is the prevailing yield. If yields rise, the discount rate rises, and future cash flows are worth less today — price falls. If yields fall, the discount rate falls, future cash flows are worth more today — price rises. There is no scenario where this breaks.
+
+<FormulaBlock
+  formula="\text{Current Yield} = \frac{\text{Annual Coupon}}{\text{Current Bond Price}}"
+  caption="The simplest yield measure — pure coupon income divided by what you paid. Useful as a sanity check, less useful than YTM for total return."
+/>
+
+Because we are looking for **gains from price appreciation**, our job is to find the conditions that push yields *down*. There are four classic catalysts.
+
+<Stats>
+  <Stat value="↓" label="Interest rates" caption="Central bank cuts mechanically pull yields lower across the curve." />
+  <Stat value="↓" label="Inflation expectations" caption="Lower expected inflation lowers the real-rate component of yield." />
+  <Stat value="↓" label="Growth" caption="Economic slowdowns or recessions push investors into safe assets, compressing yields." />
+  <Stat value="QE" label="Central bank buying" caption="Quantitative easing removes supply and signals dovish intent." />
+</Stats>
+
+When two or more of these line up at once — say, peak rates plus softening growth plus falling inflation expectations plus a coming policy pivot — the setup for a bond rally is on. The skill is recognising those windows early.
+
+<Callout type="insight" title="The mental model">
+Yields are not just numbers — they are <em>prices for money</em>. When the price of money falls (rates down, inflation down, more central-bank liquidity), every contract that promises future payments gets repriced upward. Bonds are simply the cleanest, most levered expression of that mechanic.
+</Callout>
+
+<Divider />
+
+## Duration
+
+Interest rates are one of the main drivers of bond performance, and **<KeyTerm slug="Duration">duration</KeyTerm> is how we measure the sensitivity**. Duration is the weighted-average time it takes to receive a bond's cash flows — but it doubles as a price-sensitivity rule of thumb. **Modified duration** translates the time-weighted figure into a percentage price impact for each 1% move in yield.
+
+<FormulaBlock
+  formula="\text{Modified Duration} = \frac{\text{Duration}}{1 + y}"
+  caption="Modified duration. y is the bond's yield. The result tells you how much price moves for a 1% change in yield."
+/>
+
+The interpretation is direct: a bond with a modified duration of 5 will fall roughly 5% in price for every 1% rise in yields, and rise roughly 5% for every 1% fall. A bond with modified duration of 12 moves 12%. Duration is leverage on a macro view.
+
+Three structural factors push duration up or down.
+
+<Pillars>
+  <Pillar eyebrow="Driver 1" title="Maturity">
+    <strong>Higher maturity → higher duration.</strong> Cash flows
+    arrive further in the future, so each one is more sensitive to
+    discount-rate changes. A 30-year bond is far more interest-rate
+    sensitive than a 2-year bond of the same issuer.
+  </Pillar>
+  <Pillar eyebrow="Driver 2" title="Coupon">
+    <strong>Higher coupon → lower duration.</strong> Larger coupons
+    mean more cash arrives early, weighted toward the near-term. The
+    bond's effective average cash-flow date moves closer in time, and
+    rate sensitivity falls.
+  </Pillar>
+  <Pillar eyebrow="Driver 3" title="Yield">
+    <strong>Higher yield → lower duration.</strong> A higher discount
+    rate means future cash flows are already worth less today —
+    they contribute less to the price, so a marginal change in yield
+    moves the price proportionally less.
+  </Pillar>
+</Pillars>
+
+Putting the three together gives you the rule of thumb every PMC member should be able to apply at the whiteboard: **for the price-appreciation strategy in a falling-rate environment, you want bonds with the longest maturity, the lowest coupon, and the lowest yield.** All three factors stack toward higher duration and higher capital gains as rates fall.
+
+### A practical example
+
+Try this without touching a calculator.
+
+<Callout type="question" title="The setup">
+We are living in a world where people fear a recession and have decreasing inflation expectations. The central bank is likely to cut rates a few times over the next year. Without any calculations, which bond should we buy if our strategy is price appreciation?
+</Callout>
+
+You have three options:
+
+| | Maturity | Coupon | YTM |
+|---|---:|---:|---:|
+| **Bond A** | 2 years | 8% | 7% |
+| **Bond B** | 7 years | 5% | 8% |
+| **Bond C** | 15 years | 3% | 4% |
+
+<SelfCheck question="Which bond — A, B, or C — has the highest duration, and is therefore the right pick for the price-appreciation strategy?">
+
+**Bond C wins on all three drivers.**
+
+- **Maturity**: Bond C has the highest (15 years) → the most rate sensitivity from time risk → increases duration.
+- **Coupon**: Bond C has the lowest (3%) → cash flows are weighted toward the distant principal repayment, not early coupons → increases duration.
+- **Yield**: Bond C has the lowest (4%) → future cash flows are discounted less heavily, so they contribute more to price → increases duration.
+
+Every factor points the same way. Bond C has the highest duration and will appreciate the most as the central bank's cuts pull yields down. Bonds A and B have shorter maturities and higher coupons, which dampens their response to a rate move.
+
+The teaching point is that you can rank duration without computing it — the three drivers are intuitive, and a real interview will test whether you can reason about them rather than plug numbers into a formula.
+
+</SelfCheck>
+
+## Convexity
+
+Duration is a useful first-order tool, but it is too simplistic on its own. **Convexity is the second derivative of the price-yield relationship** — it captures the *curvature* that duration's straight-line approximation misses.
+
+The picture to hold in your head: duration draws a straight line from today's price-yield point. Convexity is the curve that the actual price-yield relationship follows. For most bonds, that curve bows upward — meaning the bond gains *more* in price when yields fall by 1% than it loses when yields rise by 1%. Positive convexity is a desirable property; it asymmetrically rewards holders.
+
+<Callout type="warning" title="Where convexity goes negative">
+Not every bond has positive convexity. **Callable corporate bonds** and **inflation-linked bonds** can have low or even negative convexity. The reason is structural: if rates fall enough, a callable bond gets called away from you (the issuer refinances cheaper), capping your upside. The price-yield relationship flattens or even bends backward at the call price. Always check optionality before assuming standard duration-convexity behaviour.
+</Callout>
+
+For most PMC pitches, the practical takeaway is simpler: when comparing two bonds with similar duration, the one with higher convexity is the better instrument for the price-appreciation strategy, because it captures more of the upside if rates fall further than expected.
+
+<Divider />
+
+## The yield curve
+
+A **<KeyTerm slug="Yield Curve">yield curve</KeyTerm>** plots the yields of bonds from a single issuer (most often the U.S. Treasury) across different maturities. Reading it well is one of the more practiced skills in fixed income, because the shape of the curve carries information about where the market thinks rates and growth are heading.
+
+Three shapes show up in practice, and each one tells you something different.
+
+<Pillars>
+  <Pillar eyebrow="Normal" title="Upward-sloping">
+    Shorter maturities yield less than longer ones — investors demand a
+    term premium for tying up capital. This is the textbook shape and
+    typically signals an economy in expansion or steady state.
+  </Pillar>
+  <Pillar eyebrow="Warning" title="Flat" emphasize>
+    Yields are similar across maturities. Often shows up in periods of
+    uncertainty — the market is genuinely unsure where rates are going,
+    and the term premium has compressed.
+  </Pillar>
+  <Pillar eyebrow="Recession signal" title="Inverted">
+    Short rates exceed long rates. Historically one of the most
+    reliable predictors of an upcoming recession — the market is
+    pricing in significant rate cuts down the line in response to
+    weakening growth.
+  </Pillar>
+</Pillars>
+
+The curve also reflects pure interest-rate expectations: if the market expects the central bank to cut, the long end falls relative to the short end and the curve flattens or inverts. If the market expects hikes, the long end rises relative to the short end and the curve steepens.
+
+A snapshot of the U.S. Treasury yield curve as of the time of this session looked roughly like this:
+
+| Maturity | Yield |
+|---|---:|
+| 6 months | 3.80% |
+| 1 year | 3.65% |
+| 2 years | 3.50% |
+| 3 years | 3.50% |
+| 5 years | 3.65% |
+| 7 years | 4.00% |
+| 10 years | 4.30% |
+| 20 years | 4.55% |
+| 30 years | 4.60% |
+
+<p className="text-xs text-muted-foreground italic mt-[-1.5rem] mb-10">U.S. Treasury yield curve, October 2025. Mildly inverted at the front end (the 2–3y belly sits below the 6m), then steepens through the long end — a curve in transition from inversion back to normalisation.</p>
+
+Corporate yield curves carry an additional signal: **a corporate yield curve is a window into the market's view on the issuer's financial health**. An inverted corporate curve — where short bonds yield more than long ones — usually means investors are worried about credit risk or near-term liquidity issues. The market is pricing the risk of trouble in the next 12–24 months as higher than the risk further out.
+
+<Callout type="insight" title="The yield curve as economic genie">
+Inversions of the U.S. 10y–2y Treasury spread have preceded every U.S. recession since 1955, with one exception. The signal is not a timing tool — the lag from inversion to recession ranges from six months to over two years — but as a directional read on where the cycle is headed, it is one of the more reliable signals macro analysts have.
+</Callout>
+
+<Divider />
+
+## Currency risk
+
+Bonds priced in a foreign currency carry an extra return engine, for better or worse. When you buy a Mexican peso-denominated MBONO from a USD base, your total return is the bond's local-currency return *combined with* the move in MXN/USD over your holding period. Currency can enhance returns dramatically, or wipe them out.
+
+### What appreciates a currency
+
+Eight catalysts drive currency appreciation, and most of them rhyme with the catalysts that push bond yields down — which is partly why fixed-income and FX investing live in the same intellectual neighbourhood.
+
+- **Strong economic growth** that pulls in foreign direct investment (<KeyTerm slug="FDI">FDI</KeyTerm>)
+- **Trade surplus** or a narrowing trade deficit, which raises demand for the local currency
+- **Higher interest rates** relative to other major economies — yield-seeking capital flows in
+- **Low inflation** — preserves the currency's purchasing power
+- **Fiscal and budgetary discipline** — lowers sovereign default risk
+- **Political stability** — reduces the risk premium foreign investors demand
+- **Tighter monetary policy** — reduces money supply and supports the currency
+
+When several of these align, the currency tends to grind higher — and any bond denominated in it gets a tailwind on top of its local-currency return.
+
+### A brainteaser worth doing in your head
+
+<Callout type="question" title="The setup">
+One year ago, we bought a European stock at a EUR/USD rate of 1.08. The stock grew 20%. We sold it today at a EUR/USD rate of 1.16. From a USD investor's perspective, what is our real return?
+</Callout>
+
+<SelfCheck question="Work it out without the formula on the page. What is the total USD return?">
+
+Walk through it step by step. We bought 1 EUR worth of stock when 1 EUR cost 1.08 USD. So our cost basis in USD was **1.08 USD**.
+
+The stock grew 20% in EUR. So our 1 EUR of stock is now worth **1.20 EUR**.
+
+We sold at 1.16 USD per EUR. So 1.20 EUR converts to **1.20 × 1.16 = 1.392 USD**.
+
+Total return:
+
+$$\frac{1.392}{1.08} - 1 = 0.289$$
+
+The USD return is roughly **+28.9%**, comfortably above the 20% local-currency stock return. The euro appreciation contributed an additional ~7.4% on top.
+
+The general formula:
+
+$$(1 + r_{\text{USD}}) = (1 + r_{\text{local}}) \times (1 + r_{\text{FX}})$$
+
+Currency moves are multiplicative with local returns, not additive — which means in good years they amplify, and in bad years they compound the loss.
+
+</SelfCheck>
+
+### USD 2025 — when the wind changes
+
+This year illustrated how meaningful currency can be. The dollar weakened across the board against the major reserve currencies, driven by political and trade uncertainty, lower U.S. yields relative to expectations, and improved European policy positioning.
+
+<Stats>
+  <Stat value="1.16" label="EUR/USD" caption="Euro up from the low-1.02s at the start of the year" />
+  <Stat value="0.0065" label="JPY/USD" caption="Yen recovered from the multi-decade lows of late 2024" />
+  <Stat value="1.33" label="GBP/USD" caption="Sterling held its gains through summer despite UK fiscal noise" />
+</Stats>
+
+For PMC's portfolio, holding non-USD bonds and equities through this period meant the FX leg contributed positively to total return — the same pattern that has repeated across multiple PMC FX exposures this year.
+
+<Divider />
+
+## Default risk and credit ratings
+
+The other side of bond risk is the issuer not paying you. **Credit risk is independently rated** by three agencies — Fitch, S&P, and Moody's — using letter scales that compress a complex underwriting analysis into a single grade. The Fitch / S&P scale runs from AAA at the top to D for default; Moody's uses a slightly different notation (Aaa to C). The cut-off between BBB- (Baa3 on Moody's) and BB+ (Ba1) is the most important line on the scale: above it is **<KeyTerm slug="Investment Grade">investment grade</KeyTerm>**, below it is **<KeyTerm slug="High Yield">high yield</KeyTerm>**.
+
+The Fitch scale, with representative issuers at each rung:
+
+| Grade | Definition | Examples |
+|---|---|---|
+| **AAA** | Highest grade possible | Microsoft, Apple, Johnson & Johnson |
+| **AA** | Not significantly vulnerable to foreseeable events | U.S. Treasuries |
+| **A** | Strong capacity for repayment, but more vulnerable to adverse economic conditions | Toyota, France |
+| **BBB** | Adequate repayment ability — lowest investment-grade rating | Ford, Citigroup, Italy |
+| **BB** | Elevated vulnerability to default risk | Delta Airlines, Petrobras, Hungary |
+| **B** | Default risk present, with a limited margin of safety | American Airlines, Egypt, Pakistan |
+| **CCC** | Very low margin of safety | Argentina |
+| **CC** | Default of some kind probable | — |
+| **C** | A default process has begun | — |
+| **RD** | Restricted default | Russia (2022) |
+| **D** | Default | Lebanon (2020) |
+
+<p className="text-xs text-muted-foreground italic mt-[-1.5rem] mb-10">Fitch credit rating ranks. The horizontal break between BBB and BB separates investment grade from high yield — a line that materially changes the cost of capital and the universe of investors that can hold the paper.</p>
+
+The cliff at the BBB–BB boundary is structural. Many institutional mandates — pension funds, insurance companies, regulated investment vehicles — can only hold investment-grade paper. A downgrade across that line forces price-insensitive selling, which is why BBB-rated issuers will fight hard, and pay financially, to protect their rating.
+
+### How credit ratings are made
+
+A credit rating is not a black box. It is the output of three categories of analysis, each weighted depending on the issuer type.
+
+<Pillars>
+  <Pillar eyebrow="Where to start" title="General outlook and data">
+    Balance sheet health. Macro risk. Competition. Economic outlook.
+    Interest rate environment. The big-picture diagnostic that frames
+    everything that follows.
+  </Pillar>
+  <Pillar eyebrow="The numbers" title="Ratios" emphasize>
+    Debt-to-equity. Cash flows and liquidity. Leverage ratios — most
+    importantly Total Debt / EBITDA. Coverage ratios such as EBITDA /
+    Interest Expense. Profitability ratios and margins. Most analyst
+    debates land on one of these numbers.
+  </Pillar>
+  <Pillar eyebrow="The judgement" title="Qualitative factors">
+    Market share and position. Exposure to economic cycles. Regulatory
+    environment. Currency risk. Political risk. The factors that
+    ratios do not capture but that ultimately determine whether a
+    business survives a stressed environment.
+  </Pillar>
+</Pillars>
+
+When a PMC pitch involves credit, every one of these buckets should be addressed in the deck. Skipping any of them flags to a senior reviewer that the analysis is incomplete.
+
+<Divider />
+
+## Fiscal policy and bond performance
+
+For sovereign bonds especially, **fiscal policy is one of the most important variables most analysts under-weight**. Government decisions about spending, taxation, and debt issuance shape the supply-demand mechanics of the bond market directly, and the credit perception of the issuer indirectly.
+
+Six effects to keep in mind, all of them visible in real markets right now.
+
+<Pillars>
+  <Pillar eyebrow="Effect 1" title="Expansionary fiscal × easy monetary policy">
+    When fiscal stimulus and monetary easing arrive together, the
+    combination is positive for bond price appreciation. Low rates plus
+    growth-supportive spending push yields down through both demand and
+    expectations channels.
+  </Pillar>
+  <Pillar eyebrow="Effect 2" title="Bonds in austerity / recession">
+    Counterintuitively, bonds also perform well in austerity or
+    recessionary regimes — the central bank typically cuts rates to
+    counteract the slowdown, and constrained issuance limits supply.
+    Both push prices up.
+  </Pillar>
+  <Pillar eyebrow="Effect 3" title="Debt-funded supply growth">
+    To finance deficits, governments issue more bonds. Increased supply
+    pushes yields up and prices down — a real headwind in countries
+    running large or expanding fiscal gaps.
+  </Pillar>
+  <Pillar eyebrow="Effect 4" title="Inflation expectations" emphasize>
+    The dominant driver of long-end yields. This year, with inflation
+    expectations flattening, we have seen yields fall and prices rise
+    across the developed-market sovereign curve — a textbook setup for
+    the price-appreciation strategy.
+  </Pillar>
+  <Pillar eyebrow="Effect 5" title="Capital inflows and remittances">
+    Policies that target capital inflows — favourable tax treatment of
+    foreign holders, currency stability programmes, remittance
+    incentives — can move bond prices materially. This was the central
+    insight of the Mexico pitch: an FX-stable, remittance-rich economy
+    with a high-coupon sovereign curve is a structurally attractive
+    bond setup.
+  </Pillar>
+  <Pillar eyebrow="Effect 6" title="Budgetary discipline">
+    Responsible and balanced budgets are one of the main drivers of a
+    safe credit rating. Deteriorating fiscal accounts almost always
+    precede sovereign downgrades — and downgrades repricing the entire
+    sovereign curve.
+  </Pillar>
+</Pillars>
+
+The cleanest mental model is to track fiscal policy through two channels at once: the **supply channel** (how much paper is the government issuing?) and the **credit channel** (is the trajectory of the deficit improving or deteriorating?). Both feed yields, in different directions.
+
+<Divider />
+
+## The PMC Credit Scoring Model
+
+The Quant team has built a standardised credit-scoring tool to support credit analysis across PMC pitches. It lives in the shared workspace at **PMC Intellectual Capital → PMC Models → Credit Scoring Model**, and any team using credit in a pitch should pull it through the model rather than building bespoke ratios from scratch.
+
+### What the model does
+
+<Pillars>
+  <Pillar eyebrow="Layer 1" title="Issuer fundamentals">
+    Evaluates the company's financial strength: leverage, coverage,
+    profitability, liquidity, and debt structure. The standard credit-
+    analysis ratio set, computed consistently and pulled from
+    Bloomberg.
+  </Pillar>
+  <Pillar eyebrow="Layer 2" title="Security characteristics">
+    Incorporates bond-specific metrics — option-adjusted spread
+    (<KeyTerm slug="OAS">OAS</KeyTerm>), volatility, liquidity,
+    maturity structure, convexity. Bridges the gap between issuer
+    health and the actual instrument's behaviour.
+  </Pillar>
+  <Pillar eyebrow="Layer 3" title="Scoring and interpretation" emphasize>
+    Each metric is standardised to a 0–100 score using predefined
+    calibration ranges. Weighted scores are aggregated into an overall
+    credit score, which lets teams identify strengths and weaknesses
+    quickly and explain them in a pitch.
+  </Pillar>
+  <Pillar eyebrow="Layer 4" title="Visual outputs">
+    Breakdown charts and peer comparisons. The output is not just a
+    number — it is a set of visuals that makes it obvious why a bond
+    stands out or lags behind in a way you can drop straight into a
+    pitch deck.
+  </Pillar>
+</Pillars>
+
+### Integrating it into a pitch
+
+The integration flow is five steps, and each one is meant to be quick.
+
+1. **Select peers and bonds.** Define the comparison set — same sector, similar size, similar duration profile.
+2. **Calibrate the scoring model.** Set the weighting and calibration ranges for the specific use case.
+3. **Run market and fundamental data** through the Bloomberg API. The model pulls automatically.
+4. **Analyse scores and drivers.** Read the breakdown charts; identify what is driving the issuer above or below peers.
+5. **Include the insights in your pitch.** The visual outputs are pitch-ready.
+
+### A worked example: UnitedHealth (UNH)
+
+Run on UnitedHealth Group against its health-insurance peer set (CVS Health, Cigna, Elevance Health, Humana, Centene), the model surfaces a clear and actionable contrast.
+
+On **leverage scores**, UNH lands well above the peer median — close to the maximum of the 0–100 calibration range — signalling exceptional balance-sheet strength. The leverage layer is built from several leverage ratios (Debt-to-Equity, Total Debt / EBITDA, and similar) and calibrated against the peer set. The takeaway: from a balance-sheet perspective, UNH looks structurally stronger than every peer except Elevance and Humana, and far stronger than CVS or Cigna.
+
+On **liquidity scores**, the picture flips. Liquidity is pulled directly from Bloomberg's LQA Liquidity Score and reflects how easily a position can be entered or exited at fair price. UNH lands well below the peer mean — meaning the bonds are less liquid than competitors, which has practical implications for trading flexibility and position sizing. A pitch on UNH paper would need to address that constraint head-on: the credit story is excellent, but the instrument-level liquidity is a real consideration for the portfolio.
+
+The point of running the model is that you would not have arrived at that nuanced "great credit, weak liquidity" framing by looking at any single ratio. The aggregate score plus the layer-by-layer breakdown is what makes it useful in a pitch.
+
+<PullQuote attribution="The PMC bond playbook in one line">
+  Find peak yields in a transitioning rate cycle. Stack duration, coupon, and yield drivers in your favour. Watch fiscal policy and credit closely. Sell into the rally.
+</PullQuote>
