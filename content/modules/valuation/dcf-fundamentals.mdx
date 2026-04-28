@@ -1,0 +1,171 @@
+---
+title: "DCF Fundamentals: Building a Defensible Cash Flow Model"
+slug: "dcf-fundamentals"
+category: "valuation"
+author: "PMC Sample"
+team: "Investment Team 1"
+difficulty: "beginner"
+estimatedReadTime: 10
+prerequisites: []
+lastUpdated: "2026-04-28"
+tags: ["valuation", "dcf", "cash-flow", "fundamentals"]
+summary: "What a discounted cash flow model is actually doing — and the three levers a senior member will press on when reviewing yours."
+featured: true
+---
+
+A discounted cash flow model is a translation device. It takes a story about a
+business — its growth, its margins, its capital intensity, its risk — and
+turns that story into a single number you can defend. The number is only as
+good as the story, and the story has to survive a senior member's
+cross-examination.
+
+This module walks through the four building blocks of a DCF, the math you
+must be able to write on a whiteboard, and the questions every PMC reviewer
+will ask before they let you call something a buy.
+
+<Callout type="insight" title="The whole point">
+A DCF is not a spreadsheet exercise. It is a structured argument that links
+operational assumptions to a present value. If you cannot defend each
+assumption out loud, you cannot defend the price.
+</Callout>
+
+## The four building blocks
+
+Every DCF you will ever build, on a back-of-envelope or in a 200-row model,
+has the same skeleton:
+
+1. **Free cash flow projection** — what cash the business throws off, year by
+   year, after the reinvestment it needs to keep growing.
+2. **Discount rate** — the cost of capital that reflects how risky those
+   cash flows are. We unpack this in the <KeyTerm slug="WACC">WACC</KeyTerm>
+   module.
+3. **Terminal value** — the present value of everything that happens past
+   your explicit forecast horizon, usually via a Gordon growth or exit
+   multiple.
+4. **Bridge to equity** — net debt, minorities, and other claims that sit
+   between enterprise value and what equity holders own.
+
+Get any one of these wrong by 10% and your fair value is wrong by something
+between 5% and 50%. The leverage between assumption error and price error is
+why every line item matters.
+
+## Free cash flow to the firm
+
+We almost always model unlevered free cash flow (FCFF) — the cash the
+business produces before any decision about capital structure:
+
+<FormulaBlock
+  formula="FCFF = EBIT \cdot (1 - t) + D\&A - CapEx - \Delta NWC"
+  caption="Unlevered free cash flow to the firm. EBIT after tax, plus non-cash charges, less reinvestment."
+/>
+
+Two traps that catch first-year analysts:
+
+<Callout type="warning" title="Two common traps">
+**Stock-based comp is a real cost.** Adding it back as if it were depreciation
+inflates your fair value. Treat it as cash compensation unless you have a
+specific reason not to.
+
+**Working capital is not a one-time bump.** A growing business almost always
+needs growing working capital. If your ΔNWC line is zero across five forecast
+years, your model is wrong.
+</Callout>
+
+<SelfCheck question="Why do we use unlevered FCF rather than free cash flow to equity for a typical pitch?">
+Because unlevered FCF is independent of capital structure. We discount it at
+WACC to get enterprise value, then subtract net debt to get equity value.
+This separates the operating thesis from the financing thesis — which is
+exactly what we want when arguing the underlying business is mispriced. Levered
+FCF discounted at cost of equity is mathematically equivalent in theory, but
+mixes the two threads in practice.
+</SelfCheck>
+
+## The discount rate
+
+We discount future cash flows at the **weighted average cost of capital** —
+the blended return debt and equity holders demand for taking the risk of
+financing the business.
+
+<FormulaBlock
+  formula="WACC = \frac{E}{V} \cdot r_e + \frac{D}{V} \cdot r_d \cdot (1 - t)"
+  caption="WACC. Equity weight times cost of equity, plus debt weight times after-tax cost of debt."
+/>
+
+The cost of equity comes from <KeyTerm slug="CAPM">CAPM</KeyTerm>. Cost of
+debt is the company's marginal borrowing rate, not its historical interest
+expense. Weights are at market values, not book.
+
+For a deep dive on each input — beta, equity risk premium, target capital
+structure — see the WACC module.
+
+<SelfCheck question="If a senior member says 'your WACC of 8% feels low', what are the three places you should check first?">
+1. **Beta** — are you using a regression that captures the right time period
+   and business mix? Re-leveraged from a peer set?
+2. **Equity risk premium** — what number are you using and why? 5%? 6%?
+   A 100bp move here moves WACC by about 60–80bp.
+3. **Capital structure weights** — are you using current market weights or a
+   "target" structure? Pick one explicitly and defend it.
+</SelfCheck>
+
+## Terminal value
+
+By the end of your explicit forecast (usually year 5 or 10), the business
+should be in **steady state**: growing at a rate it can sustain forever,
+earning a return on incremental capital roughly equal to its cost of capital.
+If those things aren't true at the terminal year, your terminal value is
+fragile.
+
+<FormulaBlock
+  formula="TV_n = \frac{FCFF_{n+1}}{r - g}"
+  caption="Gordon growth terminal value. FCFF in the year after the final forecast year, divided by the spread between WACC and the perpetual growth rate."
+/>
+
+Terminal value typically represents 60–80% of total enterprise value in a
+DCF. That's a lot of weight on a single assumption. Two sanity checks every
+reviewer will run:
+
+- **Implied exit multiple.** Divide your terminal year EBITDA into your
+  terminal value. Does the implied EV/EBITDA make sense versus where peers
+  trade today?
+- **Implied reinvestment rate.** A perpetual growth rate of 3% with a 15% ROIC
+  implies you're reinvesting only 20% of NOPAT. Does that match the business?
+
+<KeyTerm slug="DCF">DCF</KeyTerm> models can be made to say almost anything if
+you let the terminal value drift. Constraining it forces honesty.
+
+## The bridge to equity
+
+The DCF gives you enterprise value. Members own equity. The bridge:
+
+```
+  Enterprise value
+- Net debt (debt – cash)
+- Minority interest (at fair value, not book)
+- Pension underfunding
+- Out-of-the-money convertibles, preferreds, etc.
++ Non-operating assets (excess cash, equity investments)
+= Equity value
+÷ Diluted shares outstanding
+= Fair value per share
+```
+
+The number you compare to today's price is the last line. Everything before
+it is bookkeeping — but bookkeeping that, done sloppily, costs you 5–15% of
+fair value.
+
+## What seniors will ask
+
+When you bring a DCF to a pitch room, expect three questions in this order:
+
+1. **What is the implied terminal exit multiple?** If you can't answer in 10
+   seconds, you don't know your model.
+2. **What growth rate, between today and the terminal year, drives the most
+   value?** Show you understand the sensitivity.
+3. **At what assumption does the thesis break?** Pick the variable you'd be
+   most embarrassed about being wrong on, and have its breakeven number ready.
+
+<Callout type="question" title="Before your next pitch">
+Open your model. Can you state — out loud, without scrolling — your terminal
+year revenue, EBIT margin, terminal growth rate, WACC, and implied EV/EBITDA?
+If not, build a one-page summary tab and rehearse until you can.
+</Callout>

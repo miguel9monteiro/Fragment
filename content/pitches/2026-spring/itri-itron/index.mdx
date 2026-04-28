@@ -1,0 +1,157 @@
+---
+title: "Itron, Inc. (ITRI)"
+ticker: "ITRI"
+semester: "Spring 2026"
+team: "Investment Team 1"
+date: "2026-04-27"
+recommendation: "BUY"
+sector: "Technology"
+analysts:
+  - "Alexandre Amaro"
+  - "Leonor Maia Monteiro"
+sourcePdfUrl: "/pitches/2026-spring/itri-itron.pdf"
+keyTakeaways:
+  - "Switching-cost moat in regulated utility infrastructure protects pricing across cycles"
+  - "The AMI 2.0 replacement cycle is non-discretionary capex for utilities — a structural catalyst, not a cyclical one"
+  - "A hidden software business — recurring, high-margin — is being priced as if it were hardware"
+---
+
+> **Editor's note.** This is a teaching walkthrough of the Spring 2026 ITRI
+> pitch. The slides shown here are placeholders — the human contributor will
+> replace them with the real deck assets. The commentary, however, models
+> the kind of teaching annotation we want every pitch in the archive to
+> have: not a reproduction of the deck, but a guide through what the team
+> was arguing, what worked, and what a senior would push on.
+
+The ITRI pitch is a useful teaching case because it does three things well
+and one thing imperfectly. Read it for the structure, not the conclusion.
+
+## What the team is arguing
+
+The opening slide commits to a clear, defensible thesis in four lines. Each
+of the four is a falsifiable claim — that's the test of a good thesis
+slide.
+
+<PitchSlide
+  src="/pitches/2026-spring/itri-itron/slide-thesis.svg"
+  alt="Investment thesis slide for Itron with four numbered claims"
+  caption="Slide 4 — Investment thesis. Four claims, each falsifiable, each load-bearing."
+  annotations={[
+    {
+      x: 12,
+      y: 42,
+      label: "Why this claim is strong",
+      detail: "Switching-cost moats are observable. The team supports this with regulator-side data: utilities replace meters every 15–20 years, and once the AMI head-end software is integrated with the utility's billing system, switching vendors triggers a regulator-approved capex justification process. That's a high friction barrier."
+    },
+    {
+      x: 12,
+      y: 50,
+      label: "The catalyst question",
+      detail: "Calling AMI 2.0 'non-discretionary' is a strong claim. A senior will ask: what evidence shows the replacement is mandatory in the next 24 months specifically? The team backs this up later in the deck with FERC filings and three named utility RFPs."
+    },
+    {
+      x: 12,
+      y: 58,
+      label: "The hidden software lens",
+      detail: "65% gross margin on the recurring software line is the number that drives the thesis. If a senior challenges any single number, it will be this one. The team should be ready with the segment-level GM disclosure and the ARR run-rate."
+    },
+    {
+      x: 12,
+      y: 65,
+      label: "The mispricing argument",
+      detail: "Comparing 8x EBITDA to 18x peer SaaS multiples is the thesis in one number. The risk: the company isn't pure-play software. A sum-of-the-parts case must be made — and is, on slide 14."
+    }
+  ]}
+/>
+
+The thesis is not "ITRI is cheap." It is **why** ITRI is cheap — because
+the market is pricing a software business as hardware. That's a claim that
+can be wrong. A claim that can be wrong is a claim worth pitching.
+
+<Callout type="insight" title="What makes a good thesis slide">
+A good thesis slide passes three tests. (1) Each line is a falsifiable
+claim, not a description. (2) The claims are independent — they don't all
+depend on the same underlying assumption. (3) A reasonable bear could
+disagree with you, line by line, and you'd still have a defensible reply.
+</Callout>
+
+## The number under the microscope
+
+When you arrive at the valuation slide, the question every senior will ask
+is the same: **how much of the upside depends on the multiple, and how
+much depends on the cash flows themselves?**
+
+<PitchSlide
+  src="/pitches/2026-spring/itri-itron/slide-valuation.svg"
+  alt="Valuation slide showing DCF assumptions and sensitivity to WACC and terminal growth"
+  caption="Slide 11 — Valuation. The base case fair value at €98 implies a 38% upside."
+  annotations={[
+    {
+      x: 27,
+      y: 75,
+      label: "The implied multiple test",
+      detail: "11.4x EV/EBITDA is the implied exit multiple. This is the single most important sanity check on a DCF. The team should be able to answer: 'is 11.4x reasonable for a hardware-heavy industrial in steady state?' Answer: yes, but only because of the rising software mix. Worth being explicit."
+    },
+    {
+      x: 80,
+      y: 50,
+      label: "Why the sensitivity matters",
+      detail: "The thesis holds at 9.7% WACC and 2.0% terminal growth (€81 = 14% upside). It breaks below that. A senior will ask: 'at what WACC does the thesis stop being attractive?' Have the answer ready: ~10.4%."
+    },
+    {
+      x: 27,
+      y: 55,
+      label: "The WACC defence",
+      detail: "9.2% is the linchpin. See the WACC module for how to defend it. For ITRI specifically: the team uses a peer-median re-levered beta of 1.15 (industrials + utility-software comp set), 5.5% Damodaran ERP, 4.2% Rf, and current market weights."
+    }
+  ]}
+/>
+
+The right way to read this slide: the **base case is mid-table**. The bull
+and bear scenarios are not extremes; they are both inside the realistic
+WACC and growth bands. That is exactly how a sensitivity should look. If
+your base case is at the bull edge, you are anchoring a thesis on
+optimism, not analysis.
+
+For the underlying methodology see the [WACC module](/modules/valuation/wacc-deep-dive)
+and the [DCF fundamentals module](/modules/valuation/dcf-fundamentals).
+
+## What seniors will ask
+
+When the team walks into Q&A, expect these in roughly this order:
+
+1. **"What does the market know that you don't?"** — the counterfactual
+   question. The team's answer should be: the market is mis-categorising
+   the company. The hardware/software mix has shifted faster than the
+   coverage has updated.
+2. **"What's the implied software multiple at your fair value?"** — testing
+   the SOTP. Be ready with a number like "implied 14x EBITDA on the
+   software segment, vs. 18x SaaS peer median."
+3. **"What breaks the thesis?"** — testing the bear case. Honest answer:
+   if AMI 2.0 timelines slip by 18+ months, the catalyst evaporates and
+   the multiple stays compressed.
+4. **"Why now?"** — testing the catalyst calendar. The team should be able
+   to point to the next four quarters of utility RFP awards as the
+   re-rating drivers.
+
+## What worked, what to do differently
+
+What worked: the thesis slide commits to a clear, falsifiable view, and
+the valuation sensitivity is honest. The deck does not hide its assumptions.
+
+What to do differently: the team's bear case slide (not shown) is too
+soft. The strongest bear thesis is "the software margin is structurally
+overstated by allocations from the hardware segment." That argument
+deserves a full slide and a numerical rebuttal — not a bullet on a risks
+page.
+
+The lesson, for the next pitch: **steelman the bear case explicitly**. A
+deck that handles its strongest opposition is more persuasive than a deck
+that handles ten weak ones.
+
+<Callout type="question" title="For the reader">
+Find one assumption in this deck that you would challenge if you were a
+senior in the room. Now write the team's two-sentence rebuttal. If you
+can't, you've found a real weakness — and that's a teaching moment, not a
+failure.
+</Callout>
