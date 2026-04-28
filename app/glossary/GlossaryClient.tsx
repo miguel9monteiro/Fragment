@@ -41,8 +41,8 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
           Glossary
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
-          A shared vocabulary for the club. Every term links out to the modules
-          that explore it.
+          A shared vocabulary for the club. Every term links to the sessions,
+          pitches, and quant work that explore it.
         </p>
       </section>
 
@@ -132,12 +132,12 @@ export function GlossaryClient({ terms }: { terms: GlossaryTerm[] }) {
                         <p className="text-sm leading-relaxed text-foreground/85">
                           {t.definition}
                         </p>
-                        {t.relatedModules && t.relatedModules.length > 0 && (
+                        {t.relatedItems && t.relatedItems.length > 0 && (
                           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                            {t.relatedModules.map((slug) => (
+                            {t.relatedItems.map((slug) => (
                               <li key={slug}>
                                 <Link
-                                  href={`/modules?q=${encodeURIComponent(slug)}`}
+                                  href={`/sessions?q=${encodeURIComponent(slug)}`}
                                   className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-steel hover:underline"
                                 >
                                   <ArrowUpRight className="h-3 w-3" />

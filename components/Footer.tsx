@@ -34,8 +34,10 @@ export function Footer() {
           <FooterColumn
             heading="Library"
             links={[
-              { href: "/modules", label: "Modules" },
-              { href: "/pitches", label: "Pitch archive" },
+              { href: "/pitches", label: "Stock pitches" },
+              { href: "/sessions", label: "Learning sessions" },
+              { href: "/macro", label: "Macro outlooks" },
+              { href: "/quant", label: "Quant presentations" },
               { href: "/glossary", label: "Glossary" },
             ]}
           />

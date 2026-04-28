@@ -2,32 +2,47 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { SearchCommand } from "./SearchCommand";
 import { cn } from "@/lib/utils";
-import { getAllModules, getGlossary } from "@/lib/content";
+import {
+  getAllPitches,
+  getAllLibrary,
+  getGlossary,
+} from "@/lib/content";
 import type { SearchableItem } from "@/lib/search";
-import { CATEGORY_LABELS } from "@/lib/types";
+import { LIBRARY_META } from "@/lib/types";
 
 const navItems = [
-  { href: "/modules", label: "Modules" },
-  { href: "/pitches", label: "Pitch archive" },
+  { href: "/pitches", label: "Pitches" },
+  { href: "/sessions", label: "Sessions" },
+  { href: "/macro", label: "Macro" },
+  { href: "/quant", label: "Quant" },
   { href: "/glossary", label: "Glossary" },
   { href: "/contribute", label: "Contribute" },
 ];
 
 export async function Header({ className }: { className?: string }) {
-  const [modules, terms] = await Promise.all([
-    getAllModules(),
+  const [library, pitches, terms] = await Promise.all([
+    getAllLibrary(),
+    getAllPitches(),
     getGlossary(),
   ]);
 
   const searchItems: SearchableItem[] = [
-    ...modules.map((m) => ({
-      kind: "module" as const,
+    ...library.map((m) => ({
+      kind: m.kind,
       slug: m.slug,
-      category: CATEGORY_LABELS[m.category],
       title: m.frontmatter.title,
       summary: m.frontmatter.summary,
       tags: m.frontmatter.tags,
-      href: `/modules/${m.category}/${m.slug}`,
+      href: `${LIBRARY_META[m.kind].route}/${m.slug}`,
+    })),
+    ...pitches.map((p) => ({
+      kind: "pitch" as const,
+      slug: p.slug,
+      ticker: p.frontmatter.ticker,
+      title: p.frontmatter.title,
+      summary: p.frontmatter.keyTakeaways[0] ?? "",
+      tags: p.frontmatter.tags ?? [],
+      href: `/pitches/${p.slug}`,
     })),
     ...terms.map((t) => ({
       kind: "term" as const,
@@ -48,7 +63,10 @@ export async function Header({ className }: { className?: string }) {
       <div className="container flex h-16 items-center justify-between gap-6">
         <Logo />
 
-        <nav className="hidden md:flex items-center gap-7" aria-label="Primary">
+        <nav
+          className="hidden md:flex items-center gap-6 lg:gap-7"
+          aria-label="Primary"
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -64,9 +82,8 @@ export async function Header({ className }: { className?: string }) {
           <SearchCommand items={searchItems} />
         </div>
 
-        {/* Mobile nav */}
         <nav
-          className="flex md:hidden items-center gap-4 overflow-x-auto"
+          className="flex md:hidden items-center gap-3 overflow-x-auto"
           aria-label="Primary mobile"
         >
           {navItems.map((item) => (

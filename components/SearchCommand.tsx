@@ -2,7 +2,14 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Search as SearchIcon, BookOpen, Hash } from "lucide-react";
+import {
+  Search as SearchIcon,
+  GraduationCap,
+  Globe,
+  LineChart,
+  FileText,
+  Hash,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -74,53 +81,75 @@ export function SearchCommand({ items }: { items: SearchableItem[] }) {
           )}
           {results.length > 0 && (
             <ul className="divide-y divide-border">
-              {results.map((r, i) =>
-                r.kind === "module" ? (
-                  <li key={`m-${r.slug}-${i}`}>
+              {results.map((r, i) => {
+                if (r.kind === "term") {
+                  return (
+                    <li key={`t-${r.term}-${i}`}>
+                      <Link
+                        href={r.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/60"
+                      >
+                        <Hash className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium leading-tight">
+                            {r.term}
+                            {r.fullName && (
+                              <span className="text-muted-foreground font-normal">
+                                {" "}
+                                · {r.fullName}
+                              </span>
+                            )}
+                          </p>
+                          <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
+                            {r.definition}
+                          </p>
+                        </div>
+                        <span className="eyebrow shrink-0">Term</span>
+                      </Link>
+                    </li>
+                  );
+                }
+
+                const Icon =
+                  r.kind === "session"
+                    ? GraduationCap
+                    : r.kind === "macro"
+                      ? Globe
+                      : r.kind === "quant"
+                        ? LineChart
+                        : FileText;
+                const label =
+                  r.kind === "session"
+                    ? "Session"
+                    : r.kind === "macro"
+                      ? "Macro"
+                      : r.kind === "quant"
+                        ? "Quant"
+                        : "Pitch";
+                const title = r.kind === "pitch" ? `${r.ticker} · ${r.title}` : r.title;
+
+                return (
+                  <li key={`${r.kind}-${r.slug}-${i}`}>
                     <Link
                       href={r.href}
                       onClick={() => setOpen(false)}
                       className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/60"
                     >
-                      <BookOpen className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                      <Icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium leading-tight">
-                          {r.title}
+                          {title}
                         </p>
                         <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
                           {r.summary}
                         </p>
                       </div>
-                      <span className="eyebrow shrink-0">Module</span>
+                      <span className="eyebrow shrink-0">{label}</span>
                     </Link>
                   </li>
-                ) : (
-                  <li key={`t-${r.term}-${i}`}>
-                    <Link
-                      href={r.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/60"
-                    >
-                      <Hash className="h-4 w-4 mt-0.5 text-muted-foreground" />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium leading-tight">
-                          {r.term}
-                          {r.fullName && (
-                            <span className="text-muted-foreground font-normal">
-                              {" "}
-                              · {r.fullName}
-                            </span>
-                          )}
-                        </p>
-                        <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
-                          {r.definition}
-                        </p>
-                      </div>
-                      <span className="eyebrow shrink-0">Term</span>
-                    </Link>
-                  </li>
-                ),
-              )}
+                );
+              })}
             </ul>
           )}
         </div>

@@ -1,15 +1,21 @@
 /**
- * Lightweight client-side search index for modules + glossary.
- * No fuse.js dependency for v1 — a 30-line custom matcher that uses
- * token-prefix matching on title/tags/summary/term/definition.
- *
- * Returns results sorted by score descending, capped at 30.
+ * Lightweight client-side search across the library, pitches, and glossary.
+ * No fuse.js dependency — a small token-prefix matcher.
  */
 
-export type SearchableModule = {
-  kind: "module";
+export type SearchableLibraryItem = {
+  kind: "session" | "macro" | "quant";
   slug: string;
-  category: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  href: string;
+};
+
+export type SearchablePitch = {
+  kind: "pitch";
+  slug: string;
+  ticker: string;
   title: string;
   summary: string;
   tags: string[];
@@ -24,7 +30,10 @@ export type SearchableTerm = {
   href: string;
 };
 
-export type SearchableItem = SearchableModule | SearchableTerm;
+export type SearchableItem =
+  | SearchableLibraryItem
+  | SearchablePitch
+  | SearchableTerm;
 
 const tokenize = (s: string) =>
   s
@@ -42,9 +51,11 @@ export function search(
 
   const scored = items.map((item) => {
     const corpus =
-      item.kind === "module"
-        ? `${item.title} ${item.summary} ${item.tags.join(" ")}`
-        : `${item.term} ${item.fullName ?? ""} ${item.definition}`;
+      item.kind === "term"
+        ? `${item.term} ${item.fullName ?? ""} ${item.definition}`
+        : item.kind === "pitch"
+          ? `${item.ticker} ${item.title} ${item.summary} ${item.tags.join(" ")}`
+          : `${item.title} ${item.summary} ${item.tags.join(" ")}`;
     const corpusTokens = tokenize(corpus);
 
     let score = 0;
@@ -58,9 +69,13 @@ export function search(
       score += bestMatch;
     }
 
-    // Title/term match boost
+    // Title / term / ticker boost
     const titleField =
-      item.kind === "module" ? item.title.toLowerCase() : item.term.toLowerCase();
+      item.kind === "term"
+        ? item.term.toLowerCase()
+        : item.kind === "pitch"
+          ? `${item.ticker} ${item.title}`.toLowerCase()
+          : item.title.toLowerCase();
     if (tokens.every((t) => titleField.includes(t))) score += 4;
 
     return { item, score };

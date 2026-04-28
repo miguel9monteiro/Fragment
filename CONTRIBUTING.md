@@ -6,11 +6,32 @@ mission.
 
 ---
 
+## The four content categories
+
+The library is organised around the four kinds of work the club actually
+produces:
+
+| Category | Lives at | Format |
+|---|---|---|
+| Stock pitches | `/content/pitches/<semester>/<ticker>/index.mdx` | Deck walkthrough with annotated slides |
+| Learning sessions | `/content/sessions/<slug>.mdx` | Long-form lesson |
+| Macro outlooks | `/content/macro/<slug>.mdx` | Periodic macro reading |
+| Quant presentations | `/content/quant/<slug>.mdx` | Quantitative work |
+
+Plus the **glossary** at `/content/glossary/terms.json` — shared vocabulary
+referenced from every category.
+
+**Tags** are the subject taxonomy that cuts across categories: `valuation`,
+`dcf`, `m-and-a`, `factor-models`, `rates`, etc. Use kebab-case; keep tags
+short and reusable.
+
+---
+
 ## The workflow
 
 1. **Fork** the repository on GitHub.
 2. **Branch** off `main` with a descriptive name, e.g.
-   `module/wacc-deep-dive` or `pitch/2026-spring-itri`.
+   `session/wacc-deep-dive` or `pitch/2026-spring-itri`.
 3. **Write** your MDX or JSON.
 4. **Run** `pnpm dev` and verify your content renders correctly.
 5. **Open a PR** against `main` with a clear title and a short description.
@@ -23,86 +44,67 @@ mission.
 
 Reviewers check four things, in order:
 
-1. **Accuracy of finance content.** Numbers tie out, formulas are right,
-   sources are cited where it matters.
-2. **Clarity of writing.** Short sentences. No jargon without a definition.
-   Concepts introduced before they're used.
-3. **Correct use of MDX components.** The right component for the job.
+1. **Accuracy.** Numbers tie out, formulas are right, sources are cited where
+   it matters.
+2. **Clarity.** Short sentences. No jargon without a definition. Concepts
+   introduced before they're used.
+3. **Correct component use.** The right MDX component for the job.
 4. **Consistency.** Tone and style match the existing library.
 
 ---
 
-## Adding a learning module
+## Frontmatter by category
 
-### 1. Pick a category
-
-Modules live under `content/modules/<category>/`. Choose from:
-
-- `valuation`
-- `accounting`
-- `credit`
-- `industry`
-- `ma-corporate-actions`
-- `portfolio-risk`
-- `macro-markets`
-- `q-and-a-prep`
-
-If you think a module needs a new category, open an issue first — adding a
-category requires a code change.
-
-### 2. Create the file
-
-Filename = slug. Use kebab-case. For example:
-
-```
-content/modules/valuation/wacc-deep-dive.mdx
-```
-
-### 3. Write the frontmatter
+### Learning session — `/content/sessions/<slug>.mdx`
 
 ```yaml
 ---
 title: "WACC: Building It and Defending It"
 slug: "wacc-deep-dive"             # optional, derived from filename if absent
-category: "valuation"              # must match the parent folder
 author: "Your Name"
 team: "Investment Team 1"          # optional
+date: "2026-04-28"                 # ISO date
 difficulty: "beginner" | "intermediate" | "advanced"
-estimatedReadTime: 12              # in minutes, integer
-prerequisites: ["dcf-fundamentals"] # slugs of prerequisite modules
-lastUpdated: "2026-04-28"          # ISO date
+estimatedReadTime: 12              # minutes, integer
 tags: ["valuation", "dcf", "cost-of-capital"]
 summary: "How to build a defensible WACC and answer the questions seniors will throw at you."
 featured: false                    # optional, surfaces on the home page
 ---
 ```
 
-The build will fail if the frontmatter is invalid. That's a feature.
+### Quant presentation — `/content/quant/<slug>.mdx`
 
-### 4. Write the body
+Same shape as a session. Use quant-leaning tags:
 
-Modules read like research notes. Short paragraphs, clear sub-sections,
-lots of breathing room. Use `## H2` for major sections and `### H3` for
-sub-sections. The H2/H3 structure auto-populates the table of contents on
-the right rail.
-
+```yaml
 ---
-
-## Adding a pitch teaching page
-
-### 1. Create the folder
-
+title: "Cross-Sectional Momentum Backtest"
+author: "Your Name"
+date: "2026-04-28"
+difficulty: "intermediate"
+estimatedReadTime: 14
+tags: ["factor-models", "momentum", "backtesting"]
+summary: "Replicating the textbook 12-1 month momentum factor on US large-caps."
+---
 ```
-content/pitches/<semester>/<ticker>/
+
+### Macro outlook — `/content/macro/<slug>.mdx`
+
+```yaml
+---
+title: "Q2 2026 Macro Outlook"
+slug: "q2-2026-outlook"
+author: "Your Name"
+team: "Macro Team"
+date: "2026-04-15"
+period: "Q2 2026"                  # the reporting period
+region: "Global"                   # optional: Global, US, Europe, etc.
+tags: ["rates", "growth", "liquidity"]
+summary: "Sticky services inflation pushes rate cuts further out; positioning shifts toward duration and quality."
+---
 ```
 
-For example: `content/pitches/2026-spring/itri-itron/`.
-
-`<semester>` is kebab-case (`2026-spring`, `2026-fall`).
-
-### 2. Add the index file
-
-`index.mdx` in that folder, with frontmatter:
+### Stock pitch — `/content/pitches/<semester>/<ticker>/index.mdx`
 
 ```yaml
 ---
@@ -121,33 +123,15 @@ keyTakeaways:
   - "Switching-cost moat in regulated utility infrastructure"
   - "AMI 2.0 replacement cycle as a non-discretionary catalyst"
   - "Hidden software business priced as hardware"
+tags: ["industrials", "utilities", "iot"]
 ---
 ```
 
-### 3. Add slide images
+Slide images go in `/public/pitches/<semester>/<ticker>/`. Filename
+convention: `slide-<topic>.png` or `.svg`. Aspect ratio 16:9
+(1600×900 recommended). Keep file size under 500 KB per image.
 
-Put slide images in `public/pitches/<semester>/<ticker>/`. Filename
-convention: `slide-<topic>.png` or `.svg`.
-
-| Format | Use when |
-|---|---|
-| PNG | Photographs or screenshots from the original deck |
-| SVG | Charts, diagrams, anything vector |
-
-Aspect ratio: 16:9 (1600×900 recommended). Keep file size under 500 KB
-per image.
-
-### 4. Write the teaching annotation
-
-This is **not** a reproduction of the deck. It is a teaching walkthrough.
-Use `<PitchSlide>` to embed slides with annotations, and write commentary
-explaining what worked, what didn't, and what a senior would ask.
-
----
-
-## Adding a glossary term
-
-Open `content/glossary/terms.json` and add an entry:
+### Glossary term — `/content/glossary/terms.json`
 
 ```json
 {
@@ -155,18 +139,30 @@ Open `content/glossary/terms.json` and add an entry:
   "fullName": "Weighted Average Cost of Capital",
   "definition": "...",
   "category": "valuation",
-  "relatedModules": ["wacc-deep-dive", "dcf-fundamentals"]
+  "relatedItems": ["wacc-deep-dive", "dcf-fundamentals"]
 }
 ```
 
 Keep `definition` to two sentences. The glossary is a quick lookup, not a
-mini-encyclopedia. Link to modules where the concept is explored further.
+mini-encyclopedia. `relatedItems` is a list of slugs from any category
+(session, macro, quant) where the concept is explored further.
+
+---
+
+## Naming and slugs
+
+- Filenames are kebab-case; the slug is derived from the filename if not
+  specified in frontmatter.
+- The build will fail if the frontmatter is invalid. That's a feature.
+- Tags are kebab-case (`m-and-a`, `factor-models`, not `M&A` or
+  `factorModels`).
 
 ---
 
 ## MDX components reference
 
-These are available inside any module or pitch MDX file. No imports needed.
+These are available inside any module, pitch, macro, or quant MDX file. No
+imports needed.
 
 ### `<Callout>`
 
@@ -191,9 +187,7 @@ A collapsible self-test. Question shown, answer hidden until clicked.
 
 ```mdx
 <SelfCheck question="Why do we use unlevered FCF rather than levered FCF?">
-Because unlevered FCF is independent of capital structure. We discount it
-at WACC to get enterprise value, then subtract net debt to get equity
-value. This separates the operating thesis from the financing thesis.
+Because unlevered FCF is independent of capital structure...
 </SelfCheck>
 ```
 
@@ -203,7 +197,7 @@ A collapsible "for the curious" section.
 
 ```mdx
 <DeepDive title="Why 10-year Treasury, not 30-year?">
-The conventional answer is duration matching. The fuller answer is...
+The conventional answer is duration matching...
 </DeepDive>
 ```
 
@@ -229,18 +223,9 @@ LaTeX-rendered formula via KaTeX.
 />
 ```
 
-You can also place TeX as children:
-
-```mdx
-<FormulaBlock caption="Hamada equation.">
-  \beta_u = \frac{\beta_l}{1 + (1 - t) \cdot D/E}
-</FormulaBlock>
-```
-
 ### `<PitchSlide>`
 
-A slide image with positioned hotspots. The core teaching component for
-the pitch archive.
+A slide image with positioned hotspots. Used inside pitch teaching pages.
 
 ```mdx
 <PitchSlide
@@ -258,13 +243,10 @@ the pitch archive.
 />
 ```
 
-`x` and `y` are percentages of the image dimensions (0–100). Hover or tap
-the numbered marker to reveal the detail.
-
 ### `<MetricsTable>`
 
-A finance-styled table — right-aligned numbers, monospace tabular figures,
-optional row highlighting.
+A finance-styled table — right-aligned numbers, tabular figures, optional
+row highlighting.
 
 ```mdx
 <MetricsTable
