@@ -4,9 +4,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**Fragment** — a static learning platform for the Portfolio Management Club at Nova School of Business & Economics (Nova SBE). Hosts the four kinds of material the club publishes: stock pitches, learning sessions, macro outlooks, quant presentations. Plus a glossary.
+**Fragment** is an **internal knowledge tool** for the Portfolio Management Club at Nova School of Business & Economics (Nova SBE). It exists to consolidate the club's institutional knowledge — pitches, learning sessions, macro outlooks, quant presentations, glossary — into one searchable, well-presented surface that helps members produce **sharper research and sharper reports**. Plus a glossary.
 
-Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel. Public site for the club itself: <https://pmcnovasbe.com>.
+Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel.
+
+### Fragment vs pmcnovasbe.com — keep these straight
+
+PMC has two web surfaces, and they have different jobs:
+
+| | **Fragment (this repo)** | **pmcnovasbe.com** |
+|---|---|---|
+| Purpose | Internal knowledge tool for members | External marketing site for the club |
+| Audience | Current and incoming PMC members | Recruiters, prospective members, sponsors, public |
+| Goal | Sharper research, sharper reports | Brand presence, recruitment, partnerships |
+| Tone | In-house, dense, technical, member-to-member | Polished, externally-facing, narrative |
+| What lives here | Pitches, sessions, macro, quant, glossary | About-us, alumni list, FMC conference, recruitment, contact form |
+
+The repository is public (it's on GitHub and Vercel free tier with no auth — see Tier 1 below) but **the writing audience is internal**. Don't draft content as if a recruiter or an outside reader is the primary reader: address members directly, assume the institutional context, use the in-house terminology, prioritise technical density over rhetorical polish. Marketing-style copy ("join us," "discover our work," external CTAs to apply / contact / follow) belongs on pmcnovasbe.com, not here.
+
+When in doubt about whether a page or feature belongs on Fragment: ask "does this make a member's next pitch better?" If yes, it belongs. If it's about how the club presents itself to outsiders, it goes on pmcnovasbe.com.
 
 ## About the Portfolio Management Club
 
