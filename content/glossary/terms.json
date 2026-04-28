@@ -1,5 +1,12 @@
 [
   {
+    "term": "Appendix",
+    "fullName": "Appendix Slides",
+    "definition": "Detail-heavy slides that sit at the end of a PMC deck. Unlike main-flow slides, appendix slides should be self-explanatory — the reader, not the presenter, has to extract the meaning. The exception to PMC's general rule that slides should be in the Presenting style.",
+    "category": "presentations",
+    "relatedItems": ["ace-slide-making"]
+  },
+  {
     "term": "Capital Call",
     "fullName": "Capital Call",
     "definition": "When a PE fund's GP draws down committed capital from LPs to fund an investment. LPs commit upfront but only fund as deals appear during the investment period.",
@@ -33,6 +40,13 @@
     "definition": "An independent assessment of an issuer's ability to repay its debt. The major scales (Fitch / S&P) run AAA at the top down through D for default; the cut-off between BBB and BB separates investment grade from high yield.",
     "category": "fixed-income",
     "relatedItems": ["bonds"]
+  },
+  {
+    "term": "Kaizen",
+    "fullName": "Kaizen",
+    "definition": "Japanese term for continuous improvement — small, ongoing positive changes that compound into significant gains. Applied to slide-making: each iteration sharpens the deck a little more, and the cumulative effect over many revisions is what separates a good slide from a great one.",
+    "category": "presentations",
+    "relatedItems": ["ace-slide-making"]
   },
   {
     "term": "DCF",
@@ -166,6 +180,13 @@
     "definition": "The funding ledger of an LBO transaction. Uses (equity purchase price, refinanced debt, fees) must equal Sources (new debt tranches, sponsor equity, rollover equity, cash on balance sheet).",
     "category": "private-equity",
     "relatedItems": ["private-equity"]
+  },
+  {
+    "term": "Think-cell",
+    "fullName": "Think-cell",
+    "definition": "A PowerPoint and Excel add-in widely used in management consulting for fast, professional chart and layout work. Provides chart types (waterfalls, Mekko, build-up/build-down), automatic alignment and distribution tools, and a data-link to Excel. The single biggest productivity multiplier for slide-making at PMC.",
+    "category": "presentations",
+    "relatedItems": ["ace-slide-making"]
   },
   {
     "term": "WACC",
