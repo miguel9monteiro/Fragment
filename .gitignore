@@ -36,6 +36,9 @@ yarn-error.log*
 # claude code session data
 .claude/
 
+# raw data drops (xlsx etc.) — only the derived JSON in /content is committed
+/data/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

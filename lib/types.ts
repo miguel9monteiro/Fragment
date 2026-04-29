@@ -234,6 +234,95 @@ export type PollOption = z.infer<typeof pollOptionSchema>;
 export type Poll = z.infer<typeof pollSchema>;
 
 /* -------------------------------------------------------------------------- */
+/*  Portfolio — virtual portfolio dashboard                                   */
+/* -------------------------------------------------------------------------- */
+
+export const performanceMetricsSchema = z.object({
+  daily: z.union([z.number(), z.string()]).nullable(),
+  weekly: z.union([z.number(), z.string()]).nullable(),
+  monthly: z.union([z.number(), z.string()]).nullable(),
+  quarterly: z.union([z.number(), z.string()]).nullable(),
+  semester: z.union([z.number(), z.string()]).nullable(),
+  ytd: z.union([z.number(), z.string()]).nullable(),
+  yearly: z.union([z.number(), z.string()]).nullable(),
+  cumulative: z.union([z.number(), z.string()]).nullable(),
+  vol1y: z.union([z.number(), z.string()]).nullable(),
+  volSi: z.union([z.number(), z.string()]).nullable(),
+  sharpe1y: z.union([z.number(), z.string()]).nullable(),
+  sharpeSi: z.union([z.number(), z.string()]).nullable(),
+  maxDd1y: z.union([z.number(), z.string()]).nullable(),
+  maxDdSi: z.union([z.number(), z.string()]).nullable(),
+  skew1y: z.union([z.number(), z.string()]).nullable(),
+  kurtosis1y: z.union([z.number(), z.string()]).nullable(),
+  var1y: z.union([z.number(), z.string()]).nullable(),
+  varSi: z.union([z.number(), z.string()]).nullable(),
+  winDays1y: z.union([z.number(), z.string()]).nullable(),
+  winDaysSi: z.union([z.number(), z.string()]).nullable(),
+});
+export type PerformanceMetrics = z.infer<typeof performanceMetricsSchema>;
+
+export const holdingSchema = z.object({
+  assetType: z.string(),
+  sector: z.string().nullable(),
+  name: z.string(),
+  ticker: z.string(),
+  shares: z.number(),
+  currency: z.string(),
+  invested: z.number(),
+  purchaseDate: z.string().nullable(),
+  averageCost: z.number(),
+  currentPriceUsd: z.number(),
+  currentValue: z.number(),
+  weight: z.number(),
+  pitchSlug: z.string().nullable(),
+  pollSlug: z.string().nullable(),
+});
+export type Holding = z.infer<typeof holdingSchema>;
+
+export const allocationRowSchema = z.object({
+  count: z.number(),
+  invested: z.number(),
+  currentValue: z.number(),
+  weight: z.number(),
+});
+export const assetTypeRowSchema = allocationRowSchema.extend({
+  assetType: z.string(),
+});
+export const sectorRowSchema = allocationRowSchema.extend({
+  sector: z.string(),
+});
+export type AssetTypeRow = z.infer<typeof assetTypeRowSchema>;
+export type SectorRow = z.infer<typeof sectorRowSchema>;
+
+export const performancePointSchema = z.object({
+  date: z.string(),
+  portfolioReturn: z.number(),
+  benchmarkReturn: z.number(),
+  portfolioCum: z.number(),
+  benchmarkCum: z.number(),
+});
+export type PerformancePoint = z.infer<typeof performancePointSchema>;
+
+export const portfolioSchema = z.object({
+  asOfDate: z.string(),
+  inceptionDate: z.string(),
+  totals: z.object({
+    portfolio: z.number(),
+    cash: z.number(),
+    aum: z.number(),
+  }),
+  performance: z.object({
+    portfolio: performanceMetricsSchema,
+    benchmark: performanceMetricsSchema,
+  }),
+  byAssetType: z.array(assetTypeRowSchema),
+  bySector: z.array(sectorRowSchema),
+  holdings: z.array(holdingSchema),
+  performanceSeries: z.array(performancePointSchema),
+});
+export type Portfolio = z.infer<typeof portfolioSchema>;
+
+/* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
 /* -------------------------------------------------------------------------- */
 

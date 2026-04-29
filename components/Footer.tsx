@@ -36,6 +36,7 @@ export function Footer() {
             links={[
               { href: "/pitches", label: "Stock pitches" },
               { href: "/votings", label: "Voting record" },
+              { href: "/portfolio", label: "Portfolio" },
               { href: "/sessions", label: "Learning sessions" },
               { href: "/macro", label: "Macro outlooks" },
               { href: "/quant", label: "Quant presentations" },

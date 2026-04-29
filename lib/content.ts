@@ -15,12 +15,15 @@ import {
   glossaryTermSchema,
   Poll,
   pollSchema,
+  Portfolio,
+  portfolioSchema,
 } from "./types";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 const PITCHES_ROOT = path.join(CONTENT_ROOT, "pitches");
 const GLOSSARY_PATH = path.join(CONTENT_ROOT, "glossary", "terms.json");
 const POLLS_PATH = path.join(CONTENT_ROOT, "polls", "polls.json");
+const PORTFOLIO_PATH = path.join(CONTENT_ROOT, "portfolio", "portfolio.json");
 
 async function readDirSafe(dir: string): Promise<string[]> {
   try {
@@ -211,6 +214,22 @@ export async function getPitch(slug: string): Promise<PitchEntry | null> {
 /* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
 /* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*  Portfolio — virtual portfolio dashboard                                   */
+/* -------------------------------------------------------------------------- */
+
+export const getPortfolio = cache(async (): Promise<Portfolio | null> => {
+  const raw = await fs.readFile(PORTFOLIO_PATH, "utf8").catch(() => null);
+  if (!raw) return null;
+  const parsed = portfolioSchema.safeParse(JSON.parse(raw));
+  if (!parsed.success) {
+    throw new Error(
+      `Invalid portfolio.json:\n${parsed.error.toString()}`,
+    );
+  }
+  return parsed.data;
+});
 
 /* -------------------------------------------------------------------------- */
 /*  Polls — voting record                                                     */
