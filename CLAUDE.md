@@ -49,7 +49,7 @@ PMC has roughly 80+ active members across two divisions plus a Presidency.
 **Asset Management** — where the investment work happens:
 
 - **Portfolio Managers** (currently 3) — own portfolio-level decisions; senior investment role.
-- **Investment Teams 1–4**, each with a Team Head plus 5–6 analysts. Most stock pitches come from a specific Investment Team and are bylined "Investment Team N" plus the analyst names. The Spring 2026 ITRI pitch in `/content/pitches` is from Investment Team 1.
+- **Investment Teams 1–4**, each with a Team Head plus 5–6 analysts. Most stock pitches come from a specific Investment Team and are bylined "Investment Team N" plus the analyst names.
 - **Macro Department** — Head plus ~8 analysts. Produces macro overviews and macro-driven pitches (sovereigns, FX, rates).
 - **Quant Department** — Head plus ~4 analysts. Produces factor models, backtesting, and tools (e.g. the Credit Scoring Model referenced in the Bonds session).
 
@@ -192,7 +192,9 @@ There are no tests yet. If asked to add tests, first ask whether unit tests, int
 
 ### Content pipeline (the core abstraction)
 
-All published material lives under `/content/`:
+All published material lives under `/content/`. There are two flavours:
+
+**MDX kinds** — long-form, edited as `.mdx` with Zod-validated frontmatter:
 
 ```
 content/
@@ -200,12 +202,20 @@ content/
   sessions/<slug>.mdx                        ← learning sessions
   macro/<slug>.mdx                           ← macro outlooks
   quant/<slug>.mdx                           ← quant presentations
-  glossary/terms.json                        ← shared vocabulary
 ```
 
-Frontmatter is validated at build time by **Zod schemas in `lib/types.ts`**. A malformed frontmatter fails the build — this is intentional, do not soften it. Loaders in `lib/content.ts` walk the directories on every build and return cached, sorted entries.
+**Data feeds** — JSON regenerated from source data, edited only via PR or extraction script:
 
-Subjects (M&A, valuation, factor models, rates, …) are **free-form tags**, not enums. Every category supports tags; tags drive the filterable indexes.
+```
+content/
+  glossary/terms.json                        ← shared vocabulary
+  polls/polls.json                           ← voting record (powers /votings)
+  portfolio/portfolio.json                   ← virtual portfolio (powers /portfolio)
+```
+
+Both flavours validate against Zod schemas in `lib/types.ts` at build time. A malformed schema fails the build — this is intentional, do not soften it. Loaders in `lib/content.ts` walk the directories on every build and return cached, sorted entries. `readDirSafe` returns `[]` for missing directories, so it's fine for some MDX kinds to be empty (currently `pitches/`, `macro/`, `quant/` have no entries; the index pages render an empty state). `content/modules/` is empty legacy and can be removed.
+
+Subjects (M&A, valuation, factor models, rates, …) are **free-form tags**, not enums. Every MDX category supports tags; tags drive the filterable indexes.
 
 ### Why pitches are separate from sessions/macro/quant
 
@@ -218,6 +228,19 @@ Sessions, macro outlooks, and quant presentations are all long-form MDX. They sh
 **Pitches do not use the library renderer.** They have a fundamentally different format (institutional research-note hero with ticker, recommendation badge, key takeaways; the body is a teaching walkthrough of annotated slides via `<PitchSlide>`). Don't try to fold them into `LibraryItemPage`.
 
 When adding a new content kind, the pattern is: schema in `lib/types.ts` → loader in `lib/content.ts` → route shell that calls the shared `LibraryIndex` and `LibraryItemPage`. No new components needed unless the format genuinely differs.
+
+### Voting record (`/votings`) and Portfolio (`/portfolio`)
+
+These are **data-feed pages**, not MDX. They bypass the library renderer entirely and read JSON directly:
+
+- **/votings** reads `content/polls/polls.json` (currently 29 polls). Schema is `pollSchema` in `lib/types.ts`. Each poll stores raw vote counts in `options[]`; `options[i].kind` (`buy`/`sell`/`hold`/`increase`/`abstain`) drives the bar colour via `components/VoteBar.tsx`. **Outcome is derived, not stored** — `deriveOutcome()` in `app/votings/VotingsClient.tsx` computes winner / win share / conviction / `motionApproved` at render time. Don't add derived fields to the schema. Polls are filterable by semester / asset class / forum with URL state; the page defaults to the current semester. Polls can carry `pitchSlug` to link back to the corresponding pitch teaching page.
+- **/portfolio** reads `content/portfolio/portfolio.json` and renders six sections in `app/portfolio/page.tsx`: hero, KPI band, chart, risk metrics, allocation bar, sector exposure, holdings table. The chart (`components/PortfolioChart.tsx`) is a **hand-rolled SVG** client component with a 1M/6M/YTD/1Y/SI toggle that rebases cumulative returns to 0% per window. Holdings carry optional `pitchSlug` and `pollSlug` so positions can deep-link back to the pitch and the vote that authorised them.
+
+The visual quality bar applies to these pages too. KPI bands, allocation bars, sector bars, sortable tables with totals — same standard as long-form articles. A data page that's just a `<table>` is below the bar.
+
+### Charts and visualisations
+
+No chart library — no `recharts`, no `chart.js`, no `d3`. Visualisations are hand-rolled SVG (see `PortfolioChart.tsx` for the canonical pattern: pure SVG paths, manual scales, `tnum` axis labels). The dependency footprint stays minimal and the visuals match the typography exactly. If a visualisation genuinely warrants a library, surface the trade-off before pulling one in.
 
 ### MDX rendering
 
@@ -261,6 +284,7 @@ Exceptions:
 - `params` and `searchParams` are Promises in route handlers — `await params` before use.
 - `outputFileTracingRoot` is pinned in `next.config.mjs` because the parent directory contains a stray `pnpm-lock.yaml` Next would otherwise pick up.
 - All dynamic routes (`/sessions/[slug]`, `/macro/[slug]`, `/quant/[slug]`, `/pitches/[slug]`) implement `generateStaticParams` so the build is fully prerendered.
+- Static routes shipping today: `/`, `/pitches`, `/votings`, `/portfolio`, `/sessions`, `/macro`, `/quant`, `/glossary`, `/contribute`. Header `navItems`, footer Library column, and `app/sitemap.ts` are the three places to update when adding a top-level route.
 
 ### Glossary integration
 
@@ -273,12 +297,37 @@ Exceptions:
 - Don't pre-empt features. If asked to "remove sample content," remove it; don't replace it with new placeholders.
 - Don't switch package managers. pnpm via corepack is the standard.
 
+## Things that have been tried and rejected
+
+Save the next session a redo:
+
+- **WebGL / fragment-shader hero backdrop**: built once, rejected outright ("its terrible, go back to the previous state"). The home hero now uses CSS gradient orbs with a grid overlay and slow drift via `components/HeroBackdrop.tsx`. Don't reach for shaders again unless the user explicitly asks for it.
+- **Chart libraries** (recharts, chart.js, d3): not used. SVG is hand-rolled — see `PortfolioChart.tsx`.
+- **Auto-sync from xlsx**: the user picked the manual extraction workflow over a sync script. The xlsx is gitignored; only the derived JSON is committed. Don't propose a watcher / cron / scheduled extractor.
+- **Array-prop MDX components** (`MetricsTable.rows`, `ProsCons.pros/cons`, `PitchSlide.annotations`): broken in `next-mdx-remote@6` since the CVE fix. Use the documented workarounds (GFM tables, side-by-side `<Callout>`s). Don't try to "fix" the MDX expression syntax — the issue is in v6's sanitisation layer.
+
 ## When fixing or extending
 
 - **Frontmatter changes**: update the Zod schema in `lib/types.ts` first, then the loader, then any UI that reads the field. The schema is the single source of truth.
 - **New content kind**: model after sessions/macro/quant. Add to `LIBRARY_KINDS` in types if it should share the library renderer; otherwise build a parallel shell like pitches.
 - **New MDX component**: add the file to `components/mdx/`, register it in `components/mdx/index.tsx`, document it in `CONTRIBUTING.md` and the contribute page (`app/contribute/page.tsx::COMPONENTS`).
 - **Stale `.next` after route changes**: clear it. Cached route types reference deleted files and cause confusing typecheck errors.
+
+### Refreshing the portfolio data
+
+The portfolio is dropped as an xlsx report each cycle. The repo workflow is **manual extraction, not a sync script**:
+
+1. Drop the new `Portfolio Report.xlsx` into `/data/` (gitignored — only the derived JSON is committed).
+2. Run a one-shot extraction script (the previous run lived at `/tmp/extract-portfolio.js` — not committed; rewrite it from the workbook each time, or recover from `git log` once a stable version is checked in). It reads two sheets: **Portfolio Overview** (totals, perf metrics, holdings, sector + asset-type breakdowns) and **Portfolio Performance** (daily returns and cumulative series).
+3. The script handles: Excel-serial → ISO-date conversion, European decimal-comma cleanup in security names (`"Altria Group, 2,45%, 02/04/2032"` → `"Altria Group, 2.45%, 02/04/2032"`), rounding to 2 dp for currency / 6 dp for ratios.
+4. Output is written to `content/portfolio/portfolio.json` and validated by `portfolioSchema` at build time.
+5. Holdings' `pitchSlug` and `pollSlug` default to `null` after a fresh extraction. Re-link them by hand (or diff against the previous JSON) — these are the deep-links that make the holdings table cross-reference into `/pitches/<slug>` and `/votings`.
+
+The `portfolioSchema` is permissive on metric values (`number | string | null`) because the source xlsx sometimes carries `"-"` for not-yet-computed cells (e.g. SI skew/kurtosis). Format helpers (`fmtPct`, `fmtNum`) on the page coerce sensibly.
+
+### Refreshing the voting record
+
+`content/polls/polls.json` is hand-edited. After a vote, append a new entry with `slug` (`YYYY-MM-DD-<asset>`), date, semester, subject, `assetClass`, `motionType`, `forum`, optional `motion` and `pitchSlug`, and the raw `options[]` with `count` and `kind`. Don't precompute outcome fields — the page derives them.
 
 ## Related docs
 
