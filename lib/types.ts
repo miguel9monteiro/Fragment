@@ -323,6 +323,54 @@ export const portfolioSchema = z.object({
 export type Portfolio = z.infer<typeof portfolioSchema>;
 
 /* -------------------------------------------------------------------------- */
+/*  Resources — curated external links contributed by members                  */
+/* -------------------------------------------------------------------------- */
+
+export const RESOURCE_TYPES = [
+  "youtube-channel",
+  "youtube-playlist",
+  "youtube-video",
+  "article",
+  "website",
+  "book",
+  "podcast",
+] as const;
+export type ResourceType = (typeof RESOURCE_TYPES)[number];
+
+export const RESOURCE_TYPE_LABELS: Record<ResourceType, string> = {
+  "youtube-channel": "YouTube channel",
+  "youtube-playlist": "YouTube playlist",
+  "youtube-video": "YouTube video",
+  article: "Article",
+  website: "Website",
+  book: "Book",
+  podcast: "Podcast",
+};
+
+export const resourceItemSchema = z.object({
+  title: z.string().min(1),
+  url: z.string().url(),
+  type: z.enum(RESOURCE_TYPES),
+  /** Free-form name, e.g. "Luca Poltronieri". */
+  contributor: z.string().min(1),
+  /** Optional role of the contributor at the time of suggestion. */
+  contributorRole: z.string().optional(),
+  /** Contributor's commentary on why the resource is worth the time. */
+  note: z.string().optional(),
+});
+
+export const resourceTopicSchema = z.object({
+  /** Url-safe identifier used as the anchor on /resources, e.g. "derivatives". */
+  slug: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  resources: z.array(resourceItemSchema).min(1),
+});
+
+export type ResourceItem = z.infer<typeof resourceItemSchema>;
+export type ResourceTopic = z.infer<typeof resourceTopicSchema>;
+
+/* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
 /* -------------------------------------------------------------------------- */
 

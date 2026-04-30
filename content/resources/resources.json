@@ -1,0 +1,40 @@
+[
+  {
+    "slug": "derivatives",
+    "title": "Derivatives",
+    "description": "Options, futures, and structured products — the building blocks of payoff engineering. Curated for members who want to go from comfortable with linear instruments to comfortable with convexity.",
+    "resources": [
+      {
+        "title": "Tim Bennett — Derivatives",
+        "url": "https://youtube.com/playlist?list=PL5E6A2E544FE4EE06",
+        "type": "youtube-playlist",
+        "contributor": "Luca Poltronieri",
+        "contributorRole": "Head of Investment, Spring 2026",
+        "note": "A short and very well done course on derivatives. Tim Bennett is a great speaker in general."
+      },
+      {
+        "title": "projectoption",
+        "url": "https://youtube.com/@projectoption",
+        "type": "youtube-channel",
+        "contributor": "Luca Poltronieri",
+        "contributorRole": "Head of Investment, Spring 2026",
+        "note": "Options trading and explanations."
+      }
+    ]
+  },
+  {
+    "slug": "geopolitics-macro",
+    "title": "Geopolitics & macro",
+    "description": "Channels and primers that build a working macro and geopolitics frame — the backdrop every pitch sits inside. Useful before writing the macro section of a pitch or sitting in on a Macro Department session.",
+    "resources": [
+      {
+        "title": "Patrick Boyle",
+        "url": "https://youtube.com/@pboyle",
+        "type": "youtube-channel",
+        "contributor": "Luca Poltronieri",
+        "contributorRole": "Head of Investment, Spring 2026",
+        "note": "Geopolitics and macro coverage. Also has good older videos on financial markets theory."
+      }
+    ]
+  }
+]

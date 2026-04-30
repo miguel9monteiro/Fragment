@@ -40,6 +40,7 @@ export function Footer() {
               { href: "/sessions", label: "Learning sessions" },
               { href: "/macro", label: "Macro outlooks" },
               { href: "/quant", label: "Quant presentations" },
+              { href: "/resources", label: "Resources" },
               { href: "/glossary", label: "Glossary" },
             ]}
           />

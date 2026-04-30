@@ -17,6 +17,7 @@ const navItems = [
   { href: "/sessions", label: "Sessions" },
   { href: "/macro", label: "Macro" },
   { href: "/quant", label: "Quant" },
+  { href: "/resources", label: "Resources" },
   { href: "/glossary", label: "Glossary" },
   { href: "/contribute", label: "Contribute" },
 ];

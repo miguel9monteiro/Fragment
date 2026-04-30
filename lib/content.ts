@@ -17,6 +17,8 @@ import {
   pollSchema,
   Portfolio,
   portfolioSchema,
+  ResourceTopic,
+  resourceTopicSchema,
 } from "./types";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
@@ -24,6 +26,7 @@ const PITCHES_ROOT = path.join(CONTENT_ROOT, "pitches");
 const GLOSSARY_PATH = path.join(CONTENT_ROOT, "glossary", "terms.json");
 const POLLS_PATH = path.join(CONTENT_ROOT, "polls", "polls.json");
 const PORTFOLIO_PATH = path.join(CONTENT_ROOT, "portfolio", "portfolio.json");
+const RESOURCES_PATH = path.join(CONTENT_ROOT, "resources", "resources.json");
 
 async function readDirSafe(dir: string): Promise<string[]> {
   try {
@@ -282,6 +285,27 @@ export async function getPollForPitch(pitch: PitchEntry): Promise<Poll | null> {
 
   return null;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Resources — curated external links contributed by members                  */
+/* -------------------------------------------------------------------------- */
+
+export const getResources = cache(async (): Promise<ResourceTopic[]> => {
+  const raw = await fs.readFile(RESOURCES_PATH, "utf8").catch(() => "[]");
+  const parsed = JSON.parse(raw);
+  if (!Array.isArray(parsed)) {
+    throw new Error("Resources file must be a JSON array.");
+  }
+  return parsed.map((entry, i) => {
+    const r = resourceTopicSchema.safeParse(entry);
+    if (!r.success) {
+      throw new Error(
+        `Invalid resource topic at index ${i}:\n${r.error.toString()}`,
+      );
+    }
+    return r.data;
+  });
+});
 
 /* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
