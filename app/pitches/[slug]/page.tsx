@@ -5,9 +5,10 @@ import { Github, FileDown, ArrowUpRight, Users } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxOptions } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx";
-import { getAllPitches, getPitch } from "@/lib/content";
+import { getAllPitches, getPitch, getPollForPitch } from "@/lib/content";
 import { RecommendationBadge } from "@/components/RecommendationBadge";
 import { ReadingProgress } from "@/components/ReadingProgress";
+import { PitchOutcome } from "@/components/PitchOutcome";
 import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -39,6 +40,7 @@ export default async function PitchPage({
   if (!pitch) notFound();
 
   const fm = pitch.frontmatter;
+  const poll = await getPollForPitch(pitch);
   const editPath = `https://github.com/miguel9monteiro/Fragment/edit/main/content/pitches/${pitch.semesterSlug}/${pitch.slug}/index.mdx`;
 
   return (
@@ -140,6 +142,8 @@ export default async function PitchPage({
               components={mdxComponents}
               options={{ mdxOptions, parseFrontmatter: false }}
             />
+
+            {poll && <PitchOutcome poll={poll} />}
 
             <hr />
 

@@ -257,6 +257,32 @@ export const getAllPolls = cache(async (): Promise<Poll[]> => {
   return polls;
 });
 
+/**
+ * Find the entry-vote poll that corresponds to a pitch. Explicit `pitchSlug`
+ * wins; otherwise we fall back to a ticker/subject match on an entry motion,
+ * which is how every existing poll links to the pitch it grew out of.
+ * If multiple match, the one closest in date to the pitch wins.
+ */
+export async function getPollForPitch(pitch: PitchEntry): Promise<Poll | null> {
+  const polls = await getAllPolls();
+  const target = new Date(pitch.frontmatter.date).getTime();
+  const byProximity = (a: Poll, b: Poll) =>
+    Math.abs(new Date(a.date).getTime() - target) -
+    Math.abs(new Date(b.date).getTime() - target);
+
+  const explicit = polls.filter((p) => p.pitchSlug === pitch.slug);
+  if (explicit.length > 0) return [...explicit].sort(byProximity)[0];
+
+  const ticker = pitch.frontmatter.ticker.toUpperCase();
+  const fallback = polls.filter(
+    (p) =>
+      p.subject.toUpperCase() === ticker && p.motionType === "entry",
+  );
+  if (fallback.length > 0) return [...fallback].sort(byProximity)[0];
+
+  return null;
+}
+
 /* -------------------------------------------------------------------------- */
 /*  Glossary                                                                   */
 /* -------------------------------------------------------------------------- */

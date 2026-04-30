@@ -289,7 +289,7 @@ export function VotingsClient({ polls }: { polls: Poll[] }) {
                 </div>
                 <ol className="border border-border divide-y divide-border bg-card">
                   {items.map((p) => (
-                    <li key={p.slug}>
+                    <li key={p.slug} id={p.slug} className="scroll-mt-32">
                       <PollRow poll={p} />
                     </li>
                   ))}
