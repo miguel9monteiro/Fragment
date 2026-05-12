@@ -36,5 +36,20 @@
         "note": "Geopolitics and macro coverage. Also has good older videos on financial markets theory."
       }
     ]
+  },
+  {
+    "slug": "private-equity",
+    "title": "Private equity",
+    "description": "From fund mechanics and LBO basics through evergreen vehicles and the secondaries market. Useful before sitting in on a Private Equity learning session or working on a pitch involving buyout-backed names.",
+    "resources": [
+      {
+        "title": "Claudia Zeisberger",
+        "url": "https://www.youtube.com/@claudiazeisberger",
+        "type": "youtube-channel",
+        "contributor": "Miguel Monteiro",
+        "contributorRole": "IT Associate, Spring 2026",
+        "note": "Private equity coverage from the basics through advanced topics like evergreen funds and the secondaries market. INSEAD professor; concise, structured, and accurate on fund mechanics."
+      }
+    ]
   }
 ]
