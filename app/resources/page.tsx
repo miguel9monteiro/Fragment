@@ -54,6 +54,15 @@ export default async function ResourcesPage() {
           senior member would hand a new analyst on day one.
         </p>
 
+        <div className="mt-6 flex items-start gap-2.5 max-w-2xl border-l-2 border-steel bg-secondary/30 px-4 py-3 rounded-sm">
+          <BookOpen className="h-4 w-4 mt-0.5 shrink-0 text-steel" />
+          <p className="text-sm text-foreground/85 leading-relaxed">
+            <span className="font-semibold">For any book listed below</span>,
+            the PDF is already in the club&apos;s internal Teams workspace —
+            Goodreads links are for context, not for purchase.
+          </p>
+        </div>
+
         {topics.length > 0 && (
           <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px]">
             <span className="eyebrow text-muted-foreground">In this directory</span>
