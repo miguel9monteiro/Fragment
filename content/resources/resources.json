@@ -23,6 +23,45 @@
     ]
   },
   {
+    "slug": "finance-theory",
+    "title": "Finance theory",
+    "description": "Academic foundations of modern finance — pricing theory, portfolio construction, and how markets actually clear. Useful before tackling a quant pitch or sitting in on a Quant Department session.",
+    "resources": [
+      {
+        "title": "MIT 15.401 — Finance Theory I (Andrew Lo)",
+        "url": "https://www.youtube.com/playlist?list=PLUl4u3cNGP63B2lDhyKOsImI7FjCf6eDW",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "MIT's introductory finance course taught by Andrew Lo. Time value of money, CAPM, portfolio theory, market efficiency — the core theoretical framework every analyst should be able to derive from first principles."
+      },
+      {
+        "title": "Portfolio Theory (MIT 18.S096)",
+        "url": "https://www.youtube.com/playlist?list=PLqFHDUH6X5o3d9GAxkNr7JMKeu2Yk1v6Q",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Mean-variance optimisation, factor models, risk parity, and the math behind portfolio construction. The applied complement to Markowitz's original paper."
+      },
+      {
+        "title": "Financial Markets Microstructure — Egor Starkov (UCPH)",
+        "url": "https://www.youtube.com/playlist?list=PL0m8TUcskzOcMcJvqoPWgwU5oY805PP-9",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "How prices actually form: order books, market makers, information asymmetry, liquidity, market design. Essential before any quant or execution-focused work."
+      },
+      {
+        "title": "MIT 18.S096 — Topics in Mathematics with Applications in Finance",
+        "url": "https://www.youtube.com/playlist?list=PLCRPN3Z81LCIZ7543AvRjWfzSC15K7l-X",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "MIT's quantitative finance course. PCA, regression, time series, stochastic processes — the bridge between the pure-math playlists and applied quant work."
+      }
+    ]
+  },
+  {
     "slug": "geopolitics-macro",
     "title": "Geopolitics & macro",
     "description": "Channels and primers that build a working macro and geopolitics frame — the backdrop every pitch sits inside. Useful before writing the macro section of a pitch or sitting in on a Macro Department session.",
@@ -34,6 +73,203 @@
         "contributor": "Luca Poltronieri",
         "contributorRole": "Head of Investment, Spring 2026",
         "note": "Geopolitics and macro coverage. Also has good older videos on financial markets theory."
+      },
+      {
+        "title": "Principles for Dealing with the Changing World Order — Ray Dalio",
+        "url": "https://www.goodreads.com/book/show/52962238-principles-for-dealing-with-the-changing-world-order",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Dalio's framework for the Big Cycle of empires — debt, money, internal conflict, external conflict — applied across 500 years of history. The macro lens behind almost every Bridgewater note."
+      },
+      {
+        "title": "Principles for Navigating Big Debt Crises — Ray Dalio",
+        "url": "https://www.goodreads.com/book/show/60762442-principles-for-navigating-big-debt-crises",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "A full template for how debt cycles unfold, with 48 case studies including 1929, Weimar, and 2008. The book to read before any sovereign-credit or macro-rates pitch."
+      },
+      {
+        "title": "How the Economic Machine Works — Ray Dalio",
+        "url": "https://youtu.be/PHe0bXAIuk0",
+        "type": "youtube-video",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Dalio's 30-minute animated explainer of the credit-driven business cycle. The single best primer on macroeconomics for a finance student."
+      }
+    ]
+  },
+  {
+    "slug": "hedge-funds-legendary-investors",
+    "title": "Hedge funds & legendary investors",
+    "description": "Biographies, interviews, and case histories of the people who actually made the returns. Useful for seeing how the strategies in the textbooks look when run by a fund manager facing the market.",
+    "resources": [
+      {
+        "title": "The Man Who Solved the Market — Gregory Zuckerman",
+        "url": "https://www.goodreads.com/book/show/43889703-the-man-who-solved-the-market",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "How Jim Simons and Renaissance Technologies built the most successful quant fund in history — the Medallion Fund's average annual return is 66% since 1988. Essential context for anyone curious about systematic strategies."
+      },
+      {
+        "title": "Intelligent Investing with Steve Forbes",
+        "url": "https://www.youtube.com/playlist?list=PL96BEDB496B48BD06",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Long-form interviews with the best minds in active management — Bogle, Greenblatt, Novogratz, Whitney, and more. The conversation versions of the books elsewhere in this directory."
+      }
+    ]
+  },
+  {
+    "slug": "investing-classics",
+    "title": "Investing classics",
+    "description": "The core canon of value, growth, and common-sense investing — books that turn up on every PMC senior analyst's shelf. Read these before the first pitch you sit on.",
+    "resources": [
+      {
+        "title": "Principles — Ray Dalio",
+        "url": "https://www.goodreads.com/book/show/34536488-principles",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Bridgewater's founder lays out his operating principles for life, work, and managing teams under uncertainty. Required reading for anyone running a process under pressure."
+      },
+      {
+        "title": "The Psychology of Money — Morgan Housel",
+        "url": "https://www.goodreads.com/book/show/41881472-the-psychology-of-money",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Nineteen short essays on why money decisions get made at the dinner table, not on a spreadsheet. The behavioural finance text written by someone who can actually write."
+      },
+      {
+        "title": "The Little Book That Beats the Market — Joel Greenblatt",
+        "url": "https://www.goodreads.com/book/show/75889",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "The Magic Formula explained in plain English: buy good businesses at low prices, systematically, and let the math run. The cleanest one-sitting introduction to quantitative value."
+      },
+      {
+        "title": "The Big Secret for the Small Investor — Joel Greenblatt",
+        "url": "https://www.goodreads.com/book/show/8865690-the-big-secret-for-the-small-investor",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Greenblatt's follow-up: why small investors have a structural edge over institutional money, and how to actually use it. Less famous than the Magic Formula book; arguably more important."
+      },
+      {
+        "title": "The Little Book of Common Sense Investing — John C. Bogle",
+        "url": "https://www.goodreads.com/book/show/171127.The_Little_Book_of_Common_Sense_Investing",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Vanguard's founder makes the case that the most reliable path to long-term return is to own the market at the lowest possible cost. The argument every active manager has to be able to answer."
+      },
+      {
+        "title": "One Up on Wall Street — Peter Lynch",
+        "url": "https://www.goodreads.com/book/show/762462.One_Up_On_Wall_Street",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Magellan-era Lynch on how retail investors can outperform pros by paying attention to what they already buy. The original 'invest in what you know' playbook."
+      }
+    ]
+  },
+  {
+    "slug": "mathematical-foundations",
+    "title": "Mathematical foundations",
+    "description": "The math behind quant finance — linear algebra, calculus, differential equations, stochastic calculus, game theory, econometrics. The toolkit Quant Department members assume you have on day one.",
+    "resources": [
+      {
+        "title": "MIT 18.06 — Linear Algebra (Gilbert Strang)",
+        "url": "https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "The reference course for linear algebra, taught by Gilbert Strang himself. Vectors, matrices, eigenvalues, SVD — the operations that underpin every factor model and quant trade."
+      },
+      {
+        "title": "3Blue1Brown — Essence of Linear Algebra",
+        "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Grant Sanderson's visual companion to Strang. Watch this if matrices feel symbolic and abstract — the geometric intuition makes the same content feel mechanical."
+      },
+      {
+        "title": "MIT 18.01 — Single Variable Calculus",
+        "url": "https://www.youtube.com/playlist?list=PL590CCC2BC5AF3BC1",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Derivatives and integrals from first principles. The math foundation everything in continuous-time finance is built on top of."
+      },
+      {
+        "title": "Multivariable Calculus",
+        "url": "https://www.youtube.com/playlist?list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Partial derivatives, gradients, Lagrange multipliers — required for portfolio optimisation, risk decomposition, and most of the dual variables in pricing."
+      },
+      {
+        "title": "3Blue1Brown — Differential Equations",
+        "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Visual intro to ODEs and dynamical systems. The right place to start if you've never solved a differential equation outside of a calculator."
+      },
+      {
+        "title": "MIT 18.03 — Differential Equations",
+        "url": "https://www.youtube.com/playlist?list=PLUl4u3cNGP63oTpyxCMLKt_JmB0WtSZfG",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Alessandro's pick as the best playlist for differential equations. The full rigorous treatment, including the systems-of-equations cases that show up in macro modelling."
+      },
+      {
+        "title": "Differential Equations — additional course",
+        "url": "https://www.youtube.com/playlist?list=PLEC88901EBADDD980",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "A supplementary playlist for working through more ODE examples once the MIT and 3Blue1Brown material clicks."
+      },
+      {
+        "title": "Stochastic Calculus for Finance",
+        "url": "https://www.youtube.com/playlist?list=PLPaq6BG3QWZMkwcIN1cXKx776kyQ2aznG",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Brownian motion, Itô's lemma, the Black-Scholes derivation — the machinery behind derivatives pricing. The math jump from ODEs to SDEs is the single biggest step in quant finance."
+      },
+      {
+        "title": "Stochastic Calculus — visually explained",
+        "url": "https://www.youtube.com/playlist?list=PLD5zpXPUmJv1X4uWIBCRqFd0ZcxP9y12g",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Visual companion to the stochastic calculus playlist. Helpful if Itô's lemma still feels symbolic the first time through."
+      },
+      {
+        "title": "Game Theory 101 — William Spaniel",
+        "url": "https://www.youtube.com/playlist?list=PLKI1h_nAkaQoDzI4xDIXzx6U2ergFmedo",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Nash equilibrium, subgame-perfect, Bayesian — the full canonical course in plain English. Useful far beyond auction theory: every negotiation, every information game, every signalling story in finance."
+      },
+      {
+        "title": "Ben Lambert (SpartacanUsuals) — Econometrics",
+        "url": "https://www.youtube.com/@SpartacanUsuals/playlists",
+        "type": "youtube-channel",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Ben Lambert's playlists span undergraduate to PhD-level econometrics — OLS, GMM, time series, Bayesian methods. Pick the playlist that matches the level you need."
       }
     ]
   },
@@ -49,6 +285,68 @@
         "contributor": "Miguel Monteiro",
         "contributorRole": "IT Associate, Spring 2026",
         "note": "Private equity coverage from the basics through advanced topics like evergreen funds and the secondaries market. INSEAD professor; concise, structured, and accurate on fund mechanics."
+      }
+    ]
+  },
+  {
+    "slug": "probabilistic-thinking",
+    "title": "Probabilistic thinking",
+    "description": "Books on luck, uncertainty, reflexivity, and asymmetric payoffs — the mental models that separate analysts who got lucky from analysts who understand they got lucky.",
+    "resources": [
+      {
+        "title": "The Alchemy of Finance — George Soros",
+        "url": "https://www.goodreads.com/book/show/369708.The_Alchemy_of_Finance",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Soros lays out his theory of reflexivity: market participants' perceptions don't just observe prices, they create them. The book behind every macro hedge fund's risk frame."
+      },
+      {
+        "title": "Fooled by Randomness — Nassim Nicholas Taleb",
+        "url": "https://www.goodreads.com/book/show/38315.Fooled_by_Randomness",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Alessandro's absolute-must-read of the four Taleb books. How traders mistake luck for skill, and the survivorship bias that makes the mistake invisible until it isn't."
+      },
+      {
+        "title": "The Black Swan — Nassim Nicholas Taleb",
+        "url": "https://www.goodreads.com/book/show/242472.The_Black_Swan",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Highly improbable events that, in hindsight, look obvious. The book that put fat-tailed thinking into the financial mainstream — and explains why most risk models break exactly when they need to work."
+      },
+      {
+        "title": "Skin in the Game — Nassim Nicholas Taleb",
+        "url": "https://www.goodreads.com/book/show/36064445-skin-in-the-game",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Why agents without downside exposure to their own decisions distort every system they touch — finance, medicine, journalism. The asymmetry framework behind every alignment-of-interest argument."
+      },
+      {
+        "title": "Antifragile — Nassim Nicholas Taleb",
+        "url": "https://www.goodreads.com/book/show/13530973-antifragile",
+        "type": "book",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "The complement to Black Swan: how to build positions, portfolios, and lives that gain from volatility rather than break under it. The constructive finish to the Incerto series."
+      }
+    ]
+  },
+  {
+    "slug": "valuation",
+    "title": "Valuation",
+    "description": "How to value a business — DCFs, multiples, intrinsic value, and the edge cases that break textbook frameworks. Required before owning the financial-model slide in any pitch.",
+    "resources": [
+      {
+        "title": "Aswath Damodaran — Valuation (NYU Stern)",
+        "url": "https://www.youtube.com/playlist?list=PLUkh9m2BorqnKWu0g5ZUps_CbQ-JGtbI9",
+        "type": "youtube-playlist",
+        "contributor": "Alessandro De Riccardis",
+        "contributorRole": "Quant Analyst, Spring 2026",
+        "note": "Damodaran's full NYU MBA Valuation course on YouTube, free. The reference course for DCF, multiples, real options, and the corner cases textbooks gloss over. Watch the parts that match your pitch."
       }
     ]
   }
