@@ -15,8 +15,15 @@ import { parseWorkdayConfig } from '../_shared/ats-config.ts';
 import { runPoller } from '../_shared/poll-runner.ts';
 import type { Fetcher, NormalizedPosting } from '../_shared/types.ts';
 
-const PAGE_SIZE = 50;
-const MAX_PAGES = 10;
+// Workday tightened the per-request `limit` ceiling to 20 (verified against
+// hl.wd1 and ms.wd5: limit=20 returns HTTP 200, limit=21 or higher returns
+// HTTP 400 with an empty error message across every tenant). The poller had
+// PAGE_SIZE=50 from day one and never recorded a single successful run.
+// MAX_PAGES is raised to 25 so we keep the same 500-role per-tenant ceiling
+// the old 50 x 10 implied. Peak in-flight is bounded by PARALLEL_CONCURRENCY,
+// not page count, so wall-clock per firm only grows from ~2s to ~3s.
+const PAGE_SIZE = 20;
+const MAX_PAGES = 25;
 // Per-firm page concurrency. Workday CXS rate-limits aggressively per source
 // IP; reducing from 4 to 2 cuts the per-firm peak burst in half. Combined
 // with the FIRM_CONCURRENCY cap below, total in-flight stays well under
