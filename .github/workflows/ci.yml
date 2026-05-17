@@ -1,0 +1,58 @@
+name: CI
+
+# Tier-5 regression gate. Every push to main and every PR runs the same
+# three checks the operator would run locally before merge:
+#
+#   1. Type check — catches schema drift between supabase types and the
+#      app code (e.g. a new enum value referenced in the cockpit before
+#      the migration that adds it).
+#   2. Classifier regression — every entry in tests/classify.fixture.json
+#      must round-trip through classify() to the snapshotted (category,
+#      programme). Catches accidental rule changes.
+#   3. Next.js build — ensures /admin, /jobs, /login, /auth/callback all
+#      compile to the production bundle.
+#
+# Build is the slowest step (~30s) and runs last so a typecheck or test
+# failure surfaces in <1 min.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Classifier regression suite
+        run: pnpm test
+
+      - name: Next.js build
+        # We pass dummy Supabase env so `next build` doesn't fail at page-
+        # data collection. The build does not hit the network; these values
+        # are only read by client modules that lazily authenticate.
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54321'
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: 'ci-dummy-anon-key'
+          SUPABASE_SERVICE_ROLE_KEY: 'ci-dummy-service-role'
+          ADMIN_EMAIL: 'ci@example.com'
+        run: pnpm build

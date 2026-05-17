@@ -33,6 +33,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# supabase
+supabase/.branches
+supabase/.temp
+supabase/.env
+
 # claude code session data
 .claude/
 
