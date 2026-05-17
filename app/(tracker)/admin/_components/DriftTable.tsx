@@ -12,7 +12,7 @@
 
 import { EmptyState, Pill, Section } from './ui';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
 
 interface DriftCandidate {
   firm_id: string;

@@ -10,7 +10,7 @@
 import { forceRunPoller } from '../_actions';
 import { EmptyState, Pill, Section, timeAgo } from './ui';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
 
 interface DigestRow {
   digest_date: string;

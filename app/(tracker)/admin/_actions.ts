@@ -19,8 +19,8 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
+import { getSupabaseServerClient } from '@/tracker/lib/supabase/server';
 
 const ADMIN_EMAILS = (process.env.ADMIN_EMAIL ?? '')
   .split(',')
@@ -148,7 +148,7 @@ const VALID_FN_NAMES = new Set([
 // ATS auto-discovery (Tier 6)
 // ---------------------------------------------------------------------------
 
-import type { Database } from '@/types/supabase';
+import type { Database } from '@/tracker/types/supabase';
 
 type AtsType = Database['public']['Enums']['ats_type'];
 

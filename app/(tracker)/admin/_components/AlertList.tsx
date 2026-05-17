@@ -9,7 +9,7 @@
 import { acknowledgeAlert, resolveAlert } from '../_actions';
 import { EmptyState, Pill, Section, timeAgo } from './ui';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
 
 interface OpenAlert {
   id: number;

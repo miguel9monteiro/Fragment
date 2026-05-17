@@ -136,21 +136,43 @@ If a request implies extending the dynamic surface beyond the Tracker (e.g. addi
 
 A UK finance jobs detection cockpit lives alongside the static content surfaces. It is the canonical home of what used to be the standalone `PrismaFinanceTracker` repo (now archived). Public-facing promise: "you will see the role within 5 minutes of it going live, with your CV in hand."
 
+### Where Tracker code lives
+
+Everything Tracker-related is under `tracker/` at the repo root, except the route files themselves which must live under `app/` for Next.js to register them. Those are grouped under `app/(tracker)/` — the parens make it a Next.js route group, so URLs stay `/jobs`, `/admin`, etc. (the `(tracker)` segment does not appear in the URL).
+
+```
+tracker/
+  supabase/            migrations, seed.sql, config.toml, Edge Functions
+  lib/supabase/        server-only Supabase clients (server.ts, admin.ts)
+  types/supabase.ts    generated DB types (regenerate via pnpm supabase:types)
+  components/          BackButton, SyncButton (tracker-only UI bits)
+  scripts/             maintenance scripts (align-migrations, classify:regen, backfills)
+  tests/               classifier regression (classify.test.ts + 252-case fixture)
+app/
+  (tracker)/           route group — invisible to URLs
+    jobs/              -> /jobs
+    admin/             -> /admin (+ /admin/discover)
+    login/             -> /login
+    auth/callback/     -> /auth/callback
+```
+
+Import paths use the `@/tracker/...` alias (e.g. `@/tracker/lib/supabase/server`).
+
 ### Routes owned by the Tracker
 
-| Route | Purpose | Render mode |
-|---|---|---|
-| `/jobs` | Public job list with category + tenure filters | `dynamic = 'force-dynamic'` (reads Supabase per request) |
-| `/admin` | Magic-link-gated cockpit: alerts, digest, fleet health, firms, drift, discover | server components + server actions |
-| `/admin/discover` | Tier-6 onboarding: paste URL → ATS auto-detect → insert firm | server component |
-| `/login` | Magic-link OTP form | server component |
-| `/auth/callback` | Supabase OTP code exchange | route handler |
+| Route (URL) | File | Purpose | Render mode |
+|---|---|---|---|
+| `/jobs` | `app/(tracker)/jobs/page.tsx` | Public job list with category + tenure filters | `dynamic = 'force-dynamic'` (reads Supabase per request) |
+| `/admin` | `app/(tracker)/admin/page.tsx` | Magic-link-gated cockpit: alerts, digest, fleet health, firms, drift, discover | server components + server actions |
+| `/admin/discover` | `app/(tracker)/admin/discover/page.tsx` | Tier-6 onboarding: paste URL → ATS auto-detect → insert firm | server component |
+| `/login` | `app/(tracker)/login/page.tsx` | Magic-link OTP form | server component |
+| `/auth/callback` | `app/(tracker)/auth/callback/route.ts` | Supabase OTP code exchange | route handler |
 
 Everything else under `app/` is a static content surface — do not blur the line.
 
 ### Backend
 
-- **Supabase** project (single env, single DB). `supabase/` at repo root contains: `migrations/` (0001 → 0025), `seed.sql`, `config.toml`, `functions/` (16 Deno Edge Functions covering 10 ATS pollers + watchdog + daily digest + host probe + careers scan + ATS auto-discovery).
+- **Supabase** project (single env, single DB). `tracker/supabase/` contains: `migrations/` (0001 → 0025), `seed.sql`, `config.toml`, `functions/` (16 Deno Edge Functions covering 10 ATS pollers + watchdog + daily digest + host probe + careers scan + ATS auto-discovery). The Supabase CLI is invoked with `--workdir tracker` (already wired into the `pnpm supabase:*` scripts).
 - **Cron** runs inside Postgres via `pg_cron`, dispatching through `public._invoke_poller(fn)` which reads `project_url` and `service_role_key` from `vault.decrypted_secrets`.
 - **Observability tables**: `poller_runs`, `system_alerts`, `daily_digests`, `firm_volume_snapshots`, `firm_careers_snapshots`. RLS denies all → service role only.
 - **Detection cadence**: every 1 min for 9 ATS families, every 2 min for Avature. Each firm has per-firm exponential backoff (2/4/8/16/32/60 min).
@@ -189,8 +211,8 @@ Without these, magic-link logins silently fail.
 
 ### Adding a new ATS family
 
-1. Implement a `Fetcher` returning `NormalizedPosting[]` in `supabase/functions/poll-<name>/index.ts` (Deno).
-2. Add a config parser in `supabase/functions/_shared/ats-config.ts`.
+1. Implement a `Fetcher` returning `NormalizedPosting[]` in `tracker/supabase/functions/poll-<name>/index.ts` (Deno).
+2. Add a config parser in `tracker/supabase/functions/_shared/ats-config.ts`.
 3. Wire `Deno.serve` that calls `runPoller({ source, atsType, fetcher })`.
 4. Add `cron.schedule('poll-<name>', '* * * * *', ...)` in a new migration.
 5. Extend `ats_type` enum if needed (enum add must commit before any seed referencing the new value — separate migration).
@@ -202,9 +224,9 @@ MCP records migrations with timestamp versions instead of the local `0NNN` prefi
 
 ### Tests + CI
 
-`tests/classify.fixture.json` (231 title → classification snapshots) is the regression gate. `pnpm test` runs ~252 vitest cases in ~40ms. CI (`.github/workflows/ci.yml`) runs `pnpm typecheck`, `pnpm test`, and `pnpm build` on every PR + push to main.
+`tracker/tests/classify.fixture.json` (231 title → classification snapshots) is the regression gate. `pnpm test` runs ~252 vitest cases in ~40ms. CI (`.github/workflows/ci.yml`) runs `pnpm typecheck`, `pnpm test`, and `pnpm build` on every PR + push to main.
 
-`tsconfig.json` excludes `supabase/functions/**` from the Node typecheck — those run on Deno and pull from `https://deno.land/...` URL imports that would otherwise confuse `tsc`.
+`tsconfig.json` excludes `tracker/supabase/functions/**` from the Node typecheck — those run on Deno and pull from `https://deno.land/...` URL imports that would otherwise confuse `tsc`.
 
 ## Quality bar for long-form content
 

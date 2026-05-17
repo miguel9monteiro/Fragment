@@ -20,7 +20,7 @@ import Link from 'next/link';
 import { resetFirmBackoff, toggleFirmActive } from '../_actions';
 import { Pill, Section, timeAgo } from './ui';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
 
 type FirmFilter = 'all' | 'active' | 'inactive' | 'erroring' | 'backoff' | 'no-success-24h';
 

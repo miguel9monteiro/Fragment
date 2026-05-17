@@ -10,7 +10,7 @@
 import { redirect } from 'next/navigation';
 
 import { signOut } from './_actions';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getSupabaseServerClient } from '@/tracker/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

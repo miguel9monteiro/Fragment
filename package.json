@@ -11,12 +11,12 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "classify:regen": "tsx scripts/regen-classify-fixture.ts",
-    "migrations:align": "tsx scripts/align-migrations.ts",
-    "supabase:start": "supabase start",
-    "supabase:stop": "supabase stop",
-    "supabase:reset": "supabase db reset",
-    "supabase:types": "supabase gen types typescript --linked > types/supabase.ts"
+    "classify:regen": "tsx tracker/scripts/regen-classify-fixture.ts",
+    "migrations:align": "tsx tracker/scripts/align-migrations.ts",
+    "supabase:start": "supabase start --workdir tracker",
+    "supabase:stop": "supabase stop --workdir tracker",
+    "supabase:reset": "supabase db reset --workdir tracker",
+    "supabase:types": "supabase gen types typescript --linked --workdir tracker > tracker/types/supabase.ts"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.2",

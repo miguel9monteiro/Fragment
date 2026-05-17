@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { BackButton } from '@/components/BackButton';
-import { SyncButton } from '@/components/SyncButton';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { BackButton } from '@/tracker/components/BackButton';
+import { SyncButton } from '@/tracker/components/SyncButton';
+import { getSupabaseServerClient } from '@/tracker/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

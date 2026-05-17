@@ -11,7 +11,7 @@
 
 import { Pill } from './ui';
 
-import { getSupabaseAdminClient } from '@/lib/supabase/admin';
+import { getSupabaseAdminClient } from '@/tracker/lib/supabase/admin';
 
 interface StatusSnapshot {
   open_critical: number;

@@ -9,7 +9,7 @@
 // than a silent dead-end.
 import { NextResponse } from 'next/server';
 
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getSupabaseServerClient } from '@/tracker/lib/supabase/server';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
