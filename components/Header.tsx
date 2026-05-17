@@ -18,6 +18,7 @@ const navItems = [
   { href: "/macro", label: "Macro" },
   { href: "/quant", label: "Quant" },
   { href: "/resources", label: "Resources" },
+  { href: "/jobs", label: "Jobs" },
   { href: "/glossary", label: "Glossary" },
   { href: "/contribute", label: "Contribute" },
 ];

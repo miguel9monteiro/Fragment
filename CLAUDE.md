@@ -124,13 +124,87 @@ The pitch deck is the artefact a senior reviewer judges the work by. The platfor
 
 Hard constraints — push back if asked to violate any:
 
-- **No backend, no database, no auth, no user accounts.**
+- **Content surfaces stay static.** Pitches, sessions, macro, quant, glossary, portfolio, votings, resources, contribute all remain statically generated MDX + JSON. No backend, no DB, no auth on these routes. Content lands via PR.
 - **No AI features.** No model calls, no chatbots, no embeddings. Search is in-memory client-side.
-- **No CMS / admin UI.** Content lands via PR.
-- **All routes must be statically generable.** No serverless functions at runtime. Vercel free tier is the deploy target.
 - **No analytics yet.** A clean integration point exists in `app/layout.tsx` but is not wired up.
 
-If a request implies any of the above, surface the constraint before implementing.
+The repo also hosts the **Tracker subsystem** (`/jobs`, `/admin`, `/login`, `/auth/callback`) — a Supabase-backed UK finance jobs detection cockpit. It is a documented carve-out from the static-only rule above. Adding more dynamic / backend features outside the Tracker subsystem is still a Tier-1 violation — push back. See the **Tracker subsystem** section below for what lives there and how it deploys.
+
+If a request implies extending the dynamic surface beyond the Tracker (e.g. adding auth to /pitches, adding a database read to /portfolio), surface the constraint before implementing.
+
+## Tracker subsystem
+
+A UK finance jobs detection cockpit lives alongside the static content surfaces. It is the canonical home of what used to be the standalone `PrismaFinanceTracker` repo (now archived). Public-facing promise: "you will see the role within 5 minutes of it going live, with your CV in hand."
+
+### Routes owned by the Tracker
+
+| Route | Purpose | Render mode |
+|---|---|---|
+| `/jobs` | Public job list with category + tenure filters | `dynamic = 'force-dynamic'` (reads Supabase per request) |
+| `/admin` | Magic-link-gated cockpit: alerts, digest, fleet health, firms, drift, discover | server components + server actions |
+| `/admin/discover` | Tier-6 onboarding: paste URL → ATS auto-detect → insert firm | server component |
+| `/login` | Magic-link OTP form | server component |
+| `/auth/callback` | Supabase OTP code exchange | route handler |
+
+Everything else under `app/` is a static content surface — do not blur the line.
+
+### Backend
+
+- **Supabase** project (single env, single DB). `supabase/` at repo root contains: `migrations/` (0001 → 0025), `seed.sql`, `config.toml`, `functions/` (16 Deno Edge Functions covering 10 ATS pollers + watchdog + daily digest + host probe + careers scan + ATS auto-discovery).
+- **Cron** runs inside Postgres via `pg_cron`, dispatching through `public._invoke_poller(fn)` which reads `project_url` and `service_role_key` from `vault.decrypted_secrets`.
+- **Observability tables**: `poller_runs`, `system_alerts`, `daily_digests`, `firm_volume_snapshots`, `firm_careers_snapshots`. RLS denies all → service role only.
+- **Detection cadence**: every 1 min for 9 ATS families, every 2 min for Avature. Each firm has per-firm exponential backoff (2/4/8/16/32/60 min).
+- **Notification sinks**: email (Resend) and Discord webhook, both opt-in via Edge Function secrets.
+
+### Env vars
+
+Fragment reads (set in Vercel project settings):
+
+- `NEXT_PUBLIC_SUPABASE_URL` — client + server reads
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — client + server reads
+- `SUPABASE_SERVICE_ROLE_KEY` — server-only admin client + scripts
+- `ADMIN_EMAIL` — comma-separated allowlist for `/admin`; unset = no access
+
+Supabase Vault (set via Studio SQL, NOT env vars):
+
+```sql
+select vault.create_secret('https://<ref>.supabase.co', 'project_url');
+select vault.create_secret('<service_role_jwt>', 'service_role_key');
+```
+
+Without those two vault secrets, every cron tick raises a `vault_missing` alert. `_invoke_poller` auto-resolves the alert on first successful pg_net call after they're set.
+
+Edge Function secrets (`supabase secrets set KEY=VALUE`): `ALERT_EMAIL_TO`, `RESEND_API_KEY`, `ALERT_EMAIL_FROM`, `DISCORD_WEBHOOK_URL`. Each is checked independently. Skipping a channel logs `*_skipped_no_config`; alerts still write to DB.
+
+### Supabase Auth → Redirect URL allowlist
+
+The magic-link callback must land on the same host the user logged in from. After Fragment is deployed:
+
+- **Site URL**: `https://<fragment-domain>`
+- **Additional Redirect URLs** (allowlist):
+  - `https://<fragment-domain>/auth/callback`
+  - `http://localhost:3000/auth/callback` (for local dev)
+
+Without these, magic-link logins silently fail.
+
+### Adding a new ATS family
+
+1. Implement a `Fetcher` returning `NormalizedPosting[]` in `supabase/functions/poll-<name>/index.ts` (Deno).
+2. Add a config parser in `supabase/functions/_shared/ats-config.ts`.
+3. Wire `Deno.serve` that calls `runPoller({ source, atsType, fetcher })`.
+4. Add `cron.schedule('poll-<name>', '* * * * *', ...)` in a new migration.
+5. Extend `ats_type` enum if needed (enum add must commit before any seed referencing the new value — separate migration).
+6. Update `VENDOR_PATTERNS` in both `poll-careers-scan` and `poll-ats-discover` so drift detection + onboarding recognise the new vendor.
+
+### Migration ledger drift after MCP applies
+
+MCP records migrations with timestamp versions instead of the local `0NNN` prefix. After applying via MCP, run `pnpm migrations:align` to rewrite the ledger so `supabase db push` doesn't try to re-run them.
+
+### Tests + CI
+
+`tests/classify.fixture.json` (231 title → classification snapshots) is the regression gate. `pnpm test` runs ~252 vitest cases in ~40ms. CI (`.github/workflows/ci.yml`) runs `pnpm typecheck`, `pnpm test`, and `pnpm build` on every PR + push to main.
+
+`tsconfig.json` excludes `supabase/functions/**` from the Node typecheck — those run on Deno and pull from `https://deno.land/...` URL imports that would otherwise confuse `tsc`.
 
 ## Quality bar for long-form content
 

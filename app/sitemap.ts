@@ -26,12 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/macro",
     "/quant",
     "/resources",
+    "/jobs",
     "/glossary",
     "/contribute",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
+    changeFrequency: path === "/jobs" ? ("daily" as const) : ("weekly" as const),
     priority: path === "" ? 1 : 0.8,
   }));
 
