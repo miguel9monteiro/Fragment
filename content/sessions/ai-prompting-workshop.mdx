@@ -1,0 +1,363 @@
+---
+title: "AI Prompting for Finance Analysts"
+slug: "ai-prompting-workshop"
+author: "Carolina Pereira"
+team: "PMC VP of Operations"
+date: "2026-05-17"
+difficulty: "beginner"
+estimatedReadTime: 17
+tags:
+  - "ai"
+  - "prompt-engineering"
+  - "productivity"
+  - "llm"
+  - "workflow"
+  - "soft-skills"
+summary: "A workshop on prompting large language models for finance work — how the models actually generate text, the CSI-FBI framework for getting useful outputs, when to lean on chain-of-thought and devil's-advocate prompts, where the math caveats live, and how to handle confidential data without leaking it."
+featured: true
+sourcePdfUrl: "/sessions/ai-prompting-workshop.pdf"
+---
+
+Most members already use ChatGPT, Claude, Copilot, or Gemini for something — drafting an email, debugging a formula, summarising a 10-K. The gap between casual use and useful use is almost entirely about how the prompt is written. A senior analyst with a sharp prompt gets a defensible draft in two minutes; a junior with a vague one gets a paragraph of plausible-sounding filler and spends the next hour fact-checking it. The difference is not the model. It is the operator.
+
+This session adapts a workshop given to PMC by Mário Silva Pereira ([silvapereira.com](https://www.silvapereira.com)). It is meant to be practical: a small set of mental models for what these systems actually are, a framework for talking to them, and a handful of habits that make the difference between AI that helps your pitch and AI that quietly puts garbage on your slide.
+
+<Stats>
+  <Stat value="Framework" label="CSI + FBI" caption="Six things to specify before you press send" />
+  <Stat value="Reusable" label="Skills" caption="Package repeated prompts once, run them forever" />
+  <Stat value="Local" label="Ollama" caption="Run models on your laptop when the data cannot leave it" />
+</Stats>
+
+## How the machine actually works
+
+Before the prompting tactics, the mental model. Most of the bad prompts members write come from a misunderstanding of what is on the other end of the chat box.
+
+<Pillars>
+  <Pillar eyebrow="Layer 1" title="Artificial Intelligence">
+    A system that makes predictions from patterns learned in data. Your
+    bank's fraud detector is AI. It does not "think" — it matches
+    historical patterns and scores how unusual a new transaction is.
+  </Pillar>
+  <Pillar eyebrow="Layer 2" title="Generative AI" emphasize>
+    A subset that produces new content — text, images, code — by
+    predicting the next token, then the next, then the next. It is
+    autocomplete at industrial scale. Your prompt is the seed; the
+    output is what the model judges most statistically appropriate.
+  </Pillar>
+  <Pillar eyebrow="Layer 3" title="Large Language Models">
+    The specific generative models behind ChatGPT, Claude, Gemini, and
+    Copilot. Trained on hundreds of billions of pages — textbooks,
+    filings, earnings calls, papers. They do not *know* things; they
+    *predict* them. Garbage in, garbage out.
+  </Pillar>
+</Pillars>
+
+When you send a prompt, the model does not read it the way you do. It first chops your text into **tokens** — chunks roughly the size of short syllables or common words — then maps each token to a numerical vector that encodes its meaning. The sentence *"The market predicted a return"* becomes roughly seven tokens; each token becomes a vector of several thousand numbers; those vectors get processed through dozens of transformer layers; the model outputs a probability distribution over the next token, samples one, and repeats.
+
+Two consequences follow directly. First, **every token costs compute** — both yours sent in and the model's sent back. That is why API prices are quoted per million tokens, and why longer prompts and longer responses are not free. Second, **the model has no privileged access to truth**. It has only the statistical residue of its training data, plus whatever you provide in the prompt. If you do not give it the data, it will invent something plausible.
+
+<Callout type="insight" title="The single most useful frame">
+Treat the model as an incredibly well-read junior analyst with perfect English, zero judgement about what is confidential, and a strong incentive to give you *an* answer rather than admit it does not know. The job of your prompt is to compensate for all three.
+</Callout>
+
+<Divider />
+
+## Why finance is well-suited to this
+
+Finance work is unusually exposed to the things LLMs are genuinely good at. Most of what an analyst does in their first two years is **data structured into reports, analysis under constraint, and writing for senior readers** — and all three are amenable to AI assistance if the prompt is good.
+
+<Pillars>
+  <Pillar eyebrow="Use case 1" title="Data &amp; reports">
+    Summarising earnings calls, extracting KPIs from filings, normalising
+    figures into a consistent table format, drafting executive summaries
+    from a long memo.
+  </Pillar>
+  <Pillar eyebrow="Use case 2" title="Analysis">
+    Scenario sketching, sensitivity discussion, peer comp shortlisting,
+    drafting bridge tables, sanity-checking ratios against industry
+    norms.
+  </Pillar>
+  <Pillar eyebrow="Use case 3" title="Decisions under uncertainty">
+    Risk framing, stress-test narratives, regulatory interpretation,
+    counter-arguments to your own thesis.
+  </Pillar>
+  <Pillar eyebrow="Use case 4" title="Writing &amp; communication">
+    Memos, client notes, email drafts, slide titles that state a
+    conclusion rather than label a topic.
+  </Pillar>
+</Pillars>
+
+None of this replaces judgement. All of it compresses the time between *knowing what you want to say* and *having a defensible draft on the page*. The quality of that compression is set, almost entirely, by the prompt.
+
+<PullQuote attribution="The thesis of the workshop">
+  The quality of your communication with the model is the entire game.
+</PullQuote>
+
+<Divider />
+
+## The CSI-FBI framework
+
+Six elements, every prompt, in roughly this order. The framework is adapted from a model proposed by Nicolas Boucher ([nicolasboucher.kit.com](https://nicolasboucher.kit.com)) and is the single most useful prompt scaffold the workshop teaches. CSI is the request; FBI is how you want it back.
+
+<Pillars>
+  <Pillar eyebrow="C" title="Context">
+    Who are you, what is the situation, who is the reader. "I am a
+    second-year analyst preparing for an internal IC next week" is a
+    different prompt than "I am a sell-side associate writing a public
+    note."
+  </Pillar>
+  <Pillar eyebrow="S" title="Specific" emphasize>
+    Exact numbers, time periods, constraints. Not *analyse costs* —
+    *analyse Q3 2024 operating costs by category, variance versus budget,
+    flag any line over 10%.*
+  </Pillar>
+  <Pillar eyebrow="I" title="Instruction">
+    The task itself, broken into logical steps. *Step 1, Step 2, Step 3.*
+    Models follow ordered lists much more reliably than wishes embedded
+    in paragraphs.
+  </Pillar>
+  <Pillar eyebrow="F" title="Format">
+    Exactly how the output should look. Table? Memo? Bullet list under
+    300 words? Executive summary plus appendix? Specify both shape and
+    length.
+  </Pillar>
+  <Pillar eyebrow="B" title="Blueprint">
+    An example of the tone or output you want — or a description of the
+    register (*"CFA Level 2 depth, no filler"*). Models mirror examples
+    almost perfectly, so a good blueprint is worth more than a long
+    description.
+  </Pillar>
+  <Pillar eyebrow="I" title="Identity">
+    The persona the model should adopt. *"You are a senior credit
+    analyst at a Tier 1 European bank"* changes the depth and vocabulary
+    of every answer that follows.
+  </Pillar>
+</Pillars>
+
+The order matters less than the completeness. A prompt that hits all six is rarely shorter than half a page, and that is a feature — the up-front investment is what makes the response usable.
+
+### Before and after — the Alstom example
+
+The workshop walks one example end-to-end. The asset is Alstom S.A. (Euronext Paris ticker `ALO`), a listed European industrials issuer. The task is a credit read ahead of an internal investment committee.
+
+**The naive prompt** — and what almost every member sends on a first attempt:
+
+> *Can you analyse this company's financial health? Alstom S.A. (Ticker: ALO — Euronext Paris)*
+
+It will get a response. The response will be generic, will hedge on every number, and will not tell you anything you could not have found by typing the ticker into Google.
+
+**The CSI-FBI rewrite** decomposes the same ask into the six fields:
+
+| Field | What goes here |
+|---|---|
+| **Context** | A two-year analyst at a mid-size investment firm, reviewing a listed European manufacturer ahead of an internal investment committee next week. |
+| **Specific** | Liquidity risk and leverage, FY2022–FY2025 figures, plus any recent 2026 data and news. |
+| **Instruction** | Assess whether leverage and liquidity represent a material risk to debt service over the next 12 months. Flag red flags versus investment-grade thresholds. |
+| **Format** | (1) Three-sentence executive summary. (2) KPI table with benchmarks. (3) Key risks as bullets. (4) Recommendation: pass / watch / avoid. |
+| **Blueprint** | CFA Level 2 depth. Precise financial language. Direct, no filler. |
+| **Identity** | Senior credit analyst at a Tier 1 European bank, specialising in industrials. Reader is a PM with 15 years of experience. |
+
+The CSI-FBI version gets a tightly-structured response with named ratios, a verdict, and risks framed against credit thresholds the reader will recognise. Same model. Same minute of work. Materially more useful output.
+
+<SelfCheck question="Which of the six CSI-FBI elements does the largest share of the work — and why?">
+**Specific** does more than the others combined. Models default to generic answers when given generic inputs; the moment the prompt names a time period, a number, a threshold, or a benchmark, the response is forced to anchor to those specifics. Context and Identity set the register, Format and Blueprint shape the surface, but Specific is what makes the answer non-substitutable for a different company. A prompt that nails Specific but skips everything else still beats a prompt that nails everything else but is vague on Specific.
+</SelfCheck>
+
+<Divider />
+
+## Sharpening the loop
+
+CSI-FBI gets you a usable first draft. Three additional techniques turn it into something defensible.
+
+### Devil's advocate
+
+The default failure mode of an LLM is **confirmation**. Ask it whether your thesis is right and it will, with caveats, tell you it is. The fix is to instruct it explicitly to argue the other side.
+
+A clean devil's-advocate prompt asks the model to surface counter-arguments, blind spots, alternative interpretations of the data, and the strongest version of the opposing case. The point is not to settle the debate — you do that with your own judgement. The point is to make sure the bear case got fair play before the slide is final.
+
+### Chain-of-thought
+
+Generic answers skip steps, hide assumptions, and make silent maths errors. The cure is to require the model to **show its working** — step by step, formula by formula, assumption by assumption. The technique is called *chain-of-thought* (CoT).
+
+A worked example: a project costs €10,000 today and returns €4,000 per year for three years at an 8% discount rate. *Calculate the NPV and show your reasoning step by step.* The CoT response will:
+
+1. Identify each cash flow and its year.
+2. State the discount factor formula and apply it to each year.
+3. Compute the present value of each inflow.
+4. Sum the inflows and subtract the initial investment.
+5. State the final NPV and flag any rounding.
+
+The arithmetic is the same. The value is the audit trail. When the model is wrong — and on multi-step maths it sometimes is — you can find the line where it went wrong and correct it, rather than discarding the whole answer.
+
+<Callout type="warning" title="The maths trap">
+LLMs are pattern-matchers, not calculators. They handle most finance maths competently but make silent errors on multi-step calculations — especially compound discounting, multi-currency tables, and long IRR chains. **Always verify critical numbers independently.** A safer pattern: ask the model to write a small Python script that runs the calculation, and check the script before you trust the output. Models are much better at writing correct formulas than at running them in their head.
+</Callout>
+
+### Clearing context
+
+Long conversations accumulate context. By turn fifteen, the model is silently weighting everything you said in the first ten turns — including the assumptions you have since moved past. The result is **context drift**: responses get less focused, less specific, more contaminated by earlier framings.
+
+The fix is simple. When you change topics or notice the responses degrading, start a new chat (or use `/clear` if your client supports it) and restate the objective, the constraints, and the desired output cleanly. The two minutes you spend rebuilding context are repaid in sharper responses for the next half hour.
+
+<Divider />
+
+## Working language — Portuguese or English?
+
+Modern LLMs are not separate per-language models; they are one multilingual system with most of their training data in English. That asymmetry has practical consequences for which language to prompt in.
+
+| Topic | Use |
+|---|---|
+| Local legal, tax, or bureaucratic detail | Portuguese |
+| Slang, cultural nuance, idiomatic register | Portuguese |
+| Programming, technical reference, library usage | English |
+| Academic finance, scientific explanation, research summarisation | English |
+
+The rule of thumb is straightforward: prompt in the language with more high-quality training data on the specific topic. For PMC's work, that is English for almost everything technical and Portuguese only when local context is genuinely the point.
+
+<Divider />
+
+## Skills — packaging the prompts you reuse
+
+After you have written the same CSI-FBI scaffold five times, you should not be writing it a sixth. Modern AI clients (Claude is the most polished example) support **skills** — packaged instruction sets that load automatically when relevant, so the next prompt can be a single sentence.
+
+A skill is, conceptually, just a saved prompt with a trigger condition. It contains:
+
+<Pillars>
+  <Pillar eyebrow="Element 1" title="Description">
+    Name and a clear trigger condition. *"Credit Risk Memo — use when the
+    user asks for a memo on a corporate issuer's credit profile."*
+  </Pillar>
+  <Pillar eyebrow="Element 2" title="Instructions">
+    The step-by-step process the model should follow. Output structure,
+    interpretive rules, language register.
+  </Pillar>
+  <Pillar eyebrow="Element 3" title="Examples">
+    One or two sample inputs and the gold-standard output you expect.
+    Models mirror examples — a good one teaches more than a long
+    instruction list.
+  </Pillar>
+  <Pillar eyebrow="Element 4" title="Testing" emphasize>
+    Iterate. Run the skill on new cases, find where it falls short,
+    refine the instructions, repeat. A skill that works on three
+    examples but breaks on the fourth is a skill that is not finished.
+  </Pillar>
+</Pillars>
+
+A representative example — the kind of skill a credit analyst would build once and use for the rest of the semester — looks roughly like this:
+
+| Field | Specification |
+|---|---|
+| **Trigger** | When the user asks for a credit memo on a corporate issuer. |
+| **Output structure** | (1) Risk assessment. (2) Key credit risks, max 3 bullets. (3) Covenant recommendations. |
+| **Interpretation rules** | Leverage above 3.0× = elevated risk. Interest coverage below 2.5× = weak buffer. Revenue decline = early warning. |
+| **Tone** | Senior credit risk officer at a commercial bank. Conservative language — *deteriorating trend*, *limited headroom*, *heightened breach risk*. |
+| **Length** | Under 300 words. |
+
+Once packaged, the analyst types *"Run Credit Risk Memo on issuer X"* and gets a memo in the firm's house style. The thirty minutes spent building the skill is paid back the second time it is used.
+
+<Divider />
+
+## Privacy — what you put in, you have given away
+
+The single largest risk in using AI tools at PMC is **leaking material you should not have shared**. The free tiers of every consumer chatbot train on user inputs by default, retain conversations for indefinite periods, and offer no enterprise-grade controls. The risk is not theoretical — it has happened at large firms with material consequences.
+
+The defence is layered. Most of it is operator discipline, not tool selection.
+
+<Pillars>
+  <Pillar eyebrow="Layer 1" title="Do not upload what you cannot afford to lose">
+    Confidential documents, signed NDAs, full earnings drafts, anything
+    under embargo — these do not belong in a consumer chat box. The bar
+    is "would I email this to a stranger?" If no, do not paste it.
+  </Pillar>
+  <Pillar eyebrow="Layer 2" title="Strip and reduce">
+    Remove document metadata (MS Office *Inspect Document*, `exiftool`).
+    Reduce semantic specificity where it does not change the question —
+    *"profit of €127.4M"* becomes *"a significant profit"* if the exact
+    number is not needed.
+  </Pillar>
+  <Pillar eyebrow="Layer 3" title="Anonymise">
+    Strip names, tickers, and identifying detail when only the structure
+    of the analysis matters. Tools like `presidio` and `spaCy` automate
+    this for larger documents.
+  </Pillar>
+  <Pillar eyebrow="Layer 4" title="Disable training and sharing">
+    In every consumer client, opt out of training-on-your-data and turn
+    off conversation sharing. Prefer Enterprise tiers — they ship with
+    these defaults inverted and with admin controls.
+  </Pillar>
+</Pillars>
+
+For genuinely sensitive work — anything under NDA, anything pre-earnings, anything that would embarrass PMC if it leaked — the right answer is **not to use a consumer chatbot at all**. Run a model locally instead.
+
+### Running a model on your laptop
+
+Ollama is the standard tooling for local LLMs. Combined with Docker, it gives you a model that runs entirely on your machine — no API calls, no logs on someone else's servers, no training on your input.
+
+The whole setup is three commands. Install Docker from the official site, then in a terminal:
+
+```bash
+# Pull and run Ollama in a Docker container
+docker run -d -v ollama:/root/.ollama -p 11434:11434 \
+  --name ollama ollama/ollama
+
+# Run a model interactively
+docker exec -it ollama ollama run llama3.2
+>>> <your prompt here>
+>>> /bye
+```
+
+Local models trade some quality for total privacy. For sketching, summarising, and reformatting, modern 7-to-13-billion-parameter models are good enough. For final analytical work on a real deal, the quality gap with frontier models still matters — but for anything genuinely sensitive, "good enough on your laptop" beats "excellent in someone else's logs."
+
+<Divider />
+
+## Where this is heading — agentic AI
+
+Up to this point everything has been **conversational** — you ask, the model answers, you decide what to do next. The next layer, increasingly real, is **agentic**: AI that not only answers but acts. Reads your inbox. Schedules the meeting. Drafts the reply. Browses the website. Runs the script.
+
+A representative example, drawn from the workshop, is the OpenClaw project ([openclaw.ai](https://openclaw.ai)) — an open-source local agent platform that combines a chat interface with browser automation, file-system access, and persistent memory. A single instruction like *"review my unread emails, summarise the urgent finance requests, schedule a meeting with the professor tomorrow afternoon, and prepare a draft reply"* becomes a multi-step plan that the agent executes, surfacing the draft for your approval.
+
+<Callout type="insight" title="The shift in mental model">
+Traditional AI is *conversation*. Agentic AI is *conversation plus execution*. The prompting skills in this session matter even more in the agentic setting — because a vague prompt now spends real time taking real actions before you discover it was wrong. CSI-FBI is the discipline that scales.
+</Callout>
+
+Agentic tooling is moving fast and the failure modes are not yet well understood. For PMC work, the conservative posture is: experiment with these tools on low-stakes personal tasks (calendar, inbox triage, research scraping) and let the high-stakes finance workflows mature on the conversational side before moving them to autonomous execution.
+
+<Divider />
+
+## What to take into your next prompt
+
+Six habits that, taken together, separate analysts who get useful output from analysts who get plausible filler.
+
+<Pillars>
+  <Pillar eyebrow="Habit 1" title="Write CSI-FBI before you press send">
+    Context, Specific, Instruction, Format, Blueprint, Identity. If your
+    prompt is shorter than half a page, it is probably too short.
+  </Pillar>
+  <Pillar eyebrow="Habit 2" title="Verify every critical number">
+    LLMs make silent maths errors. For anything that lands in a model,
+    a memo, or a slide, recompute independently — or have the model
+    generate a script you can audit.
+  </Pillar>
+  <Pillar eyebrow="Habit 3" title="Ask for the bear case">
+    Default outputs confirm. Devil's-advocate prompts surface the
+    counter-arguments your slide needs to survive review.
+  </Pillar>
+  <Pillar eyebrow="Habit 4" title="Show the working with CoT" emphasize>
+    For anything multi-step, require chain-of-thought. The audit trail
+    is the value, not just the answer.
+  </Pillar>
+  <Pillar eyebrow="Habit 5" title="Package what you reuse">
+    Build skills for the prompts you write more than twice. The
+    investment compounds across the semester.
+  </Pillar>
+  <Pillar eyebrow="Habit 6" title="Keep the confidential off the public clients">
+    Strip, anonymise, reduce. For anything genuinely sensitive, run a
+    local model.
+  </Pillar>
+</Pillars>
+
+<PullQuote attribution="The closing thought">
+  These models do not think. They predict. The quality of your prompt is the quality of the prediction you get back.
+</PullQuote>
+
+The original workshop deck is linked at the top of this page. Open it for the diagrams — the token-to-vector walkthrough and the privacy matrix in particular are worth reading in their original form.
