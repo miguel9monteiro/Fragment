@@ -29,7 +29,12 @@ const MAX_PAGES = 25;
 // with the FIRM_CONCURRENCY cap below, total in-flight stays well under
 // what tripped the WAF when we bulk-seeded 24 Workday firms.
 const PARALLEL_CONCURRENCY = 2;
-const PER_FIRM_TIMEOUT_MS = 20_000;
+// Bumped from 20s to 30s: with PAGE_SIZE=20, slow-responding tenants
+// (blackrock.wd1, rbc.wd3) couldn't even return page 1 within 20s and ended
+// up parked in extended backoff. 30s gives them headroom without exceeding
+// the Edge Function wall-clock budget — worst case 6 batches x 30s = 180s
+// only fires if every firm hits the ceiling, which the data does not show.
+const PER_FIRM_TIMEOUT_MS = 30_000;
 // Cap simultaneously-processed Workday firms. With ~24 active firms and the
 // previous unbounded Promise.all, peak was ~96 simultaneous requests from
 // one Supabase Edge IP — Workday's WAF responded by 400'ing everything for
