@@ -18,7 +18,7 @@ const navItems = [
   { href: "/macro", label: "Macro" },
   { href: "/quant", label: "Quant" },
   { href: "/resources", label: "Resources" },
-  { href: "/jobs", label: "Jobs" },
+  // { href: "/jobs", label: "Jobs" }, // Hidden pending PMC board approval. Route still live at /jobs.
   { href: "/glossary", label: "Glossary" },
   { href: "/contribute", label: "Contribute" },
 ];

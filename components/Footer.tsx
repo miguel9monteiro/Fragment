@@ -41,7 +41,7 @@ export function Footer() {
               { href: "/macro", label: "Macro outlooks" },
               { href: "/quant", label: "Quant presentations" },
               { href: "/resources", label: "Resources" },
-              { href: "/jobs", label: "Jobs" },
+              // { href: "/jobs", label: "Jobs" }, // Hidden pending PMC board approval. Route still live at /jobs.
               { href: "/glossary", label: "Glossary" },
             ]}
           />

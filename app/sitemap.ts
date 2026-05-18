@@ -26,13 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/macro",
     "/quant",
     "/resources",
-    "/jobs",
+    // "/jobs",  // Excluded from sitemap pending PMC board approval. Route still live at /jobs.
     "/glossary",
     "/contribute",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: path === "/jobs" ? ("daily" as const) : ("weekly" as const),
+    changeFrequency: "weekly" as const,
     priority: path === "" ? 1 : 0.8,
   }));
 
