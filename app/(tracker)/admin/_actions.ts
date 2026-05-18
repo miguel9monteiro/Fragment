@@ -43,9 +43,23 @@ async function requireAdmin(): Promise<{ email: string } | { error: string }> {
 // Auth: magic link + sign out
 // ---------------------------------------------------------------------------
 
+// Whitelist of post-login destinations. The login form submits a hidden `next`
+// field driven by ?next=... in the URL, so anyone could forge a value that
+// bounces the magic-link click to an attacker-controlled URL. We refuse
+// anything that isn't a known internal path. Add to this set as new gated
+// surfaces appear.
+const ALLOWED_NEXT_PATHS = new Set(['/admin', '/jobs']);
+
+function safeNext(raw: unknown): string {
+  if (typeof raw !== 'string') return '/admin';
+  return ALLOWED_NEXT_PATHS.has(raw) ? raw : '/admin';
+}
+
 export async function sendMagicLink(formData: FormData) {
   const email = String(formData.get('email') ?? '').trim().toLowerCase();
   if (!email) redirect('/login?error=missing-email');
+
+  const next = safeNext(formData.get('next'));
 
   // Refuse to send magic links to addresses outside the allowlist. Without
   // this, anyone could spam-trigger Supabase Auth's email send for any
@@ -53,7 +67,7 @@ export async function sendMagicLink(formData: FormData) {
   // start the flow they're going to fail.
   if (ADMIN_EMAILS.length === 0 || !ADMIN_EMAILS.includes(email)) {
     // Don't leak whether the email is in the allowlist via the error message.
-    redirect('/login?sent=1');
+    redirect(`/login?sent=1&next=${encodeURIComponent(next)}`);
   }
 
   const supabase = await getSupabaseServerClient();
@@ -68,11 +82,11 @@ export async function sendMagicLink(formData: FormData) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${origin}/auth/callback?next=/admin`,
+      emailRedirectTo: `${origin}/auth/callback?next=${encodeURIComponent(next)}`,
     },
   });
-  if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`);
-  redirect('/login?sent=1');
+  if (error) redirect(`/login?error=${encodeURIComponent(error.message)}&next=${encodeURIComponent(next)}`);
+  redirect(`/login?sent=1&next=${encodeURIComponent(next)}`);
 }
 
 export async function signOut() {

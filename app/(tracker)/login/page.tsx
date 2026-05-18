@@ -16,11 +16,18 @@ interface LoginPageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
+// Whitelist of post-login destinations. Keep in sync with sendMagicLink's
+// ALLOWED_NEXT_PATHS — anything not on this list collapses to /admin so the
+// hidden form input can't be used as an open-redirect vector.
+const ALLOWED_NEXT_PATHS = new Set(['/admin', '/jobs']);
+
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const sent = params.sent === '1';
   const errorRaw = Array.isArray(params.error) ? params.error[0] : params.error;
   const error = typeof errorRaw === 'string' ? errorRaw : null;
+  const nextRaw = Array.isArray(params.next) ? params.next[0] : params.next;
+  const next = typeof nextRaw === 'string' && ALLOWED_NEXT_PATHS.has(nextRaw) ? nextRaw : '/admin';
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center gap-6 px-6 py-16">
@@ -45,6 +52,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </div>
       ) : (
         <form action={sendMagicLink} className="space-y-3">
+          <input type="hidden" name="next" value={next} />
           <label className="block space-y-1.5">
             <span className="block text-sm font-medium">Email</span>
             <input
