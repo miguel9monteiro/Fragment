@@ -6,7 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Fragment** is an **internal knowledge tool** for the Portfolio Management Club at Nova School of Business & Economics (Nova SBE). It exists to consolidate the club's institutional knowledge — pitches, learning sessions, macro outlooks, quant presentations, glossary — into one searchable, well-presented surface that helps members produce **sharper research and sharper reports**. Plus a glossary.
 
-Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel.
+Repository: <https://github.com/miguel9monteiro/Fragment>. Deployed on Vercel (project `fragment`); production tracks `main`.
+
+### Deployment & domains
+
+- **Canonical URL: <https://fragment.pmcnovasbe.com>** — live with valid SSL since August 2026, attached to the **Production** environment in Vercel (Settings → Domains), so it always points at the latest production deployment. `fragment-beta.vercel.app` still works alongside it.
+- Fragment runs on a *subdomain* of the club's public domain, but it remains a completely separate codebase and deployment from the pmcnovasbe.com marketing site (see the table below) — sharing the domain does not merge the surfaces.
+- **DNS lives in Bluehost** (the `pmcnovasbe.com` zone). One record serves Fragment:
+
+  | Type | Host Record | Points to | TTL |
+  |---|---|---|---|
+  | CNAME | `fragment` | `b279433fce8c2ff9.vercel-dns-017.com.` | 4 hours |
+
+  The target is a **project-specific hostname** — Vercel is expanding its IP range and now issues a unique CNAME target per project rather than the legacy generic `cname.vercel-dns.com` (which still works, but the value above is this project's). Two Bluehost UI quirks: the "Refers to" dropdown only offers `@`/`www`/`Other Host`, so use **Other Host** to get the free-text host field; and enter the target with a trailing dot so Bluehost can't append `.pmcnovasbe.com` (it strips the dot for display — that's normal).
+- **Do not touch anything else in that zone.** The MX/SPF/DKIM records (club mail), the apex A record, and the `www` CNAME all belong to the pmcnovasbe.com marketing site.
+- **Known drift:** `app/layout.tsx` (`metadataBase`), `app/sitemap.ts`, and `app/robots.ts` still hardcode the old `https://pmc-knowledge.vercel.app` — update them to the canonical domain when touched.
+- The Tracker's magic-link auth requires the Supabase redirect allowlist to include the serving host (see *Supabase Auth → Redirect URL allowlist* below) — a new domain means a new allowlist entry.
 
 ### Fragment vs pmcnovasbe.com — keep these straight
 
