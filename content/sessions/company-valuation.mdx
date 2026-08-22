@@ -1,0 +1,255 @@
+---
+title: "Company Valuation"
+slug: "company-valuation"
+author: "Alexandre Melo, Nazir Hemrage, and Guilherme Ascensão"
+team: "PMC Presidency & Asset Management"
+date: "2025-09-24"
+difficulty: "intermediate"
+estimatedReadTime: 13
+tags:
+  - "valuation"
+  - "dcf"
+  - "financial-modeling"
+  - "financial-statements"
+  - "forecasting"
+  - "accounting"
+summary: "The club's end-to-end valuation method — how to reorganise reported financial statements into capital employed and financing sources, forecast the business through eight linked stages, reconcile FCFO to FCFE until the balance sheet balances, and bridge from enterprise value to equity value."
+featured: true
+sourcePdfUrl: "/sessions/company-valuation.pdf"
+---
+
+Every fair value on a PMC football field comes out of the same machine: a three-statement model that starts from a company's reported accounts and ends in a discounted stream of operating cash flows. This session — Learning Session 3 of Fall 2025, taught by a former Portfolio Manager, the VP of Asset Management, and the President — is the manual for that machine. It is the method behind the club's official valuation template, and the standard every <KeyTerm slug="DCF">DCF</KeyTerm> in a pitch is reviewed against.
+
+The session has two halves that mirror how the work actually flows. First, **reorganise** what the company reports: reported statements are built for auditors, not for valuation, so the balance sheet, income statement, and cash flows get restated into an operating view. Second, **forecast** the restated statements through eight linked stages until the model closes — the balance sheet balances, and every line of the income statement and balance sheet ties to the cash flow statement.
+
+<Stats>
+  <Stat value="8" label="Forecast stages" caption="From reorganised historicals to a closing cash balance" />
+  <Stat value="252" label="Day-count convention" caption="Working days used in the DSO, DPO, and days-inventory drivers" />
+  <Stat value="0" label="One-off charges, forecast" caption="Exceptional items are forecast at zero — if it recurs, it isn't exceptional" />
+</Stats>
+
+## The business planning framework
+
+The framework — adapted from Bocconi's Corporate Valuation course — runs eight stages in a deliberate order. Each stage feeds the next; running them out of order is how models end up with circular references nobody can explain.
+
+<Pillars>
+  <Pillar eyebrow="Stage 1" title="Reorganise historicals">
+    Enter the raw income statement and balance sheet, restate them into
+    the operating layout, and build new cash flows from the restated
+    figures. Do <em>not</em> reorganise the historical cash flow
+    statements — they are rebuilt, not restated.
+  </Pillar>
+  <Pillar eyebrow="Stage 2" title="Operational forecast" emphasize>
+    Sales first, then costs. The sales forecast drives almost
+    everything downstream, so it gets decomposed rather than guessed.
+  </Pillar>
+  <Pillar eyebrow="Stage 3" title="Investment forecast">
+    Fixed assets, capex, and D&amp;A through a control account;
+    net working capital through days-based drivers.
+  </Pillar>
+  <Pillar eyebrow="Stage 4" title="Other items">
+    Exceptional charges at zero; surplus assets and non-operating
+    liabilities held constant.
+  </Pillar>
+</Pillars>
+
+<Pillars>
+  <Pillar eyebrow="Stage 5" title="Tax forecast">
+    Effective-tax-rate driver or the country's actual tax code — and
+    the first place the model's circularity appears.
+  </Pillar>
+  <Pillar eyebrow="Stage 6" title="Equity forecast">
+    Share capital constant; dividends as a payout ratio of net income;
+    retained earnings roll forward.
+  </Pillar>
+  <Pillar eyebrow="Stage 7" title="Debt forecast">
+    Specific maturities, or a target leverage ratio that implies net
+    issuance automatically.
+  </Pillar>
+  <Pillar eyebrow="Stage 8" title="Cash forecast">
+    The year's cash flow closes into the balance sheet — and the
+    balance sheet balances.
+  </Pillar>
+</Pillars>
+
+### Sales: the forecast that carries the model
+
+<PullQuote attribution="The core of business planning">
+  The sales forecast is the most important step in business planning — most items in the model use sales as a driver.
+</PullQuote>
+
+Because so much hangs on it, the total is never forecast as one number. The main decomposition is price times volume:
+
+<FormulaBlock
+  formula="\text{Sales } (\$) = \text{Price per unit}\left(\tfrac{\$}{\text{unit}}\right) \times \text{Volumes sold } (\#\text{ units})"
+  caption="The main decomposition. Forecast the drivers, not the total."
+/>
+
+From there, two routes. **Top-down**: sales = market size × market share, with market size itself built from units and average sector prices. **Bottom-up**: sales = the sum of each business unit's price-times-volume build. Growth can be organic or external (M&A), and the forecast must respect physical constraints — floor space, production capacity — that a percentage growth rate will happily ignore.
+
+Variable operating costs then follow a driver — % of sales or % of units sold — estimated from a historical average or a management/analyst target. The driver itself can evolve: held constant, improving with scale, or converging gradually toward a management target rather than jumping there in year one.
+
+### Investments: control accounts and days
+
+Fixed assets are modelled with a control account — the same beginning-balance-plus-flows pattern that recurs throughout the model:
+
+| Control account | Roll-forward |
+| --- | --- |
+| Fixed assets | BOP fixed assets + Capex − D&A = EOP fixed assets |
+| Retained earnings | BOP retained earnings + Net income − Dividends = EOP retained earnings |
+| Gross debt | BOP debt + New issues − Repayments = EOP debt |
+| Cash | BOP cash + Cash flow of the year = EOP cash |
+
+Capex is forecast as a % of sales or from management's stated targets by project, maintenance, and acquisitions. D&A is either a % of capex or a detailed schedule: depreciate each year's capex over a target useful life, keep amortising the existing asset base until expiry, and — by best practice — halve the first year's D&A on each capex vintage, since spend lands mid-year on average.
+
+Net working capital runs on days-based drivers, using the club's 252-working-day convention:
+
+<FormulaBlock
+  formula="\begin{aligned} \text{Inventories} &= \tfrac{\text{Days in Inventory}}{252} \times \text{COGS} \\[4pt] \text{Trade payables} &= \tfrac{\text{DPO}}{252} \times (\text{Purchases} + \text{VAT}) \\[4pt] \text{Trade receivables} &= \tfrac{\text{DSO}}{252} \times (\text{Sales} + \text{VAT}) \end{aligned}"
+  caption="NWC drivers. Other operating assets and liabilities run as a % of sales."
+/>
+
+### Other items: the detective's hat
+
+Exceptional P&L and one-off charges are forecast at zero, and surplus assets and non-operating liabilities are held constant. But the classification itself deserves suspicion:
+
+<Callout type="warning" title="Put on your detective's hat">
+Companies will often register expenses as a one-time occurrence — but it is your job to figure out whether they really are that infrequent. A charge that reappears under a slightly different name every year (lawsuit, legal expenses, outside consulting fees, restructuring costs) is an operating cost wearing a costume. Always look at "exceptional" items through a skeptical lens before letting them out of your forecast.
+</Callout>
+
+### Tax, equity, debt, cash — and the circle
+
+Taxes are forecast either with the historical effective rate — income taxes over EBT — or from the country's actual code (Italy layers IRES at 24% on EBT with IRAP at 3.9% on roughly EBIT; the US layers state tax of about 7.5% with federal tax at 21% on EBT net of state taxes). Equity holds share capital constant, pays dividends as a payout ratio of net income, and rolls retained earnings forward — net income is the link from the income statement into the balance sheet. Debt is either modelled maturity by maturity or driven off a target leverage ratio like net debt to equity, which implies the net of new issues and repayments automatically.
+
+<Callout type="insight" title="The circularity is a feature, not a bug">
+At this point the model goes circular: taxes depend on EBT, which depends on interest, which depends on cash, which depends on the cash flow statement, which depends on the income statement — which depends on taxes. It can feel like building a house from the roof. Don't panic: keep building, switch iterative calculation on, and the loop converges.
+</Callout>
+
+The cash stage closes the loop: beginning cash plus the year's cash flow gives ending cash, and the cash flow of the year is the link from the cash flow statement into the balance sheet. One nuance — the **revolver**. If a year's cash flow drives the balance below zero, either the company has genuinely run out of cash, or the negative balance is functioning as a bank overdraft, which modelling treats as a revolving facility. Either way, interest income and interest expense must be modelled separately — the rate earned on average cash and the rate paid on average gross debt are different numbers.
+
+<Divider />
+
+## Reorganising the statements
+
+Why reorganise at all? Because financial accounting data enters the valuation at two load-bearing points — forecasting the cash flows, and moving from enterprise value to equity value — and the reported layout serves neither. The asset-side result the model discounts is the free cash flow from operations:
+
+<FormulaBlock
+  formula="EV_0 = \sum_{t=1}^{T} \frac{FCFO_t}{(1 + WACC)^t} + \frac{TV}{(1 + WACC)^T}"
+  caption="Present value of operating cash flows plus terminal value, discounted at the WACC, gives enterprise value — the intermediate result of every asset-side method."
+/>
+
+Two ground rules before touching anything: always base the analysis on **consolidated financial statements** — the ones where the whole company is represented — and neutralise accounting-standard differences across the peer set before comparing anyone to anyone.
+
+### The balance sheet: from A = L + E to CE = ND + E
+
+The reported balance sheet sorts items by maturity: current versus non-current. The reorganised balance sheet sorts them by *role*: **capital employed** (what the business has cumulatively invested in its operations) financed by **financing sources** (who funded it). Items can be dragged within a side keeping their sign, or across sides by flipping it.
+
+<Pillars>
+  <Pillar eyebrow="Capital employed" title="Fixed assets">
+    Usually match the as-reported non-current assets: tangibles,
+    intangibles, capitalised leasing assets, goodwill.
+  </Pillar>
+  <Pillar eyebrow="Capital employed" title="Non-cash working capital" emphasize>
+    Operating items only — assets and liabilities generated by the
+    ordinary execution of the business model. The classic liquidity
+    definition (current assets minus current liabilities) is useless
+    here: it contains financial items like short-term loans.
+  </Pillar>
+  <Pillar eyebrow="Capital employed" title="Surplus &amp; non-operating">
+    Assets and liabilities not strictly related to daily core
+    operations, or financial in nature — held-for-sale items, less
+    liquid financial assets, stakes outside the consolidation
+    perimeter, pensions, exceptional provisions.
+  </Pillar>
+  <Pillar eyebrow="Financing sources" title="Net debt &amp; equity">
+    <KeyTerm slug="Net Debt">Net debt</KeyTerm> is the net exposure to
+    third-party lenders: interest-bearing loans and bonds, convertibles,
+    and financial leases, minus excess cash and equivalents. Equity is
+    share capital, reserves, and minority interest.
+  </Pillar>
+</Pillars>
+
+What actually sits inside non-cash working capital, in practice:
+
+| Asset side | Liability side |
+| --- | --- |
+| Trade receivables | Trade payables |
+| Inventory | Employee salaries |
+| Prepaid and accrued assets | Prepaid and accrued liabilities |
+| "Working" cash | Tax current liabilities |
+| Tax current assets | "Ordinary" provisions |
+
+The definition is not set in stone — it may need flexibility per firm, occasionally pulling in non-current liabilities. The test is always operational nature, not maturity.
+
+### The income statement: down to EBITDA and below
+
+The restated P&L runs Revenues → <KeyTerm slug="EBITDA">EBITDA</KeyTerm> → EBIT → EBT → Net income, with operating costs (excluding D&A) taken out first, then D&A (including impairments and fixed-asset write-offs), then net interest and exceptional items, then income taxes. One practical trap: income statements present costs **by nature** (personnel, raw materials, D&A — common in EU national GAAPs) or **by function** (COGS, SG&A — common under IFRS and US GAAP). In the by-function case, D&A is buried inside the functional lines; you need to find the D&A breakdown in the company's report and adjust the income statement accordingly, or your EBITDA is fiction.
+
+### The cash flows: FCFO to FCFE, until it balances
+
+The rebuilt cash flow statement is a reconciliation that starts at EBIT and cascades down:
+
+| Step | Line |
+| --- | --- |
+| EBIT − operational taxes + D&A | = Gross cash flows |
+| − increase in non-cash WC − capital expenditures | = **FCFO** |
+| ± net interests ± exceptional items ± tax shields ± change in surplus items ± change in gross financial debt | = **FCFE** |
+| ± change in equity | = Cash flow of the year — and it must equal the change in cash. It balances. |
+
+Three definitions make the top line work. **Operational taxes** are the taxes that would have been paid on EBIT alone: EBIT × effective tax rate. The **tax shield** is the savings generated by everything below EBIT — actual income taxes minus operational taxes. And **NOPLAT** — EBIT minus operating taxes — is the measure of operational performance generated by capital employed. The final discipline: check that every item in the income statement and balance sheet is linked, directly or indirectly, to the cash flow statement.
+
+<SelfCheck question="Why does FCFO deduct operational taxes — EBIT × t — instead of the taxes the company actually paid?">
+Because FCFO is an *asset-side* cash flow: it measures what the operations generate for all capital providers, independent of how the company is financed. Actual taxes paid are reduced by the interest tax shield — a financing effect. Deducting EBIT × t keeps the operating stream clean; the tax shield is then added back further down the cascade, on the way to FCFE, where financing effects belong. Mixing the two double-counts the shield: once in the cash flow and once in the after-tax cost of debt inside the <KeyTerm slug="WACC">WACC</KeyTerm>.
+</SelfCheck>
+
+<Divider />
+
+## The model, end to end
+
+Zoomed out, the model's logic is a directed graph. Annual reports feed the as-reported historicals; those get restated; the restated historicals plus external sources feed the assumptions and drivers; the drivers fan out into the working tabs — sales and OPEX, capex and D&A, NWC, debt and interest, equity, and other items — and the tabs converge into three output statements. The output income statement passes net income into the output balance sheet; the output cash flow statement passes cash into the balance sheet; and the closing identity holds:
+
+<FormulaBlock
+  formula="\underbrace{CE + SA}_{\text{capital employed + surplus assets}} \;=\; \underbrace{E + ND}_{\text{equity + net debt}}"
+  caption="The balance check. When this holds in every forecast year, the model is closed."
+/>
+
+<SelfCheck question="Your forecast balance sheet is off by a small amount in year 3 only. Where do you look first?">
+At the two inter-statement links and the control accounts — not at the drivers. A driver error changes the *level* of the forecast but keeps the model closed; an imbalance means a flow isn't landing where it should. Check that year 3's net income flows into retained earnings, that the year's cash flow flows into the cash balance, and that each control account (fixed assets, retained earnings, debt, cash) rolls BOP + flows = EOP with the same figures the statements show. A year-specific break almost always means a one-off item — a disposal, an exceptional charge, a debt repayment — hit one statement but not its counterpart.
+</SelfCheck>
+
+<Divider />
+
+## From enterprise value to equity value
+
+The present value of FCFO gives the market value of capital employed — enterprise value. But a pitch recommends a share price, and getting there is the <KeyTerm slug="Equity Bridge">equity bridge</KeyTerm>, implied by the other reorganised balance-sheet items — which is why a carefully reorganised balance sheet is paramount:
+
+<FormulaBlock
+  formula="\begin{aligned} EqV = \;& EV - ND + \text{Associates} - \text{Pension deficit} \\ & - NCI - \text{Preferred} \pm \text{Other surplus A\&L} \end{aligned}"
+  caption="The bridge. EV and the surplus items at market value; the rest deducted for claims that rank ahead of common shareholders."
+/>
+
+Whether a stake shows up inside EV or in the bridge depends on consolidation:
+
+| Stake | Influence | Type of asset | Accounting | Valuation treatment |
+| --- | --- | --- | --- | --- |
+| Above 50% | Control | Subsidiary | Full consolidation | Core asset |
+| 20–50% | Significant influence | Associate | Equity method | Surplus asset |
+| Below 20% | No influence | Financial asset | Fair value or cost | Surplus asset |
+
+Full consolidation pulls 100% of a subsidiary's revenues and costs into the group P&L and gives the outside shareholders their share back through the minority-interest line; the equity method leaves an associate out of operations entirely and books the owned share of its net result as a single line. That is exactly why associates are added and NCI is deducted in the bridge.
+
+<DeepDive title="Two conventions the club standardises on">
+**Net debt over gross debt.** Net debt is the standard leverage metric in the model — it is the industry standard, and gross debt reflects neither the true financial riskiness of the firm nor the benefit of tax shields. The known wrinkle: with the net figure, a company can appear to reduce its cost of capital indefinitely just by hoarding cash and equivalents, so sanity-check what the "excess" cash really is.
+
+**Fully diluted shares over basic.** Market cap quotes use basic shares outstanding, but common practice and the industry standard for per-share fair value is fully diluted. Being theoretically exact would mean estimating which convertible securities and management stock options will actually be exercised; for the sake of being conservative, use fully diluted and accept the small overstatement of the share count.
+</DeepDive>
+
+<Divider />
+
+## Where to go deeper
+
+The session's single outside recommendation is Professor Aswath Damodaran — the "Dean of Valuation." His NYU courses on corporate valuation, corporate finance, and statistics are free on his YouTube channel, and he maintains an online database of market data, projections, and auxiliary valuation inputs the club draws on. For anything else, the standing instruction is simpler: ask. Reach out to the presenters or to anyone in the club.
+
+<PullQuote attribution="The closing thought">
+  The club is supposed to be a knowledge-sharing environment, where standing on the shoulders of giants is one of the key factors for the success of everyone — especially newcomers.
+</PullQuote>
