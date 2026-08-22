@@ -1,0 +1,213 @@
+---
+title: "Bloomberg Intro & Codes"
+slug: "bloomberg-codes"
+author: "Guilherme Bagulho"
+team: "PMC Head of Investment"
+date: "2023-02-15"
+difficulty: "beginner"
+estimatedReadTime: 9
+tags:
+  - "bloomberg"
+  - "terminal"
+  - "reference"
+  - "research"
+  - "data"
+summary: "The club's field guide to the Bloomberg Terminal — how the search bar actually works, and the full code index maintained by members for members: economic data, company data, valuation, technical analysis, asset classes, portfolio management, and directories, with the workflows that chain them together."
+featured: true
+sourcePdfUrl: "/sessions/bloomberg-codes.pdf"
+---
+
+Dear PMC'er — if you're reading this, chances are you have just arrived at the club and you're taking your first steps in the Bloomberg Terminal. That is the opening line of this document, and it says everything about what it is: not a lecture, but a field guide, carefully prepared by your fellow PMC'ers and handed down to smooth the journey. The terminal rewards muscle memory; there is not much content available online; and the fastest way to competence is a good code index plus teammates who already know the cheeky codes and common workflows.
+
+This page is the standalone, living version of the code index that first shipped as an appendix to [Company Selection and Analysis](/sessions/company-selection-and-analysis). Two things to do before you sit down at a terminal: read the Bloomberg information on the Nova library website to get access sorted, and revisit the Bloomberg Terminal chapter of your BMC course — the Bloomberg Market Concepts certification most members complete on arrival. Then come back here, and keep this page open in the other tab.
+
+<Stats>
+  <Stat value="70+" label="Codes indexed" caption="Across economic data, company data, valuation, asset classes, and portfolio tools" />
+  <Stat value="8" label="Categories" caption="From the macro calendar to ETF flows and options data" />
+  <Stat value="BMC" label="The prerequisite" caption="The Bloomberg Market Concepts course — its terminal chapter is the missing manual" />
+</Stats>
+
+## How the terminal actually listens
+
+Everything starts at the search bar, and one mechanic governs it all:
+
+<Pillars>
+  <Pillar eyebrow="The rule" title="Load the security first" emphasize>
+    Type the security — <em>BOO LN Equity</em>, say — and load it.
+    From that point on, <strong>every function code you run applies to
+    the security you have chosen</strong>. DES describes it, FA opens
+    its financials, ANR shows its analyst recommendations.
+  </Pillar>
+  <Pillar eyebrow="The alternative" title="Or go function-first">
+    You can also type a function code directly, or search by the code
+    of a security. The search bar resolves both: functions at the top,
+    matching securities below — the same company across its listings,
+    depositary receipts, and composites.
+  </Pillar>
+</Pillars>
+
+<Callout type="insight" title="Why security-first is the habit to build">
+A research session on one name touches a dozen functions — description, financials, holders, credit, relative valuation. Loading the security once and chaining codes is the difference between a fluid twenty-minute workup and re-typing the ticker twelve times. Watch a senior member work a name and this is the rhythm you'll see.
+</Callout>
+
+<Divider />
+
+## The macro desk
+
+The economic-data codes cover the calendar, the surprise index, and the rates complex — the standing inputs to every macro section of a pitch:
+
+| Code | What it gives you |
+| --- | --- |
+| ECO | Economic calendar |
+| ECSU | Economic surprise monitor |
+| CRP | Country's risk premium |
+| WIRP | Interest rates incorporated in the market valuation |
+| IFMO | Inflation monitor |
+| FDTR Index | Fed interest rates, historical data |
+| FXFC | Forex forecasts |
+| GEW | Major economic aggregates |
+| ECFC | Economic data for each country |
+| FOMC | FOMC meeting results |
+| GC3D | 3D graph of the yield curve |
+| BYFC | Yields forecast |
+
+## The company file
+
+The company-data codes split naturally into two halves: who the company is, and how it is financed and followed.
+
+| Code | What it gives you |
+| --- | --- |
+| DES | Description of the company |
+| RSKC | Description of the company and risk analysis |
+| MGMT | Management team of the company |
+| PIB | Bloomberg company report |
+| BICO | Analysis on the industry and the company |
+| BRC | Major company headlines |
+| KI | Key company insights |
+| ESG | ESG information of the company |
+| EVT | Calendar events for the company |
+| DVD | Dividends and splits information |
+| CF | Company filings |
+| OWN | Ownership summary |
+| TRA | Total return of the stock, with dividends |
+| ANR | Analyst recommendations |
+| AGGD | Major creditors of the company |
+| DDIS | Debt distribution of the firm |
+| CAST | Detailed capital structure of the company |
+| CRPR | Credit ratings of the company |
+| DRSK | Bloomberg default risk of the company |
+| DRAM | Evolution of DRSK |
+| CL | Company's litigations |
+
+<SelfCheck question="You're building the credit section of a bond pitch — capital structure, maturity wall, ratings. Which codes carry the section?">
+CAST for the detailed capital structure, DDIS for the debt distribution — the maturity schedule that tells you whether there's a refinancing wall — and CRPR for the agency ratings, with DRSK/DRAM adding Bloomberg's own default-risk read and its trend. AGGD tells you who the major creditors actually are. That five-code chain is essentially the skeleton of the credit analysis in the club's bond pitches — run on a loaded security, it's a fifteen-minute first pass.
+</SelfCheck>
+
+## Valuation
+
+Two families, mirroring the two branches of fundamental analysis. Absolute valuation support:
+
+| Code | What it gives you |
+| --- | --- |
+| EEG | Price versus EPS performance |
+| WACC | The company's <KeyTerm slug="WACC">WACC</KeyTerm> |
+| FA | Financial analysis — balance sheet, income statement, cash flows, and ratios |
+| EM | Earnings trends of the company, past and future |
+| CCB | Revenue breakdown |
+
+And the relative-valuation toolkit:
+
+| Code | What it gives you |
+| --- | --- |
+| PEBD | Price and EPS bands |
+| RV | Relative valuation |
+| RVC | Graphical comparison of RV |
+| EQRV | Equity relative valuation |
+| WEI | World equity indicators |
+| HS | Spread analysis vs the S&P 500 |
+| PBAR | Relative valuation of companies |
+| COMP | Comparative performance of securities and the S&P 500 |
+| RVRD | Relative debt analysis |
+
+There is also a technical-analysis corner — TECH for the charts, BTST and BT for backtesting — and the deck's footnote on it is club doctrine in one line:
+
+<Callout type="warning" title="On the technical codes">
+"We don't do much of it here. Unless you're a Quant and can back-test your pattern…" — the deck's own note, and the club's standing position: technical claims are viewed with skepticism unless they survive a backtest. The backtesting tools are there precisely so that the burden of proof can be met.
+</Callout>
+
+<Divider />
+
+## Beyond equities
+
+The portfolio spans bonds, FX, and commodities, and the terminal covers each:
+
+| Family | Code | What it gives you |
+| --- | --- | --- |
+| Bonds | DEBT | Sovereign debt ownership |
+| Bonds | YAS | Computation of bond yield |
+| Bonds | WCDM | Outstanding government debt |
+| Bonds | CSDR | Sovereign bond rates |
+| Bonds | SOVR | Sovereign default risk, in CDS terms |
+| Currencies | FXCA | Currency converter |
+| Currencies | FXC | Currency matrix |
+| Currencies | WCRS MAC | Valuation of currency |
+| Commodities | OPEC | Monthly oil production |
+| Commodities | NTBK | Profitability of the refining business |
+| ETFs & Options | FFLO | ETF outflows and inflows |
+| ETFs & Options | OMON | Options for a specific firm |
+| ETFs & Options | OVME | Specific data on the options |
+
+## Running the book
+
+The last two families are the club's day-to-day: managing the portfolio inside the terminal, and finding the next security to look at.
+
+| Family | Code | What it gives you |
+| --- | --- | --- |
+| Portfolio management | PRTU | Creates a portfolio in the Bloomberg platform |
+| Portfolio management | PORT | Manages the portfolio created in PRTU |
+| Portfolio management | EQBT | Equity backtesting tool |
+| Directories | WATC | Stock directory based on criteria |
+| Directories | ICS | Stocks by sector |
+| Directories | MEMB | Stocks in an index |
+| Directories | MRR | Stocks by returns |
+| Directories | EQS | Equity screening based on criteria |
+| Directories | SRCH | Bond directory |
+| Directories | WB | Sovereign bond directory |
+| Directories | GLCO | Commodities directory |
+| Directories | BI | Bloomberg Intelligence |
+
+<Divider />
+
+## Putting the index to work
+
+A code list becomes a skill when the codes chain into workflows. Three the club runs constantly:
+
+<Pillars>
+  <Pillar eyebrow="Workflow 1" title="The new-name workup">
+    Load the security → DES for the business → PIB and BICO for the
+    company and industry read → FA for the financials → OWN and ANR
+    for who holds it and what the street thinks → EQRV to see it
+    against peers. Twenty minutes to a defensible first impression.
+  </Pillar>
+  <Pillar eyebrow="Workflow 2" title="The macro morning">
+    ECO for what prints today → ECSU for how the data has been
+    surprising → WIRP for what the market already prices → FOMC after
+    a meeting. The macro section of any pitch starts from these four.
+  </Pillar>
+  <Pillar eyebrow="Workflow 3" title="The credit pass">
+    SRCH to find the bonds → YAS to compute the yield → CAST, DDIS,
+    and CRPR for structure, maturities, and ratings → DRSK for the
+    default-risk overlay. The chain behind every fixed-income pitch
+    in the book.
+  </Pillar>
+</Pillars>
+
+<SelfCheck question="A teammate wants to know whether the market has already priced in the next central-bank cut before writing their rates paragraph. Which code do they run first?">
+WIRP — the interest rates incorporated in the market valuation. It shows what the market currently implies for policy rates, which is the baseline any rates view must be stated against: a pitch that predicts a cut the market already fully prices is predicting nothing. ECO tells you when the decision lands and FOMC what was decided last time, but WIRP is the "what's priced in" answer.
+</SelfCheck>
+
+This document was written to be outgrown. It is by no means comprehensive; the terminal is deeper than any index, and the best codes travel by word of mouth. Which is why the letter it opens with ends the way it does:
+
+<PullQuote attribution="The initial note, to every new member">
+  We count on you to enhance, improve, and update the material available here — carefully prepared by your fellow PMC'ers.
+</PullQuote>
