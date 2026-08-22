@@ -1,0 +1,249 @@
+---
+title: "Company Selection and Analysis"
+slug: "company-selection-and-analysis"
+author: "Guilherme Bagulho and Rodrigo Baptista"
+date: "2023-02-08"
+difficulty: "beginner"
+estimatedReadTime: 14
+tags:
+  - "equity-research"
+  - "company-analysis"
+  - "financial-statements"
+  - "ratios"
+  - "valuation"
+  - "bloomberg"
+  - "investment-thesis"
+summary: "The first session every analyst gets — how to choose a firm through the business, macro, and fundamentals lenses, read the three financial statements with the ratios that matter, pair every red flag with its mitigant, assemble the valuation, and turn it all into a thesis, a recommendation, and the right Bloomberg codes."
+featured: true
+sourcePdfUrl: "/sessions/company-selection-and-analysis.pdf"
+---
+
+Before there is a model, a deck, or a vote, there is a blank screen and a question: which company, and why this one? This Spring 2023 session is the club's answer — the ground floor of the analyst curriculum. It walks the full arc of a pitch in embryo: how to choose a firm, how to understand its business and the macro forces acting on it, how to actually read the three financial statements, how to weigh risks against their mitigants, and how the valuation, the investment thesis, and the recommendation come together at the end. It closes with the club's field guide to the Bloomberg terminal — nine pages of codes indexed by task.
+
+Everything downstream in the curriculum — the valuation model, the reassessment discipline — assumes the reflexes this session installs. It is deliberately built on real companies: KB Home for the business and macro reads, Air Products for the balance sheet, Walt Disney for the income statement, Leidos for capital structure, Metro do Porto for the cash flow statement, and Public Storage for relative valuation.
+
+<Stats>
+  <Stat value="3" label="Lenses on every firm" caption="Business, macro, fundamentals — in that order" />
+  <Stat value="5 yrs" label="Minimum data history" caption="Collect financial statements over at least five years before projecting anything" />
+  <Stat value="60+" label="Bloomberg codes" caption="Indexed by task in the session's appendix, from ECO to OVME" />
+</Stats>
+
+## Where it all starts
+
+Choosing a firm is not a stock screen. The session frames it as three questions asked in sequence, each one a filter the company must survive before the next.
+
+<Pillars>
+  <Pillar eyebrow="Lens 1" title="Business">
+    What does the firm actually do, for whom, and what makes it stand
+    out? If you cannot explain the business, you cannot explain the
+    financial statements it produces.
+  </Pillar>
+  <Pillar eyebrow="Lens 2" title="Macro">
+    What affects the business other than the business itself — rates,
+    inflation, geopolitics, the industry cycle? The firm operates in a
+    geography and an industry, and both shape the outlook.
+  </Pillar>
+  <Pillar eyebrow="Lens 3" title="Fundamentals">
+    What do the statements say? Liquidity, cash-flow generation,
+    capital structure, profitability — the numbers that either confirm
+    the story or contradict it.
+  </Pillar>
+</Pillars>
+
+## Understanding the business
+
+The business read is a checklist of questions, and the session answers each one for KB Home, the US homebuilder, to show what a complete answer looks like:
+
+| Key question | Applied to KB Home |
+| --- | --- |
+| Supply chain — operator or participant? | Just delivers the house; not responsible for construction materials |
+| Where does it operate? | Only in the United States, dividing revenues by US region |
+| What products or services? | Homebuilding, plus insurance for properties |
+| Segments, geographies, or both? | Revenues split per segment and per geography |
+| What is new at the firm recently? | Management discussion: re-sequencing construction |
+| How does it stand out from competition? | Bargaining power with suppliers; orders inventory in advance |
+| Current strategy? | Accelerating house delivery post-Covid |
+| Dividends or buybacks? | Dividend yield of 1.7% |
+| Good management team? | Some members with 25+ years in the field |
+| Recent M&A? | Last major acquisition in 2003 |
+| Key shareholders? | Mostly institutional — BlackRock, Vanguard, Fidelity |
+
+Answering these before opening the accounts pays off twice: you capture a sense of how the firm works, and you know what you should expect to find in the financial statements before you find it.
+
+## Understanding the macro
+
+Macro matters because the economic environment affects how the firm performs, because macro also carries events like geopolitics and pandemics that move the whole market, and because the firm's geography and industry shape its outlook. The watch list: the Macro Department's overview, central bank decisions (the local central bank, the ECB, and the Fed), the key data flow — consumer confidence, spending, government data, unemployment, inflation prints, PMIs — and the key prices for the industry at hand.
+
+<Callout type="insight" title="The transmission chain, worked for KB Home">
+Inflation is above the 2% target → the Fed raises rates by 75bps → variable-rate loans get more expensive, and new loans too → most families need a mortgage to buy a house → higher rates reduce housing demand. Meanwhile: KB Home builds houses → collects revenue mostly from selling them → falling demand cuts revenues, or at least slows growth → performance is compromised as the macro worsens. Every macro read in a pitch should trace a chain like this one — from the headline number to the company's top line, link by link.
+</Callout>
+
+<Divider />
+
+## Fundamental, not technical
+
+There are two families of company analysis. **Technical analysis** evaluates investments through price trends and chart patterns, on the assumption that past trading activity predicts future price moves. **Fundamental analysis** seeks a stock's real or fair market value from the business and its financial statements. PMC does fundamental analysis — and within it, both branches: **absolute valuation**, building a <KeyTerm slug="DCF">DCF</KeyTerm> from the firm's own estimated revenues and costs, and **relative valuation**, comparing the firm with key industry peers on ratios like <KeyTerm slug="EV/EBITDA">EV/EBITDA</KeyTerm>, P/E, and P/B.
+
+## Reading the statements
+
+### The balance sheet
+
+The balance sheet is an overview of the firm's assets and commitments in the short and long term — informative of its financial position. Assets are ordered from most liquid (cash, short-term investments, receivables, inventories) to least (plant and equipment, intangibles like copyrights and patents); liabilities split at the 12-month line into current and non-current; equity is the residual balance, dominated by share capital and retained earnings.
+
+The first pass over it is **liquidity analysis** — can the firm meet its short-term obligations? Run on Air Products' 2022 accounts:
+
+| Ratio | Definition | Air Products 2022 | Reading |
+| --- | --- | ---: | --- |
+| Current ratio | Current assets ÷ current liabilities | 1.81 | Above 1 as a rule of thumb — but compare with peers |
+| Quick ratio | (Current assets − inventories) ÷ current liabilities | 1.66 | More demanding; most relevant where selling inventory matters |
+| Cash ratio | Cash ÷ current liabilities | 0.78 | The most demanding of all; compare with the industry, no general rule |
+
+<KeyTerm slug="NWC">Net working capital</KeyTerm> — current assets minus current liabilities — came to roughly 2,817 million dollars: the capital left after meeting every short-term obligation and turning all current assets into cash.
+
+The second pass is **cash-flow management** — a liquid firm can still struggle to generate cash. Three periods measure the operating rhythm:
+
+<FormulaBlock
+  formula="\begin{aligned} \text{ACP} &= \tfrac{\text{Trade receivables}}{\text{Sales}} \times 365 = 52 \text{ days} \\[4pt] \text{AHP} &= \tfrac{\text{Inventories}}{\text{Cost of sales}} \times 365 = 20 \text{ days} \\[4pt] \text{APP} &= \tfrac{\text{Payables}}{\text{Cost of sales}} \times 365 = 108 \text{ days} \end{aligned}"
+  caption="Average collection, holding, and payable periods — Air Products, 2022. Higher collection and holding periods pressure liquidity; a higher payable period relieves it."
+/>
+
+Chained together they give the **cash conversion cycle** — how long the firm takes to generate cash from its operations: ACP + AHP − APP = 52 + 20 − 108 = **−36 days**. A negative cycle means the suppliers are financing the firm's operations: Air Products collects from customers and turns its inventory long before its own bills come due.
+
+The third pass is **capital and debt structure** — what financing supports the operations:
+
+| Ratio | What it tells you | Leidos 2021 |
+| --- | --- | ---: |
+| <KeyTerm slug="Net Debt">Net debt</KeyTerm> / <KeyTerm slug="EBITDA">EBITDA</KeyTerm> | How long to repay the debt if EBITDA could be used as cash | 3.09 |
+| EBITDA / interest expense | How the operational result covers the cost of financial liabilities | 8.87 |
+| Debt / equity | The relative proportion of debt and equity as financing sources | 133.63 |
+| Solvency ratio (assets / liabilities) | How much the assets exceed the liabilities | 1.49 |
+| Financial autonomy (equity / assets) | The share of assets financed by equity | 0.33 |
+| Altman's Z-Score | A solvency score: below 1.8, possible bankruptcy path; near 3, a solid company | 4.7 |
+
+Alongside the ratios, always pull the **debt schedule** — Leidos' maturities run 2022 through 2026-and-beyond, and a wall of near-term maturities reads very differently from a long tail.
+
+### The income statement
+
+The income statement compiles all revenues and costs — it is mostly an indicator of profitability. Reading Walt Disney's 2021 accounts: revenue presentation can break down by product and service as well as by geography; the cost structure depends on the industry and on how the company is organised (SG&A), with some costs there purely for accounting purposes (D&A); and additional items can matter depending on amount and frequency — Disney's statement carried restructuring charges and income from investee companies. Whenever possible, get a view of the evolution *and* segmentation of revenues and costs: Disney's 67.4 billion of 2021 revenue splits six ways by segment (affiliate fees, advertising, subscriptions, parks, licensing, other) and three by geography, with the Americas contributing over 80%.
+
+The ratio pass here is **profitability analysis**:
+
+| Ratio | What it determines |
+| --- | --- |
+| Return on assets (net income / assets) | Profit per dollar of assets |
+| Return on equity (net income / equity) | Profit per dollar of equity |
+| Asset turnover (sales / assets) | Revenue collected per dollar of assets |
+| EBITDA margin (EBITDA / sales) | The share of sales convertible into operational result |
+| Net profit margin (net income / sales) | The share of sales convertible into profit |
+| ROIC vs <KeyTerm slug="WACC">WACC</KeyTerm> | ROIC above the WACC means the firm is creating value |
+
+### The cash flow statement
+
+Three sections, one balance. **Operating cash flows** are everything that results directly from the firm's operations. **Investing cash flows** relate to investments or sales of assets — financial products, property, plant, equipment. **Financing cash flows** capture the raising and repayment of debt and equity. The balance of the statement is the variation in the firm's cash position.
+
+The session's example is deliberately uncomfortable: Metro do Porto, the Porto subway operator, generates *negative* operating cash flow and *positive* investing cash flow — it is selling assets to finance its operations. The statement that looks healthiest at the bottom line can be telling a survival story in the sections.
+
+<SelfCheck question="A firm shows positive investing cash flows. Is that good news?">
+On its own, neither — it is a flag to investigate. Positive investing cash flow means the firm is receiving more from selling assets and investments than it is spending on new ones. That can signal distress — the firm lacks capital and is liquidating assets to fund operations, as with Metro do Porto — or something benign, like a deliberate restructuring that sheds non-core assets. The number identifies the question; the business context answers it. That is the whole logic of the risk-and-mitigant discipline below.
+</SelfCheck>
+
+<Divider />
+
+## Risks and mitigants
+
+<PullQuote attribution="The habit this session installs">
+  A ratio is never a verdict. The same red flag can mean bankruptcy at one firm and a business model at another — the analysis only means something in context.
+</PullQuote>
+
+The session drives the point home with seven real cases, each pairing a factual red flag with what actually happened:
+
+| Fact | Risk | Company | Mitigant |
+| --- | --- | --- | --- |
+| Current ratio 1.41, but inventories are 79% of current assets | May not meet obligations as easily as it seems | JCPenney | None — it went bankrupt |
+| Current ratio 0.88, below the reference value of 1 | May not meet short-term obligations | Apple | Solid market position and easy access to financing |
+| Shareholders' equity is negative | Assets not enough to meet obligations | McDonald's | Reflects the franchise model and how the company finances itself |
+| D/E of 5.64, mostly variable-rate debt | Excessively indebted and exposed to a downturn | Albertsons | Sales recovered fast post-pandemic, near 2019 levels |
+| TV segment losing revenue; parks stagnant | Possible path of stagnation | Disney | Business change — the focus shifted to Disney+ |
+| Sharp increase in litigation-related costs | Profitability severely affected | PG&E | Successfully reduced losses through restructuring |
+| Investing cash flows are positive | Firm may lack capital and be selling assets | Metro do Porto | May simply be going through restructuring |
+
+The pattern to internalise: JCPenney and Apple show a near-identical liquidity flag with opposite outcomes. The fact was never the analysis — the mitigant, or its absence, was.
+
+<Divider />
+
+## Putting it all together: the valuation
+
+Absolute valuation determines intrinsic value with a DCF built from the captions studied above. The session structures it in four blocks:
+
+<Pillars>
+  <Pillar eyebrow="Block 1" title="Fundamentals">
+    Collect financial-statement data over at least five years. Project
+    the key captions: revenues, costs, capex, net working capital.
+  </Pillar>
+  <Pillar eyebrow="Block 2" title="Cash flows &amp; method" emphasize>
+    Assess the free cash flow — operational cash flow, NWC, and capex.
+    Terminal value via perpetuity, with 2% the common growth
+    assumption (the long-term modern growth rate of the economy) — or
+    an EBITDA exit multiple from the industry's EV/EBITDA.
+  </Pillar>
+  <Pillar eyebrow="Block 3" title="Risk">
+    Discount the cash flows at the appropriate rate — most often the
+    weighted average cost of capital.
+  </Pillar>
+  <Pillar eyebrow="Block 4" title="Sensitivity">
+    Test the valuation against changes in key variables — interest
+    rates, for instance — to assess how credible the final number is.
+  </Pillar>
+</Pillars>
+
+Relative valuation uses industry median or average ratios of key metrics to assess the company against its peers. The session runs it on Public Storage, the self-storage REIT, against National Storage Affiliates, Extra Space Storage, CubeSmart, and Life Storage — comparing FFO per share, P/FFO, EV/EBITDA, P/B, P/E, and P/S, then reading the implied prices by quartile into a football field next to the DCF. The applied example takes one ratio end to end: the industry median P/S of 15.23, multiplied by Public Storage's 21.69 billion of sales, implies a price near 330 against a market price near 289 — undervalued *under this scenario*.
+
+<Callout type="warning" title="What relative valuation cannot tell you">
+Peer multiples measure whether the firm is properly valued **based on its peers** — they do not determine whether the industry itself is properly valued. If the whole sector is expensive, a stock can look "cheap" on relative valuation and still be dear in absolute terms. That is why the football field carries both methods side by side.
+</Callout>
+
+<Divider />
+
+## The thesis and the recommendation
+
+The **investment thesis** explains why a certain security is a good investment opportunity. The questions to work through: why should we invest in this security, and why does it stand out from the crowd? What are the firm's key strengths? What role can the security play in PMC's portfolio, and how does it fit the club's goals? Which macro conditions particularly favour the company right now? What value can the stock add compared with the securities already in the portfolio? What particular events — political, economic, social — are shaping the outlook? And is the valuation the heart of this pitch, or is the macro context doing the work?
+
+The **recommendation** turns the thesis into a specific course of action: what should we buy, and how much as a percentage of the overall portfolio? What are the funding sources — selling other securities, cash, or a mix? What price range do we see fit, with stop-losses and take-profits? What is the potential upside and downside? When should the transaction be enacted if approved, and what information should we monitor that might force us to act quickly?
+
+<SelfCheck question="A teammate's draft pitch says: &ldquo;strong brand, growing market, cheap versus peers — BUY.&rdquo; Which parts of this session's arc are missing?">
+Most of it. There is no macro transmission chain (what in the environment helps or hurts this firm now), no fundamentals pass (liquidity, cash conversion, capital structure — the draft never opened the statements), no risks-and-mitigants context around "cheap versus peers" (relative to peers is not relative to intrinsic value — the whole sector could be dear), no sensitivity on the valuation, and the recommendation lacks every actionable element: sizing, funding source, stop-loss and take-profit, timing. "Strong brand" is a thesis fragment; a pitch is the full arc.
+</SelfCheck>
+
+<Divider />
+
+## Collecting the information: the Bloomberg index
+
+The session closes with the club's index of Bloomberg terminal codes — nine pages organised by task: economic indicators, company data, absolute and relative valuation tools, technical analysis, directories, currencies, bonds, portfolio management, commodities, and ETFs and options. The mechanics come first: load the security, then any function code applies to it. The full tables live in the deck; the appendix below carries the ones a new analyst reaches for first.
+
+<DeepDive title="The codes to learn first">
+| Code | What it gives you |
+| --- | --- |
+| DES | Description of the company |
+| FA | Financial analysis — balance sheet, income statement, cash flows, ratios |
+| ANR | Analyst recommendations |
+| OWN | Ownership summary |
+| MGMT | The company's management team |
+| DDIS | Debt distribution of the firm |
+| CAST | Detailed capital structure |
+| CRPR | Credit ratings of the company |
+| WACC | The company's WACC |
+| RV / EQRV | Relative valuation and equity relative valuation against peers |
+| EQS | Equity screening based on criteria |
+| MEMB | Stocks in an index |
+| ECO | Economic calendar |
+| FOMC | FOMC meeting results |
+| WIRP | Interest rates incorporated in market valuation |
+| YAS | Computation of bond yield |
+| PORT | Manages the portfolio created in PRTU |
+
+Two habits worth forming early: run DES, FA, and OWN on every new name before reading a single analyst note, and keep ECO open during pitch weeks — the macro chain from earlier in this session starts with knowing which print lands when.
+</DeepDive>
+
+<PullQuote attribution="The closing thought">
+  Every pitch starts long before the model — with choosing the right company, for reasons you can defend one statement at a time.
+</PullQuote>
